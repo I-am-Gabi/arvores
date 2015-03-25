@@ -116,6 +116,26 @@ public class Pessoa
         telefone = telefone;
     }
    
+    public int getIdade() {
+        Calendar today = Calendar.getInstance();  
+        today.getTime();
+        
+        int dia_hoje =  today.get(Calendar.DAY_OF_MONTH);
+        int mes_hoje = today.get(Calendar.MONTH);
+        int ano_hoje = today.get(Calendar.YEAR);
+        
+        int dia_nascimento = nascimento.get(Calendar.DAY_OF_MONTH);
+        int mes_nascimento = nascimento.get(Calendar.MONTH);
+        int ano_nascimento = nascimento.get(Calendar.YEAR);
+      
+        if (mes_hoje >= mes_nascimento){
+            if (dia_hoje >= dia_nascimento){
+                return ano_hoje - ano_nascimento;
+            }
+        }
+        return ano_hoje - ano_nascimento -1;
+    }
+    
     /**
      * showInfo - imprime todos os dados da instância 
      */
@@ -128,27 +148,8 @@ public class Pessoa
         
         System.out.print("Data de Nascimento :  " + formataData.format(data));
         
-        System.out.print(" " + " | CPF : " + CPF + " | Telefone : " + telefone);
+        System.out.print(" | IDADE : " + getIdade() +  " | CPF : " + CPF + " | Telefone : " + telefone);
     }
     
-    public int getIdade() {
-        Calendar c = Calendar.getInstance();    
-        
-        /* LocalDate aniv = LocalDate.of(aniversario.YEAR, aniversario.MONTH, aniversario.DAY_OF_MONTH);
-        LocalDate hoje = LocalDate.now();
-     
-       
-       LocalDate homemNoEspaco = LocalDate.of(1961, Month.APRIL, 12);
-       LocalDate homemNaLua = LocalDate.of(1969, Month.MAY, 25);
-        Period periodo = Period.between(homemNoEspaco, homemNaLua); 
-         
-        System.out.printf("%s anos, %s mês e %s dias", 
-        periodo.getYears() , periodo.getMonths(), periodo.getDays());
-        //X anos, Y mês e Z dias 
 
-        
-        */
-       
-       return 0;
-    }
 }

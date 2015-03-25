@@ -36,7 +36,7 @@ public class Tree
     
     public void test(){
         Calendar nascimento = Calendar.getInstance();
-        nascimento.set(2015,Calendar.AUGUST,20);
+        nascimento.set(2000,Calendar.AUGUST,20);
         Pessoa Joao = new Pessoa("Joao",nascimento,"555.555.777-12","84 555 800");
         Calendar nascimento2 = Calendar.getInstance();
         nascimento2.set(1995,Calendar.DECEMBER,20);
