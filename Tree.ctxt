@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Tree()
+comment1.params=ordem
+comment1.target=Tree(int)
+comment2.params=
+comment2.target=void\ test()
+numComments=3

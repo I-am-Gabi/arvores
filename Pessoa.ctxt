@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.params=nome_\ nascimento_\ CPF_\ telefone_
+comment0.params=nome\ c\ CPF\ telefone
 comment0.target=Pessoa(java.lang.String,\ java.util.Calendar,\ java.lang.String,\ java.lang.String)
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Pessoa\r\n
 comment1.params=
@@ -21,16 +21,16 @@ comment4.text=\r\n\ getCpf\ -\ retorna\ valor\ do\ campo\ CPF\r\n\ \ \r\n\ @retu
 comment5.params=
 comment5.target=java.lang.String\ getTelefone()
 comment5.text=\r\n\ getTelefone\ -\ retorna\ valor\ do\ campo\ telefone\r\n\ \ \r\n\ @return\ telefone\ valor\ do\ atributo\ telefone\ da\ inst\u00E2ncia\r\n
-comment6.params=nome_
+comment6.params=nome
 comment6.target=void\ setNome(java.lang.String)
 comment6.text=\r\n\ setNome\ -\ modifica\ o\ valor\ do\ campo\ nome\r\n\ \ \r\n\ @params\ nome_\ valor\ que\ ser\u00E1\ atribuido\ ao\ campo\ nome\ da\ inst\u00E2ncia\r\n
 comment7.params=c
 comment7.target=void\ setNascimento(java.util.Calendar)
 comment7.text=\r\n\ setNascimento\ -\ modifica\ o\ valor\ do\ campo\ nascimento\r\n\ \ \r\n\ @params\ cal\ objeto\ Calendar\ que\ contem\ os\ valores\ que\ ser\u00E1\ atribuidos\ ao\ campo\ nascimento\ da\ inst\u00E2ncia\r\n
-comment8.params=cpf_
+comment8.params=cpf
 comment8.target=void\ setCpf(java.lang.String)
 comment8.text=\r\n\ setCpf\ -\ modifica\ o\ valor\ do\ campo\ CPF\r\n\ \ \r\n\ @params\ cpf_\ valor\ que\ ser\u00E1\ atribuido\ ao\ campo\ CPF\ da\ inst\u00E2ncia\r\n
-comment9.params=telefone_
+comment9.params=telefone
 comment9.target=void\ setTelefone(java.lang.String)
 comment9.text=\r\n\ setTelefone\ -\ modifica\ o\ valor\ do\ campo\ telefone\r\n\ \ \r\n\ @params\ telefone_\ valor\ que\ ser\u00E1\ atribuido\ ao\ campo\ telefone\ da\ inst\u00E2ncia\r\n
 numComments=12
