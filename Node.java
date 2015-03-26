@@ -22,6 +22,13 @@ public class Node {
         childrens = new ArrayList<Node>();
     }
     
+    public Node(int degree){
+        parent = null;
+        person = null;
+        childrens = new ArrayList<Node>();
+        this.degree = degree;
+    }    
+    
     /**
      * Construtor padrão
      * @param Pessoa que será atribuída a este nó.
