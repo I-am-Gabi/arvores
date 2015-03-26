@@ -24,26 +24,21 @@ The root node is said to have depth 0.
  */
 public class Tree
 {
-    private int ordem; 
+    private Node root;
     
-    Tree (){
-        ordem = 3;
+    public Tree (int degree){
+        root = new Node(degree);
     }
     
-    Tree (int ordem){
-        this.ordem = ordem;
+    public void add(Pessoa pessoa){
+        Node node = new Node(pessoa);
+        root.addChildren(node);
     }
     
-    public void test(){
-        Calendar nascimento = Calendar.getInstance();
-        nascimento.set(2000,Calendar.AUGUST,20);
-        Pessoa Joao = new Pessoa("Joao",nascimento,"555.555.777-12","84 555 800");
-        Calendar nascimento2 = Calendar.getInstance();
-        nascimento2.set(1995,Calendar.DECEMBER,20);
-        Pessoa Mariah = new Pessoa ("Mariah",nascimento2, "888.888.999-14","84 777 900");
-        
-        Joao.showInfo();
-        Mariah.showInfo();
-    }
+    /* 
+     * Calendar nascimento = Calendar.getInstance();
+     *  nascimento.set(2000,Calendar.AUGUST,20);
+     */
+
     
 }
