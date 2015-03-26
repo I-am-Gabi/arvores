@@ -36,6 +36,14 @@ public class Pessoa
         this.telefone = telefone;
     } 
     
+    public Pessoa(String name)
+    {
+        nome = name;
+        nascimento = Calendar.getInstance();
+        CPF = " ";
+        telefone = " ";
+    }
+
     public Pessoa()
     {
         nome = " ";
@@ -43,7 +51,7 @@ public class Pessoa
         CPF = " ";
         telefone = " ";
     }
-
+    
     /**
      * getNome - retorna valor do campo nome
      *  

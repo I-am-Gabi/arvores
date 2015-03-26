@@ -11,22 +11,25 @@ public class Node {
     private Pessoa data;
     private ArrayList<Node> childrens;
     private static int degree; /* número máximo de filhos */
+    public int value;
     
-    public Node(int degree){
+    public Node(int degree,int value){
         parent = null;
         data = null;
         childrens = new ArrayList<Node>();
         this.degree = degree;
+        this.value = value;
     }    
     
     /**
      * Construtor padrão
      * @param Pessoa que será atribuída a este nó.
      */    
-    public Node(Pessoa person){
+    public Node(Pessoa person,int value){
         parent = null;
         this.data = person;
         childrens = new ArrayList<Node>();
+        this.value = value;
     }
         
     /**
@@ -39,7 +42,7 @@ public class Node {
     /**
      * @param Pessoa person : Atribui uma pessoa a este nó
      */
-    public void setPerson(Pessoa person){
+    public void setData(Pessoa person){
         this.data = person;
     }
     
@@ -54,12 +57,13 @@ public class Node {
     /**
      * @return Pessoa : retorna a pessoa atribuida a este nó
      */
-    public Pessoa getPerson(){
+    public Pessoa getData(){
         return this.data;
     }
     
     public boolean addChildren(Node children){       
-       if (this.childrens.size() < degree){
+       
+        if (this.childrens.size() < degree){
            this.childrens.add(children);
            children.setParent(this);
            return true;
@@ -77,11 +81,31 @@ public class Node {
         }
         return false;        
     }
-    
+        
     public ArrayList<Node> getChildrens(){
         return this.childrens;
     }
-        
+    
+    
+    /**
+     * Fiz essa função de busca acredito que fiz busca por profundidade, 
+     * pq ele verifica se nó atual é a pessoa procurada, se não for, passa para o filho e isso
+     * se repete para todos os filhos do root.
+     */
+    public Node search(Pessoa pessoa){
+        Node node;
+        if (this.data == pessoa){
+            return this;
+        }
+        else {
+            for(Node each : childrens){
+                node = each.search(pessoa);
+                if (node != null) return node;
+            }
+        }
+        return null;    
+    }
+    
     /**
      * @return true : Se é raiz
      * false: se não é raiz

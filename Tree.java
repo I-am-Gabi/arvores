@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.util.ArrayList;
 /**
  * Write a description of class Tree here.
  * 
@@ -22,23 +23,32 @@ The root node is said to have depth 0.
  * 
  * 
  */
+
+/* 
+ * Calendar nascimento = Calendar.getInstance();
+ *  nascimento.set(2000,Calendar.AUGUST,20);
+ */
+    
 public class Tree
 {
     private Node root;
     
     public Tree (int degree){
-        root = new Node(degree);
+        root = new Node(degree,0);
     }
     
     public void add(Pessoa pessoa){
-        Node node = new Node(pessoa);
+        Node node = new Node(pessoa,0);
         root.addChildren(node);
     }
     
-    /* 
-     * Calendar nascimento = Calendar.getInstance();
-     *  nascimento.set(2000,Calendar.AUGUST,20);
+    /**
+     * Fiz essa função de busca acredito que fiz busca por profundidade, 
+     * pq ele verifica se nó atual é a pessoa procurada, se não for, passa para o filho e isso
+     * se repete para todos os filhos do root.
      */
-
-    
+    public Node buscaProfundidade(Pessoa pessoa){
+        return root.search(pessoa);
+    }
+        
 }
