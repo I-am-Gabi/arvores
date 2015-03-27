@@ -11,14 +11,14 @@ public class Node {
     private Pessoa data;
     private ArrayList<Node> childrens;
     private static int degree; /* número máximo de filhos */
-    public int value;
+    private Node brother;
     
     public Node(int degree,int value){
         parent = null;
+        brother = null;
         data = null;
         childrens = new ArrayList<Node>();
         this.degree = degree;
-        this.value = value;
     }    
     
     /**
@@ -29,7 +29,6 @@ public class Node {
         parent = null;
         this.data = person;
         childrens = new ArrayList<Node>();
-        this.value = value;
     }
         
     /**
@@ -50,6 +49,14 @@ public class Node {
         this.degree = degree;
     }
     
+    public void setBrother(Node brother){
+        this.brother = brother;
+    }
+    
+    public Node getBrother(){
+        return this.brother;
+    }
+    
     public int getDegree(){
         return degree;
     }
@@ -62,18 +69,20 @@ public class Node {
     }
     
     public boolean addChildren(Node children){       
-       
         if (this.childrens.size() < degree){
            this.childrens.add(children);
            children.setParent(this);
            return true;
        }
        else {
-           ArrayList<Node> searchChildrens = this.childrens;
-           for (Node each : searchChildrens){
-              searchChildrens = each.getChildrens();    
-               if (searchChildrens.size() < degree){
-                    searchChildrens.add(children);
+           ArrayList<Node> childList = this.childrens;
+           for (Node each : childList){
+              childList = each.getChildrens();    
+               if (childList.size() < degree){
+                    if (childList.size() > 0){
+                        children.setBrother(childList.get(childList.size()-1));
+                    }
+                    childList.add(children);
                     children.setParent(each);
                     return true;
                 }
@@ -104,6 +113,32 @@ public class Node {
             }
         }
         return null;    
+    }
+    
+    public Node searchLargura(Pessoa pessoa){
+        if (this.getData() == pessoa){
+            return this;
+        }
+        else {
+            ArrayList<Node> childs = childrens;
+            Node tobrother;
+            for (Node each : childs){
+                if (each.getData() == pessoa){
+                        return each;
+                }
+                tobrother = each.getBrother();                
+                while(tobrother != null){
+                    if (each.getData() == pessoa){
+                        return each;
+                    } 
+                    tobrother = each.getBrother();
+                }
+                
+ 
+            }
+            
+        }
+        return null;
     }
     
     /**

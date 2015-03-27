@@ -60,5 +60,11 @@ public class TreeTest
         assertNotNull(tree1.buscaProfundidade(pessoa3));
         assertNotNull(tree1.buscaProfundidade(pessoa1));
     }
+
+    @Test
+    public void testLargura()
+    {
+    }
 }
+
 

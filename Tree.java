@@ -51,4 +51,7 @@ public class Tree
         return root.search(pessoa);
     }
         
+    public Node buscaLargura(Pessoa pessoa){
+        return root.searchLargura(pessoa);
+    }
 }
