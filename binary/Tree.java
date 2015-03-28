@@ -64,10 +64,10 @@ public class Tree
     }
     
     public void createPeople(){
-        Pessoa p1 = new Pessoa("11");
-        Pessoa p2 = new Pessoa("9");
-        Pessoa p3 = new Pessoa("12");
-        Pessoa p4 = new Pessoa("8");
+        Pessoa p1 = new Pessoa("13");
+        Pessoa p2 = new Pessoa("7");
+        Pessoa p3 = new Pessoa("16");
+        Pessoa p4 = new Pessoa("6");
         
         addNode(p1);
         addNode(p2);

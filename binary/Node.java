@@ -65,7 +65,7 @@ public class Node {
     
     public void addChildren(Node where, Pessoa pessoa){
         int pessoaCPF = Integer.parseInt(pessoa.getCPF());
-        int dataCPF = Integer.parseInt(data.getCPF());        
+        int dataCPF = Integer.parseInt(where.getData().getCPF());        
         if( pessoaCPF < dataCPF ){
             if(where.getLeft() != null){
                 addChildren(where.getLeft(),pessoa);
@@ -74,7 +74,7 @@ public class Node {
                 where.setLeft(new Node(pessoa));
                 where.getLeft().setParent(where);
                 if (where.getRight() != null){
-                    where.getLeft().setBrother(right);
+                    where.getLeft().setBrother(where.getRight());
                 }
             }
         }
@@ -86,12 +86,13 @@ public class Node {
                 where.setRight(new Node(pessoa));
                 where.getRight().setParent(where);
                 if (where.getLeft() != null){
-                    where.getLeft().setBrother(right);
+                    where.getLeft().setBrother(where.getRight());
                 }
-                if (where.getParent() != null && where.getParent().getBrother() != null){
-                    if (where.getParent().getBrother().getLeft() != null){
-                        where.getRight().setBrother(where.getParent().getBrother().getLeft());
+                if (where.getBrother() != null){
+                    if (where.getBrother() != null && where.getBrother().getLeft() != null){
+                        where.getRight().setBrother(where.getBrother().getLeft());
                     }
+                    
                 }
             }
         }
