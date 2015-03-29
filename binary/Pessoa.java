@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.lang.Integer;
 /*
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -151,5 +152,12 @@ public class Pessoa
         System.out.print(" | IDADE : " + getIdade() +  " | CPF : " + CPF + " | Telefone : " + telefone);
     }
     
-
+    public boolean isEquals(Pessoa p) {
+        if (Integer.parseInt(this.CPF) == Integer.parseInt(p.CPF)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
