@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 
 /* 
- * Calendar nascimento = Calendar.getInstance();
+ *  Calendar nascimento = Calendar.getInstance();
  *  nascimento.set(2000,Calendar.AUGUST,20);
  */
     
@@ -17,12 +17,12 @@ public class Tree
     private Node root;
     
     public Tree(){
-        Pessoa pessoa = new Pessoa("10");
+        Pessoa pessoa = new Pessoa();
         root = new Node(pessoa);
     }
         
     public void add(Pessoa pessoa){
-        root.addNode(root,pessoa);
+        root.addNode(root, pessoa);
     }
 
     public void add(Node toadd){
@@ -97,4 +97,33 @@ public class Tree
         printPosfix(root);
     }
     
+    public void getHeight(Node node) {
+        if (node != null) {
+            getHeight(node.getLeft());
+            getHeight(node.getRight());
+            calcHeight(node);
+        }
+    }
+    
+    public void calcHeight(Node node) {
+        int alt1, alt2 = 0;
+        if (node.getLeft() == null) {
+            alt1 = 0;
+        }
+        else {
+            alt1 = node.getLeft().getHeight();
+        }
+        if (node.getRight() == null) {
+            alt2 = 0;
+        }
+        else {
+            alt2 = node.getRight().getHeight();
+        }
+        if (alt1 > alt2) {
+            node.setHeight(alt1 + 1);
+        }
+        else {
+            node.setHeight(alt2 + 1);
+        }
+    }
 }

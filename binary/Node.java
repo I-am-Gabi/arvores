@@ -8,21 +8,19 @@ public class Node {
     private Pessoa data;
     private Node left;
     private Node right;
-    private Node parent;
-    private Node brother;
+    private Node parent; 
+    private int height;
     
     public Node (){
         this.data = null;
         this.left = null;
-        this.right = null;
-        this.brother = null;
+        this.right = null; 
     }
     
     public Node (Pessoa pessoa){
         this.data = pessoa;
         this.left = null;
-        this.right = null;
-        this.brother = null;
+        this.right = null;  
     }    
         
     public Pessoa getData(){
@@ -36,13 +34,13 @@ public class Node {
     public Node getRight(){
         return right;
     }
-    
-    public Node getBrother(){
-        return brother;
-    }
-    
+     
     public Node getParent(){
         return parent;
+    }
+    
+    public int getHeight() {
+        return height;
     }
     
     public void setLeft(Node left){
@@ -51,14 +49,14 @@ public class Node {
 
     public void setRight(Node right){
         this.right = right;
-    }    
-    
-    public void setBrother(Node brother){
-        this.brother = brother;
-    }    
+    }     
     
     public void setParent(Node parent){
         this.parent = parent;
+    }
+    
+    public void setHeight(int height) {
+        this.height = height;
     }
     
     public void addNode(Node where, Pessoa pessoa){
@@ -70,10 +68,7 @@ public class Node {
             }
             else{
                 where.setLeft(new Node(pessoa));
-                where.getLeft().setParent(where);
-                if (where.getRight() != null){
-                    where.getLeft().setBrother(where.getRight());
-                }
+                where.getLeft().setParent(where); 
             }
         }
         else if(pessoaCPF > dataCPF){
@@ -82,16 +77,7 @@ public class Node {
             }
             else {
                 where.setRight(new Node(pessoa));
-                where.getRight().setParent(where);
-                if (where.getLeft() != null){
-                    where.getLeft().setBrother(where.getRight());
-                }
-                if (where.getBrother() != null){
-                    if (where.getBrother() != null && where.getBrother().getLeft() != null){
-                        where.getRight().setBrother(where.getBrother().getLeft());
-                    }
-                    
-                }
+                where.getRight().setParent(where);  
             }
         }
     }
@@ -106,10 +92,7 @@ public class Node {
                 }
                 else{
                     where.setLeft(toadd);
-                    where.getLeft().setParent(where);
-                    if (where.getRight() != null){
-                        where.getLeft().setBrother(right);
-                    }
+                    where.getLeft().setParent(where); 
                 }
             }
             else if(pessoaCPF > dataCPF){
@@ -118,15 +101,7 @@ public class Node {
                 }
                 else {
                     where.setRight(toadd);
-                    where.getRight().setParent(where);
-                    if (where.getLeft() != null){
-                        where.getLeft().setBrother(right);
-                    }
-                    if (where.getParent() != null && where.getParent().getBrother() != null){
-                        if (where.getParent().getBrother().getLeft() != null){
-                            where.getRight().setBrother(where.getParent().getBrother().getLeft());
-                        }
-                    }
+                    where.getRight().setParent(where); 
                 }
             }
         }
