@@ -25,6 +25,7 @@ public class Pessoa
         this.CPF = "0";
         this.phone = " ";
     }
+    
     public Pessoa(String name, Calendar bday, String CPF, String phone){
         this.name = name;
         this.bday = Calendar.getInstance();
@@ -33,12 +34,14 @@ public class Pessoa
         this.CPF = CPF;
         this.phone = phone;
     } 
+    
     public Pessoa(String CPF){
         this.name = " ";
         this.bday = Calendar.getInstance();
         this.CPF = CPF;
         this.phone = " ";
     }
+    
     public Pessoa(String name, int year, int month, int day, String CPF, String phone){
         this.name = name;
         this.bday = Calendar.getInstance();
@@ -56,6 +59,7 @@ public class Pessoa
     public String getName() {
         return name;
     }
+    
     /**
      * getNascimento - retorna valor do campo nascimento
      *  
@@ -64,6 +68,7 @@ public class Pessoa
     public Calendar getBday() {
         return bday;
     }
+    
     /**
      * getCpf - retorna valor do campo CPF
      *  
@@ -72,6 +77,7 @@ public class Pessoa
     public String getCPF() {
         return CPF;
     }
+    
     /**
      * getTelefone - retorna valor do campo this.phone
      *  
@@ -80,6 +86,7 @@ public class Pessoa
     public String getPhone() {
         return this.phone;
     }
+    
     /**
      * setNome - modifica o valor do campo nome
      *  
@@ -88,6 +95,7 @@ public class Pessoa
     public void setName(String name) {
         this.name = name;
     }
+    
     /**
      * setNascimento - modifica o valor do campo nascimento
      *  
@@ -96,6 +104,7 @@ public class Pessoa
     public void setBday(Calendar c) {
         this.bday.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)); 
     }
+    
     /**
      * setCpf - modifica o valor do campo CPF
      *  
@@ -104,6 +113,7 @@ public class Pessoa
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
+    
     /**
      * setTelefone - modifica o valor do campo this.phone
      *  
@@ -112,6 +122,12 @@ public class Pessoa
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    
+    /**
+     * getAge - retorna a idade da pessoa
+     * 
+     * @return valor correspondente a idade da pessoa
+     */
     public int getAge() {
         Calendar today = Calendar.getInstance();  
         today.getTime();
@@ -123,8 +139,9 @@ public class Pessoa
         }
         return today.get(Calendar.YEAR) - this.bday.get(Calendar.YEAR) -1;
     }
+    
     /**
-     * showInfo - imprime todos os dados da inst√¢ncia 
+     * showInfo - imprime todos os dados da inst‚ncia 
      */
     public void print() {
         System.out.println();
@@ -137,6 +154,16 @@ public class Pessoa
         
         System.out.print(" | IDADE : " + getAge() +  " | CPF : " + CPF + " | Phone : " + phone);
     }
+    
+    /**
+     * isEquals - verifica se duas inst‚ncias da classe Pessoa possuem o mesmo valor
+     * do CPF. No caso, n„o podemos comparar nomes, nem data de nascimento ou telefone,
+     * por que duas pessoas podem ter esses valores iguais, mas nunca poder„o ter o 
+     * CPF com o mesmo valor.
+     * 
+     * @return um valor booleano indicando se os dois valores tem o mesmo CPF (true)
+     * ou n„o (false)
+     */
     public boolean isEquals(Pessoa p) {
         if (Integer.parseInt(this.CPF) == Integer.parseInt(p.CPF)) {
             return true;

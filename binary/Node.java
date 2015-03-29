@@ -1,8 +1,8 @@
 /**
  * Write a description of class Node here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Roberto D.; Gabriela C.; Gustavo A.
+ * @version 1.0
  */
 public class Node {
     private Pessoa data;
@@ -43,6 +43,10 @@ public class Node {
         return height;
     }
     
+    public void setData(Pessoa pessoa) {
+        this.data = pessoa;
+    }
+    
     public void setLeft(Node left){
         this.left = left;
     }
@@ -59,7 +63,7 @@ public class Node {
         this.height = height;
     }
     
-    public void addNode(Node where, Pessoa pessoa){
+    /* public void addNode(Node where, Pessoa pessoa){
         int pessoaCPF = Integer.parseInt(pessoa.getCPF());
         int dataCPF = Integer.parseInt(where.getData().getCPF());        
         if( pessoaCPF < dataCPF ){
@@ -80,7 +84,7 @@ public class Node {
                 where.getRight().setParent(where);  
             }
         }
-    }
+    } */
     
     public void addExistentNode(Node where, Node toadd){
         if (toadd != null){
