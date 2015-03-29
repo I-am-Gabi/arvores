@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * Write a description of class Node here.
  * 
@@ -14,17 +12,17 @@ public class Node {
     private Node brother;
     
     public Node (){
-        data = null;
-        left = null;
-        right = null;
-        brother = null;
+        this.data = null;
+        this.left = null;
+        this.right = null;
+        this.brother = null;
     }
     
     public Node (Pessoa pessoa){
-        data = pessoa;
-        left = null;
-        right = null;
-        brother = null;
+        this.data = pessoa;
+        this.left = null;
+        this.right = null;
+        this.brother = null;
     }    
         
     public Pessoa getData(){
@@ -63,12 +61,12 @@ public class Node {
         this.parent = parent;
     }
     
-    public void addChildren(Node where, Pessoa pessoa){
+    public void addNode(Node where, Pessoa pessoa){
         int pessoaCPF = Integer.parseInt(pessoa.getCPF());
         int dataCPF = Integer.parseInt(where.getData().getCPF());        
         if( pessoaCPF < dataCPF ){
             if(where.getLeft() != null){
-                addChildren(where.getLeft(),pessoa);
+                addNode(where.getLeft(),pessoa);
             }
             else{
                 where.setLeft(new Node(pessoa));
@@ -80,7 +78,7 @@ public class Node {
         }
         else if(pessoaCPF > dataCPF){
             if (where.getRight() != null){
-                addChildren(where.getRight(),pessoa);
+                addNode(where.getRight(),pessoa);
             }
             else {
                 where.setRight(new Node(pessoa));

@@ -1,13 +1,5 @@
 import java.util.Calendar;
 import java.lang.Integer;
-/*
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.ZoneId;
-import java.time.Instant;
-import java.time.Period; 
-*/
 import java.util.Date;
 import java.text.DateFormat;
 /**
@@ -19,38 +11,33 @@ import java.text.DateFormat;
 public class Pessoa
 {
     // instance variables - replace the example below with your own
-    private String nome;
-    private Calendar nascimento;
+    private String name;
+    private Calendar bday;
     private String CPF;
-    private String telefone;
+    private String phone;
 
     /**
      * Constructor for objects of class Pessoa
      */
-    public Pessoa(String nome, Calendar c, String CPF, String telefone)
-    {
-        this.nome = nome;
-        this.nascimento = Calendar.getInstance();
-        this.nascimento.clear();
-        this.nascimento.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)); 
-        this.CPF = CPF;
-        this.telefone = telefone;
-    } 
-    
-    public Pessoa()
-    {
-        nome = " ";
-        nascimento = Calendar.getInstance();
-        CPF = "0";
-        telefone = " ";
+    public Pessoa(){
+        this.name = " ";
+        this.bday = Calendar.getInstance();
+        this.CPF = "0";
+        this.phone = " ";
     }
-
-    public Pessoa(String cpf)
-    {
-        nome = " ";
-        nascimento = Calendar.getInstance();
-        CPF = cpf;
-        telefone = " ";
+    public Pessoa(String name, Calendar bday, String CPF, String telefone){
+        this.name = name;
+        this.bday = Calendar.getInstance();
+        this.bday.clear();
+        this.bday.set(bday.get(Calendar.YEAR), bday.get(Calendar.MONTH),bday.get(Calendar.DAY_OF_MONTH)); 
+        this.CPF = CPF;
+        this.phone = phone;
+    } 
+    public Pessoa(String CPF){
+        this.name = " ";
+        this.bday = Calendar.getInstance();
+        this.CPF = CPF;
+        this.phone = " ";
     }
     
     /**
@@ -58,19 +45,17 @@ public class Pessoa
      *  
      * @return nome valor do atributo nome da instância
      */
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
-    
     /**
      * getNascimento - retorna valor do campo nascimento
      *  
      * @return nascimento valor do atributo nascimento da instância
      */
-    public Calendar getNascimento() {
-        return nascimento;
+    public Calendar getBday() {
+        return bday;
     }
-    
     /**
      * getCpf - retorna valor do campo CPF
      *  
@@ -79,79 +64,71 @@ public class Pessoa
     public String getCPF() {
         return CPF;
     }
-    
     /**
-     * getTelefone - retorna valor do campo telefone
+     * getTelefone - retorna valor do campo this.phone
      *  
-     * @return telefone valor do atributo telefone da instância
+     * @return this.phone valor do atributo this.phone da instância
      */
-    public String getTelefone() {
-        return telefone;
+    public String getPhone() {
+        return this.phone;
     }
-    
     /**
      * setNome - modifica o valor do campo nome
      *  
      * @params nome_ valor que será atribuido ao campo nome da instância
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
-    
     /**
      * setNascimento - modifica o valor do campo nascimento
      *  
      * @params cal objeto Calendar que contem os valores que será atribuidos ao campo nascimento da instância
      */
-    public void setNascimento(Calendar c) {
-        this.nascimento.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)); 
+    public void setBday(Calendar c) {
+        this.bday.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)); 
     }
-    
     /**
      * setCpf - modifica o valor do campo CPF
      *  
      * @params cpf_ valor que será atribuido ao campo CPF da instância
      */
-    public void setCpf(String cpf) {
-        CPF = cpf;
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
-    
     /**
-     * setTelefone - modifica o valor do campo telefone
+     * setTelefone - modifica o valor do campo this.phone
      *  
-     * @params telefone_ valor que será atribuido ao campo telefone da instância
+     * @params telefone_ valor que será atribuido ao campo this.phone da instância
      */
-    public void setTelefone(String telefone) {
-        telefone = telefone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
-   
-    public int getIdade() {
+    public int getAge() {
         Calendar today = Calendar.getInstance();  
         today.getTime();
               
-        if (today.get(Calendar.MONTH) >= nascimento.get(Calendar.MONTH)){
-            if (today.get(Calendar.DAY_OF_MONTH) >= nascimento.get(Calendar.DAY_OF_MONTH)){
-                return today.get(Calendar.YEAR) - nascimento.get(Calendar.YEAR);
+        if (today.get(Calendar.MONTH) >= this.bday.get(Calendar.MONTH)){
+            if (today.get(Calendar.DAY_OF_MONTH) >= this.bday.get(Calendar.DAY_OF_MONTH)){
+                return today.get(Calendar.YEAR) - this.bday.get(Calendar.YEAR);
             }
         }
-        return today.get(Calendar.YEAR) - nascimento.get(Calendar.YEAR) -1;
+        return today.get(Calendar.YEAR) - this.bday.get(Calendar.YEAR) -1;
     }
-    
     /**
      * showInfo - imprime todos os dados da instância 
      */
-    public void showInfo() {
+    public void print() {
         System.out.println();
-        System.out.print("Nome : " + nome + " | ");
+        System.out.print("Nome : " + name + " | ");
         
-        Date data = nascimento.getTime();
+        Date data = this.bday.getTime();
         DateFormat formataData = DateFormat.getDateInstance();
         
         System.out.print("Data de Nascimento :  " + formataData.format(data));
         
-        System.out.print(" | IDADE : " + getIdade() +  " | CPF : " + CPF + " | Telefone : " + telefone);
+        System.out.print(" | IDADE : " + getAge() +  " | CPF : " + CPF + " | this.phone : " + this.phone);
     }
-    
     public boolean isEquals(Pessoa p) {
         if (Integer.parseInt(this.CPF) == Integer.parseInt(p.CPF)) {
             return true;
