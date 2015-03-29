@@ -25,11 +25,11 @@ public class Pessoa
         this.CPF = "0";
         this.phone = " ";
     }
-    public Pessoa(String name, Calendar bday, String CPF, String telefone){
+    public Pessoa(String name, Calendar bday, String CPF, String phone){
         this.name = name;
         this.bday = Calendar.getInstance();
         this.bday.clear();
-        this.bday.set(bday.get(Calendar.YEAR), bday.get(Calendar.MONTH),bday.get(Calendar.DAY_OF_MONTH)); 
+        this.bday.set(bday.get(Calendar.YEAR), bday.get(Calendar.MONTH), bday.get(Calendar.DAY_OF_MONTH)); 
         this.CPF = CPF;
         this.phone = phone;
     } 
@@ -38,6 +38,14 @@ public class Pessoa
         this.bday = Calendar.getInstance();
         this.CPF = CPF;
         this.phone = " ";
+    }
+    public Pessoa(String name, int year, int month, int day, String CPF, String phone){
+        this.name = name;
+        this.bday = Calendar.getInstance();
+        this.bday.clear();
+        this.bday.set(year, month - 1, day); 
+        this.CPF = CPF;
+        this.phone = phone;
     }
     
     /**
@@ -127,7 +135,7 @@ public class Pessoa
         
         System.out.print("Data de Nascimento :  " + formataData.format(data));
         
-        System.out.print(" | IDADE : " + getAge() +  " | CPF : " + CPF + " | this.phone : " + this.phone);
+        System.out.print(" | IDADE : " + getAge() +  " | CPF : " + CPF + " | Phone : " + phone);
     }
     public boolean isEquals(Pessoa p) {
         if (Integer.parseInt(this.CPF) == Integer.parseInt(p.CPF)) {
