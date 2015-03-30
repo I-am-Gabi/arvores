@@ -41,22 +41,22 @@ public class Tree
                 System.out.print("Essa pessoa já existe");
             }
             else {
-                addNode(root, pessoa); // chama o método add passando a raiz e a pessoa
+                add(root, pessoa); // chama o método add passando a raiz e a pessoa
             }
         }
     }
     
-    /**
+     /**
      * add - método que adiciona efetivamente um valor em um determinado nó. Ele verifica pelo valor o nome se a 
      * instância passada de Pessoa deve ficar a esquerda ou a direita do nó.
      * 
      * @params node nó que terá os filhos verificados para um deles ser preenchido
      * @params pessoa instância que será atribuida ao campo Data do nó adicionado
      */
-    private void addNode(Node node, Pessoa pessoa) { 
+    private void add(Node node, Pessoa pessoa) { 
         if (pessoa.getName().compareTo(node.getData().getName()) < 0) { // se o nome deve ficar a esquerda
             if (node.getLeft() != null) {
-                addNode(node.getLeft(), pessoa);
+                add(node.getLeft(), pessoa);
             }
             else {
                 node.setLeft(new Node(pessoa));
@@ -65,7 +65,7 @@ public class Tree
         }
         else {
             if (node.getRight() != null) {
-                addNode(node.getRight(), pessoa);
+                add(node.getRight(), pessoa);
             }
             else {
                 node.setRight(new Node(pessoa));
@@ -74,13 +74,74 @@ public class Tree
         }
     }
     
+     public void remove(Node toremove){
+        Node left = toremove.getLeft();
+        Node right = toremove.getRight();
+        Node parent = toremove.getParent();
+        
+        if (parent.getLeft() == toremove){
+            parent.setLeft(null);
+        }
+        else {
+            parent.setRight(null);
+        }
+        
+        parent.addExistentNode(parent, left);
+        parent.addExistentNode(parent, right);
+        
+    } 
+    
+    public Node searchBreadth(String name) { // Busca por largura
+        ArrayList<Node> left = new ArrayList<Node>();
+        ArrayList<Node> right = new ArrayList<Node>();
+        roamPrefix(root.getLeft(), left);
+        roamPrefix(root.getRight(), right); 
+        
+        boolean flag_encontrou = false;
+         
+        Iterator<Node> itL = left.iterator();
+        Iterator<Node> itR = right.iterator();
+        
+        while(itL.hasNext() || itR.hasNext()) {
+            Node n1 = null;
+            Node n2 = null;
+            if (itL.hasNext()) {
+                n1 = itL.next();
+            }
+            else if (itR.hasNext()) {
+                n2 = itR.next();
+            }
+            if (n1 != null) {
+                if (n1.getData().getName().equals(name)) {
+                    flag_encontrou = true;
+                    return n1;
+                    //System.out.print(n1.getData().getName() + " ");
+                    //break;
+                }
+            }
+            if (n2 != null) {
+                if (n2.getData().getName().equals(name)) {
+                    flag_encontrou = true;
+                    return n2;
+                    //System.out.print(n2.getData().getName() + " ");
+                    //break;
+                }
+            }
+        }
+        if (!flag_encontrou) {
+            System.out.print("Não encontrou registro");
+        }
+        return null;
+    }
+    
     /**
      * search - método chamada para pesquisar registro por nome. 
      * 
      * @params name String nome que será usada para a busca
      */
     public void searchDepth(String name) {
-        searchName(root, name, 0);
+        searchDepth(root, name, 0);
+        // INSERIR RETORNO DE NODE
     }
     
     /**
@@ -90,7 +151,7 @@ public class Tree
      * @params name String com valor usado como parâmetro para a busca
      * @params flag flag que indica se já foi encontrado ou não o nó com valor buscado
      */
-    private void searchName(Node node, String name, int flag) {
+    private void searchDepth(Node node, String name, int flag) {
         if (node.getData().getName().compareTo(name) == 0) {
             flag = 1;
         }
@@ -112,7 +173,7 @@ public class Tree
                 }
             }
             if (flag < 1) {
-                searchName(node, name, flag);
+                searchDepth(node, name, flag);
             }
         }
     }
@@ -137,63 +198,7 @@ public class Tree
         }
         return false;
     }
-    
-    public void remove(Node toremove){
-        Node left = toremove.getLeft();
-        Node right = toremove.getRight();
-        Node parent = toremove.getParent();
-        
-        if (parent.getLeft() == toremove){
-            parent.setLeft(null);
-        }
-        else {
-            parent.setRight(null);
-        }
-        
-        parent.addExistentNode(parent, left);
-        parent.addExistentNode(parent, right);
-        
-    } 
-    
-    private void printPrefix(Node node){
-        if (node != null){
-            System.out.print(" " + node.getData().getCPF() + " ");
-            printPrefix(node.getLeft());
-            printPrefix(node.getRight());
-        }
-    }
-    
-    private void printPosfix(Node node){
-        if (node != null){
-            printPosfix(node.getLeft());
-            printPosfix(node.getRight());
-            System.out.print(" " + node.getData().getCPF() + " ");
-        }
-    }
-    
-    private void printOrdered(Node node){
-        if (node != null){
-            printOrdered(node.getLeft());
-            System.out.print(" " + node.getData().getCPF() + " ");
-            printOrdered(node.getRight());
-        }
-    }
-    
-    public void printTreeOrdered(){
-        System.out.println();
-        printOrdered(root);
-    }
-    
-    public void printTreePrefix(){
-        System.out.println();
-        printPrefix(root);
-    }
-    
-    public void printTreePosfix(){
-        System.out.println();
-        printPosfix(root);
-    }
-    
+                        
     public void getHeight(Node node) {
         if (node != null) {
             getHeight(node.getLeft());
@@ -202,7 +207,7 @@ public class Tree
         }
     }
     
-    public void calcHeight(Node node) {
+    private void calcHeight(Node node) {
         int alt1, alt2 = 0;
         if (node.getLeft() == null) {
             alt1 = 0;
@@ -223,47 +228,7 @@ public class Tree
             node.setHeight(alt2 + 1);
         }
     }
-    
-    public void searchBreadth(String name) { // Busca por largura
-        ArrayList<Node> left = new ArrayList<Node>();
-        ArrayList<Node> right = new ArrayList<Node>();
-        roamPrefix(root.getLeft(), left);
-        roamPrefix(root.getRight(), right); 
-        
-        boolean flag_encontrou = false;
-         
-        Iterator<Node> itL = left.iterator();
-        Iterator<Node> itR = right.iterator();
-        
-        while(itL.hasNext() || itR.hasNext()) {
-            Node n1 = null;
-            Node n2 = null;
-            if (itL.hasNext()) {
-                n1 = itL.next();
-            }
-            else if (itR.hasNext()) {
-                n2 = itR.next();
-            }
-            if (n1 != null) {
-                if (n1.getData().getName().equals(name)) {
-                    System.out.print(n1.getData().getName() + " ");
-                    flag_encontrou = true;
-                    break;
-                }
-            }
-            if (n2 != null) {
-                if (n2.getData().getName().equals(name)) {
-                    System.out.print(n2.getData().getName() + " ");
-                    flag_encontrou = true;
-                    break;
-                }
-            }
-        }
-        if (!flag_encontrou) {
-            System.out.print("Não encontrou registro");
-        }
-    }
-    
+      
     private void roamPrefix(Node node, ArrayList<Node> array){
         if (node != null){
             array.add(node); 
@@ -271,20 +236,9 @@ public class Tree
             roamPrefix(node.getRight(), array);
         }
     }
-    
-    private int biggerValue(Node node, int size) {
-        if (node != null){
-            if (node.getData().getName().length() > size) {
-                size = node.getData().getName().length();
-            } 
-            biggerValue(node.getLeft(), size);
-            biggerValue(node.getRight(), size);
-        }
-        return size;
-    }
-    
-    public int biggerValue(){
-            if (root != null) { biggerValue(root,root.getData().getName().length());}
+            
+    public int lessValue(){
+            if (root != null) { lessValue(root,root.getData().getName().length());}
             return -1; 
     }
     
@@ -298,10 +252,48 @@ public class Tree
         }
         return size;
     }
-    
-    public int lessValue(){
-            if (root != null) { lessValue(root,root.getData().getName().length());}
+         
+    public int biggerValue(){
+            if (root != null) { biggerValue(root,root.getData().getName().length());}
             return -1; 
     }
-       
+    
+    private int biggerValue(Node node, int size) {
+        if (node != null){
+            if (node.getData().getName().length() > size) {
+                size = node.getData().getName().length();
+            } 
+            biggerValue(node.getLeft(), size);
+            biggerValue(node.getRight(), size);
+        }
+        return size;
+    }    
+    
+    public void printPrefix(){
+        System.out.println();
+        printPrefix(root);
+    }
+        
+    private void printPrefix(Node node){
+        if (node != null){
+            System.out.print(" " + node.getData().getCPF() + " ");
+            printPrefix(node.getLeft());
+            printPrefix(node.getRight());
+        }
+    }
+    
+    public void printPosfix(){
+        System.out.println();
+        printPosfix(root);
+    }        
+    
+    private void printPosfix(Node node){
+        if (node != null){
+            printPosfix(node.getLeft());
+            printPosfix(node.getRight());
+            System.out.print(" " + node.getData().getCPF() + " ");
+        }
+    }
+    
+    
 }

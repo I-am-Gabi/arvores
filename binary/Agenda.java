@@ -2,20 +2,27 @@ public class Agenda {
     
     private Tree pessoas;
     
+    public Agenda (){
+        pessoas = new Tree();
+    }
+    
     public void armazenaPessoa(Pessoa pessoa){
-       // pessoas.add(pessoa);   
+       pessoas.add(pessoa);   
     }
     public void removePessoa(String nome){
-       // pessoas.pop(nome);   
+        Pessoa toremove = buscaPessoa(nome);
+        if (toremove != null){
+                pessoas.remove(
+        }
     }
-    public void buscaPessoa(String nome){
-        // pessoas.search(nome);
+    public Pessoa buscaPessoa(String nome){
+        return pessoas.searchDepth(nome);
     }
     public void imprimeAgenda(){
-       // pessoas.printOrdered();   
+       pessoas.printOrdered();   
     }
     public void imprimePessoa(String nome){
-       // buscaPessoa(nome).print();    
+       buscaPessoa(nome).print();    
     }
     
 }
