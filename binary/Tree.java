@@ -246,7 +246,7 @@ public class Tree
     public int lowerValue(){
         int value = -1;    
         if (root != null) {
-            lowerValue(root,root.getData().getName().length());
+            value = lowerValue(root,root.getData().getName().length());
             if (value == -1){
                 return root.getData().getName().length();
             }
