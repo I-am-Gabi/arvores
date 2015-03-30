@@ -202,7 +202,7 @@ public class Tree
         }
     }
     
-    public void calcHeight(Node node) {
+    private void calcHeight(Node node) {
         int alt1, alt2 = 0;
         if (node.getLeft() == null) {
             alt1 = 0;
@@ -224,13 +224,25 @@ public class Tree
         }
     }
     
-    public void searchBreadth(String name) { // Busca por largura
+    public void getDeph(Node node) {
+        if (node != null) {
+            getDeph(node.getLeft());
+            getDeph(node.getRight());
+            calcDeph(node);
+        }
+    }
+    
+    private void calcDeph(Node node) {
+        
+        
+    }
+    
+    public Node searchBreadth(String name) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
         roamPrefix(root.getLeft(), left);
         roamPrefix(root.getRight(), right); 
-        
-        boolean flag_encontrou = false;
+         
          
         Iterator<Node> itL = left.iterator();
         Iterator<Node> itR = right.iterator();
@@ -246,22 +258,19 @@ public class Tree
             }
             if (n1 != null) {
                 if (n1.getData().getName().equals(name)) {
-                    System.out.print(n1.getData().getName() + " ");
-                    flag_encontrou = true;
-                    break;
+                    // System.out.print(n1.getData().getName() + " ");
+                    return n1; 
                 }
             }
             if (n2 != null) {
                 if (n2.getData().getName().equals(name)) {
-                    System.out.print(n2.getData().getName() + " ");
-                    flag_encontrou = true;
-                    break;
+                    /// System.out.print(n2.getData().getName() + " ");
+                    return n2; 
                 }
             }
         }
-        if (!flag_encontrou) {
-            System.out.print("Não encontrou registro");
-        }
+        System.out.print("Não encontrou registro");
+        return null;
     }
     
     private void roamPrefix(Node node, ArrayList<Node> array){
@@ -284,8 +293,10 @@ public class Tree
     }
     
     public int biggerValue(){
-            if (root != null) { biggerValue(root,root.getData().getName().length());}
-            return -1; 
+        if (root != null) { 
+            biggerValue(root, root.getData().getName().length());
+        }
+        return -1; 
     }
     
     private int lessValue(Node node, int size) {
@@ -300,8 +311,10 @@ public class Tree
     }
     
     public int lessValue(){
-            if (root != null) { lessValue(root,root.getData().getName().length());}
-            return -1; 
+        if (root != null) { 
+             lessValue(root, root.getData().getName().length());
+        }
+        return -1; 
     }
        
 }
