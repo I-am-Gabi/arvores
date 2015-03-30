@@ -224,7 +224,7 @@ public class Tree
         }
     }
     
-    public void searchLargura(Pessoa pessoa) {
+    public void searchWidth(String name) {
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
         roamPrefix(root.getLeft(), left);
@@ -245,14 +245,14 @@ public class Tree
                 n2 = itR.next();
             }
             if (n1 != null) {
-                if (n1.getData().getName().equals(pessoa.getName())) {
+                if (n1.getData().getName().equals(name)) {
                     System.out.print(n1.getData().getName() + " ");
                     flag_encontrou = true;
                     break;
                 }
             }
             if (n2 != null) {
-                if (n2.getData().getName().equals(pessoa.getName())) {
+                if (n2.getData().getName().equals(name)) {
                     System.out.print(n2.getData().getName() + " ");
                     flag_encontrou = true;
                     break;
@@ -276,8 +276,7 @@ public class Tree
         if (node != null){
             if (node.getData().getName().length() > size) {
                 size = node.getData().getName().length();
-            }
-            biggerValue(node.getLeft(), size);
+            } 
             biggerValue(node.getRight(), size);
         }
         return size;
