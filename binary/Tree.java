@@ -277,6 +277,18 @@ public class Tree
             if (node.getData().getName().length() > size) {
                 size = node.getData().getName().length();
             } 
+            biggerValue(node.getLeft(), size);
+            biggerValue(node.getRight(), size);
+        }
+        return size;
+    }
+    
+    public int lessValue(Node node, int size) {
+        if (node != null){
+            if (node.getData().getName().length() < size) {
+                size = node.getData().getName().length();
+            } 
+            biggerValue(node.getLeft(), size);
             biggerValue(node.getRight(), size);
         }
         return size;
