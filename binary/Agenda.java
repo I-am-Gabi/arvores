@@ -10,19 +10,31 @@ public class Agenda {
        pessoas.add(pessoa);   
     }
     public void removePessoa(String nome){
-        Pessoa toremove = buscaPessoa(nome);
+        Node toremove = pessoas.searchBreadth(nome);
         if (toremove != null){
-                pessoas.remove(
+                pessoas.remove(toremove);
         }
     }
     public Pessoa buscaPessoa(String nome){
-        return pessoas.searchDepth(nome);
+            Node node = pessoas.searchBreadth(nome);
+            if ( node!= null ) {
+                return node.getData();
+            }
+            else {
+                return null;
+            }
     }
     public void imprimeAgenda(){
-       pessoas.printOrdered();   
+       pessoas.printPrefix();   
     }
     public void imprimePessoa(String nome){
-       buscaPessoa(nome).print();    
+       Pessoa pessoa = buscaPessoa(nome);    
+       if (pessoa != null){
+            pessoa.print();
+        }
+       else {
+            System.out.println("Pessoa não encontrada");
+        }
     }
     
 }
