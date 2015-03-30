@@ -18,11 +18,19 @@ dependency6.from=Agenda
 dependency6.to=Pessoa
 dependency6.type=UsesDependency
 objectbench.height=100
+<<<<<<< HEAD
+objectbench.width=871
+package.editor.height=457
+package.editor.width=1050
+package.editor.x=168
+package.editor.y=121
+=======
 objectbench.width=1181
 package.editor.height=455
 package.editor.width=1050
 package.editor.x=717
 package.editor.y=117
+>>>>>>> 30193ba1c15975d02bdce814b701602788587cce
 package.numDependencies=6
 package.numTargets=4
 package.showExtends=true
@@ -33,9 +41,15 @@ readme.editor.width=900
 readme.editor.x=518
 readme.editor.y=208
 target1.editor.height=768
+<<<<<<< HEAD
+target1.editor.width=1035
+target1.editor.x=331
+target1.editor.y=0
+=======
 target1.editor.width=683
 target1.editor.x=0
 target1.editor.y=27
+>>>>>>> 30193ba1c15975d02bdce814b701602788587cce
 target1.height=50
 target1.name=Node
 target1.naviview.expanded=true
@@ -60,8 +74,8 @@ target2.x=150
 target2.y=230
 target3.editor.height=700
 target3.editor.width=900
-target3.editor.x=621
-target3.editor.y=371
+target3.editor.x=466
+target3.editor.y=68
 target3.height=50
 target3.name=Agenda
 target3.naviview.expanded=true
@@ -73,7 +87,7 @@ target3.x=340
 target3.y=20
 target4.editor.height=768
 target4.editor.width=684
-target4.editor.x=-1
+target4.editor.x=0
 target4.editor.y=0
 target4.height=50
 target4.name=Pessoa
