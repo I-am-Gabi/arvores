@@ -86,8 +86,8 @@ public class Tree
             parent.setRight(null);
         }
         
-        parent.addExistentNode(parent, left);
-        parent.addExistentNode(parent, right);
+        //parent.addExistentNode(parent, left);
+        //parent.addExistentNode(parent, right);
         
     } 
     
@@ -95,10 +95,8 @@ public class Tree
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
         roamPrefix(root.getLeft(), left);
-        roamPrefix(root.getRight(), right); 
+        roamPrefix(root.getRight(), right);  
         
-        boolean flag_encontrou = false;
-         
         Iterator<Node> itL = left.iterator();
         Iterator<Node> itR = right.iterator();
         
@@ -118,25 +116,17 @@ public class Tree
                 n2 = itR.next();
             }
             if (n1 != null) {
-                if (n1.getData().getName().equals(name)) {
-                    flag_encontrou = true;
-                    return n1;
-                    //System.out.print(n1.getData().getName() + " ");
-                    //break;
+                if (n1.getData().getName().equals(name)) { 
+                    return n1; 
                 }
             }
             if (n2 != null) {
-                if (n2.getData().getName().equals(name)) {
-                    flag_encontrou = true;
-                    return n2;
-                    //System.out.print(n2.getData().getName() + " ");
-                    //break;
+                if (n2.getData().getName().equals(name)) { 
+                    return n2; 
                 }
             }
         }
-        if (!flag_encontrou) {
-            System.out.print("Não encontrou registro");
-        }
+        System.out.print("Não encontrou registro");
         return null;
     }
     
@@ -144,10 +134,11 @@ public class Tree
      * search - método chamada para pesquisar registro por nome. 
      * 
      * @params name String nome que será usada para a busca
+     * @return no Node encontrado pelo nome
      */
-    public void searchDepth(String name) {
-        searchDepth(root, name, 0);
-        // INSERIR RETORNO DE NODE
+    public Node searchDepth(String name) {
+        Node no = searchDepth(root, name, 0); 
+        return no;
     }
     
     /**
@@ -156,10 +147,12 @@ public class Tree
      * @params node nó atual usadao para a busca
      * @params name String com valor usado como parâmetro para a busca
      * @params flag flag que indica se já foi encontrado ou não o nó com valor buscado
+     * 
+     * @return node nó com valor buscado
      */
-    private void searchDepth(Node node, String name, int flag) {
-        if (node.getData().getName().compareTo(name) == 0) {
-            flag = 1;
+    private Node searchDepth(Node node, String name, int flag) {
+        if (node.getData().getName().compareTo(name) == 0) { 
+            return node;
         }
         else {
             if (node.getData().getName().compareTo(name) < 0) {
@@ -182,6 +175,7 @@ public class Tree
                 searchDepth(node, name, flag);
             }
         }
+        return null;
     }
     
     /**
@@ -233,8 +227,7 @@ public class Tree
         else {
             node.setHeight(alt2 + 1);
         }
-    }
-<<<<<<< HEAD
+    } 
     
     public void getDeph(Node node) {
         if (node != null) {
@@ -248,46 +241,7 @@ public class Tree
         
         
     }
-    
-    public Node searchBreadth(String name) { // Busca por largura
-        ArrayList<Node> left = new ArrayList<Node>();
-        ArrayList<Node> right = new ArrayList<Node>();
-        roamPrefix(root.getLeft(), left);
-        roamPrefix(root.getRight(), right); 
-         
-         
-        Iterator<Node> itL = left.iterator();
-        Iterator<Node> itR = right.iterator();
-        
-        while(itL.hasNext() || itR.hasNext()) {
-            Node n1 = null;
-            Node n2 = null;
-            if (itL.hasNext()) {
-                n1 = itL.next();
-            }
-            else if (itR.hasNext()) {
-                n2 = itR.next();
-            }
-            if (n1 != null) {
-                if (n1.getData().getName().equals(name)) {
-                    // System.out.print(n1.getData().getName() + " ");
-                    return n1; 
-                }
-            }
-            if (n2 != null) {
-                if (n2.getData().getName().equals(name)) {
-                    /// System.out.print(n2.getData().getName() + " ");
-                    return n2; 
-                }
-            }
-        }
-        System.out.print("Não encontrou registro");
-        return null;
-    }
-    
-=======
-      
->>>>>>> 8d120ec14c27e11700af9ae44954c11b1d39aed5
+   
     private void roamPrefix(Node node, ArrayList<Node> array){
         if (node != null){
             array.add(node); 
@@ -316,16 +270,8 @@ public class Tree
             lowerValue(node.getRight(), size);
         }
         return size;
-    }
-<<<<<<< HEAD
-    
-    public int biggerValue(){
-        if (root != null) { 
-            biggerValue(root, root.getData().getName().length());
-        }
-        return -1; 
-=======
-         
+    } 
+        
     public int greaterValue(){
         int value = -1;  
         if (root != null) {
@@ -334,8 +280,7 @@ public class Tree
                     return root.getData().getName().length();
                 }
         }
-        return value; 
->>>>>>> 8d120ec14c27e11700af9ae44954c11b1d39aed5
+        return value;   
     }
     
     private int greaterValue(Node node, int size) {
@@ -356,19 +301,12 @@ public class Tree
         
     private void printPrefix(Node node){
         if (node != null){
-            System.out.print(" " + node.getData().getCPF() + " ");
+            System.out.print("| " + node.getData().getName() + " " + node.getData().getCPF() + " ");
             printPrefix(node.getLeft());
             printPrefix(node.getRight());
         }
-    }
+    } 
     
-<<<<<<< HEAD
-    public int lessValue(){
-        if (root != null) { 
-             lessValue(root, root.getData().getName().length());
-        }
-        return -1; 
-=======
     public void printPosfix(){
         System.out.println();
         printPosfix(root);
@@ -378,9 +316,8 @@ public class Tree
         if (node != null){
             printPosfix(node.getLeft());
             printPosfix(node.getRight());
-            System.out.print(" " + node.getData().getCPF() + " ");
-        }
->>>>>>> 8d120ec14c27e11700af9ae44954c11b1d39aed5
+            System.out.print("| " + node.getData().getName() + " " + node.getData().getCPF() + " ");
+        } 
     }
     
     

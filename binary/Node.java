@@ -61,54 +61,5 @@ public class Node {
     
     public void setHeight(int height) {
         this.height = height;
-    }
-    
-    /* public void addNode(Node where, Pessoa pessoa){
-        int pessoaCPF = Integer.parseInt(pessoa.getCPF());
-        int dataCPF = Integer.parseInt(where.getData().getCPF());        
-        if( pessoaCPF < dataCPF ){
-            if(where.getLeft() != null){
-                addNode(where.getLeft(),pessoa);
-            }
-            else{
-                where.setLeft(new Node(pessoa));
-                where.getLeft().setParent(where); 
-            }
-        }
-        else if(pessoaCPF > dataCPF){
-            if (where.getRight() != null){
-                addNode(where.getRight(),pessoa);
-            }
-            else {
-                where.setRight(new Node(pessoa));
-                where.getRight().setParent(where);  
-            }
-        }
-    } */
-    
-    public void addExistentNode(Node where, Node toadd){
-        if (toadd != null){
-            int pessoaCPF = Integer.parseInt(toadd.getData().getCPF());
-            int dataCPF = Integer.parseInt(data.getCPF());        
-            if( pessoaCPF < dataCPF ){
-                if(where.getLeft() != null){
-                    addExistentNode(where.getLeft(),toadd);
-                }
-                else{
-                    where.setLeft(toadd);
-                    where.getLeft().setParent(where); 
-                }
-            }
-            else if(pessoaCPF > dataCPF){
-                if (where.getRight() != null){
-                    addExistentNode(where.getRight(),toadd);
-                }
-                else {
-                    where.setRight(toadd);
-                    where.getRight().setParent(where); 
-                }
-            }
-        }
-    }
-    
+    } 
 }
