@@ -29,7 +29,7 @@ public class Tree
      * 
      * @params pessoa O objeto pessoa que seja adicionado em um nó da árvore
      */
-    public void addNode(Pessoa pessoa) {
+    public void add(Pessoa pessoa) {
         if (root == null) { // caso a raiz ainda esteja vazia
             root = new Node();    // inicializa o Node raiz root
             root.setData(pessoa); // adiciona o parametro pessoa na raiz
@@ -41,7 +41,7 @@ public class Tree
                 System.out.print("Essa pessoa já existe");
             }
             else {
-                add(root, pessoa); // chama o método add passando a raiz e a pessoa
+                addNode(root, pessoa); // chama o método add passando a raiz e a pessoa
             }
         }
     }
@@ -53,10 +53,10 @@ public class Tree
      * @params node nó que terá os filhos verificados para um deles ser preenchido
      * @params pessoa instância que será atribuida ao campo Data do nó adicionado
      */
-    private void add(Node node, Pessoa pessoa) { 
+    private void addNode(Node node, Pessoa pessoa) { 
         if (pessoa.getName().compareTo(node.getData().getName()) < 0) { // se o nome deve ficar a esquerda
             if (node.getLeft() != null) {
-                add(node.getLeft(), pessoa);
+                addNode(node.getLeft(), pessoa);
             }
             else {
                 node.setLeft(new Node(pessoa));
@@ -65,7 +65,7 @@ public class Tree
         }
         else {
             if (node.getRight() != null) {
-                add(node.getRight(), pessoa);
+                addNode(node.getRight(), pessoa);
             }
             else {
                 node.setRight(new Node(pessoa));
@@ -79,7 +79,7 @@ public class Tree
      * 
      * @params name String nome que será usada para a busca
      */
-    public void search(String name) {
+    public void searchDepth(String name) {
         searchName(root, name, 0);
     }
     
@@ -123,7 +123,7 @@ public class Tree
      * @params CPF valor do CPF que será usado para verificar a existência de um registro semelhante
      * @return True caso tenha encontrado, ou False caso contrário
      */
-    public boolean hasNode(String CPF) {
+    private boolean hasNode(String CPF) {
         return seachCPF(root, CPF);
     }
     
@@ -224,7 +224,7 @@ public class Tree
         }
     }
     
-    public void searchWidth(String name) {
+    public void searchBreadth(String name) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
         roamPrefix(root.getLeft(), left);
@@ -272,7 +272,7 @@ public class Tree
         }
     }
     
-    public int biggerValue(Node node, int size) {
+    private int biggerValue(Node node, int size) {
         if (node != null){
             if (node.getData().getName().length() > size) {
                 size = node.getData().getName().length();
@@ -283,7 +283,12 @@ public class Tree
         return size;
     }
     
-    public int lessValue(Node node, int size) {
+    public int biggerValue(){
+            if (root != null) { biggerValue(root,root.getData().getName().length());}
+            return -1; 
+    }
+    
+    private int lessValue(Node node, int size) {
         if (node != null){
             if (node.getData().getName().length() < size) {
                 size = node.getData().getName().length();
@@ -293,4 +298,10 @@ public class Tree
         }
         return size;
     }
+    
+    public int lessValue(){
+            if (root != null) { lessValue(root,root.getData().getName().length());}
+            return -1; 
+    }
+       
 }
