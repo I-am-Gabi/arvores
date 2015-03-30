@@ -31,7 +31,7 @@ public class Tree
      */
     public void addNode(Pessoa pessoa) {
         if (root == null) { // caso a raiz ainda esteja vazia
-            root = new Node();
+            root = new Node();    // inicializa o Node raiz root
             root.setData(pessoa); // adiciona o parametro pessoa na raiz
             root.setLeft(null);   // seta o nó esquerdo como null
             root.setRight(null);  // seta o nó direito como null
@@ -86,9 +86,9 @@ public class Tree
     /**
      * searchName - método chamada no search para fazer uma busca por profundidade na árvare, usando o valor do nome
      * 
-     * @params node
-     * @params name
-     * @params flag
+     * @params node nó atual usadao para a busca
+     * @params name String com valor usado como parâmetro para a busca
+     * @params flag flag que indica se já foi encontrado ou não o nó com valor buscado
      */
     private void searchName(Node node, String name, int flag) {
         if (node.getData().getName().compareTo(name) == 0) {
@@ -117,6 +117,12 @@ public class Tree
         }
     }
     
+    /**
+     * hasNode - método chamado quando queremos verificar se há registro com o CPF passado por parâmetro
+     * 
+     * @params CPF valor do CPF que será usado para verificar a existência de um registro semelhante
+     * @return True caso tenha encontrado, ou False caso contrário
+     */
     public boolean hasNode(String CPF) {
         return seachCPF(root, CPF);
     }
