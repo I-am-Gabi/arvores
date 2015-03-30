@@ -102,6 +102,12 @@ public class Tree
         Iterator<Node> itL = left.iterator();
         Iterator<Node> itR = right.iterator();
         
+        //verifica se o root é o objeto procurado
+        if (root.getData().getName().equals(name)){
+            return root;
+        }
+        
+        //caso não, entra no while.
         while(itL.hasNext() || itR.hasNext()) {
             Node n1 = null;
             Node n2 = null;
@@ -237,34 +243,46 @@ public class Tree
         }
     }
             
-    public int lessValue(){
-            if (root != null) { lessValue(root,root.getData().getName().length());}
-            return -1; 
+    public int lowerValue(){
+        int value = -1;    
+        if (root != null) {
+            lowerValue(root,root.getData().getName().length());
+            if (value == -1){
+                return root.getData().getName().length();
+            }
+        }
+        return value; 
     }
     
-    private int lessValue(Node node, int size) {
+    private int lowerValue(Node node, int size) {
         if (node != null){
             if (node.getData().getName().length() < size) {
                 size = node.getData().getName().length();
             } 
-            biggerValue(node.getLeft(), size);
-            biggerValue(node.getRight(), size);
+            lowerValue(node.getLeft(), size);
+            lowerValue(node.getRight(), size);
         }
         return size;
     }
          
-    public int biggerValue(){
-            if (root != null) { biggerValue(root,root.getData().getName().length());}
-            return -1; 
+    public int greaterValue(){
+        int value = -1;  
+        if (root != null) {
+                value = greaterValue(root,root.getData().getName().length());
+                if (value == -1){
+                    return root.getData().getName().length();
+                }
+        }
+        return value; 
     }
     
-    private int biggerValue(Node node, int size) {
+    private int greaterValue(Node node, int size) {
         if (node != null){
             if (node.getData().getName().length() > size) {
                 size = node.getData().getName().length();
             } 
-            biggerValue(node.getLeft(), size);
-            biggerValue(node.getRight(), size);
+            greaterValue(node.getLeft(), size);
+            greaterValue(node.getRight(), size);
         }
         return size;
     }    
