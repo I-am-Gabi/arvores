@@ -17,28 +17,44 @@ public class Tree
 {
     private Node root;
     
+    /**
+     * Construtor que inicializar a raiz como nula
+     */
     public Tree(){ 
         root = null;
     } 
     
+    /**
+     * addNode - método chamado para adicionar um nó na árvore
+     * 
+     * @params pessoa O objeto pessoa que seja adicionado em um nó da árvore
+     */
     public void addNode(Pessoa pessoa) {
-        if (root == null) {
-            root.setData(pessoa);
-            root.setLeft(null);
-            root.setRight(null);
+        if (root == null) { // caso a raiz ainda esteja vazia
+            root = new Node();
+            root.setData(pessoa); // adiciona o parametro pessoa na raiz
+            root.setLeft(null);   // seta o nó esquerdo como null
+            root.setRight(null);  // seta o nó direito como null
         }
         else {
-            if (hasNode(pessoa.getCPF())) {
+            if (hasNode(pessoa.getCPF())) { // verifica se já existe um registro com esse CPF
                 System.out.print("Essa pessoa já existe");
             }
             else {
-                add(root, pessoa);
+                add(root, pessoa); // chama o método add passando a raiz e a pessoa
             }
         }
     }
     
+    /**
+     * add - método que adiciona efetivamente um valor em um determinado nó. Ele verifica pelo valor o nome se a 
+     * instância passada de Pessoa deve ficar a esquerda ou a direita do nó.
+     * 
+     * @params node nó que terá os filhos verificados para um deles ser preenchido
+     * @params pessoa instância que será atribuida ao campo Data do nó adicionado
+     */
     private void add(Node node, Pessoa pessoa) { 
-        if (node.getData().getName().compareTo(pessoa.getName()) < 0) {
+        if (pessoa.getName().compareTo(node.getData().getName()) < 0) { // se o nome deve ficar a esquerda
             if (node.getLeft() != null) {
                 add(node.getLeft(), pessoa);
             }
@@ -58,10 +74,22 @@ public class Tree
         }
     }
     
-    public void seach(String name) {
+    /**
+     * search - método chamada para pesquisar registro por nome. 
+     * 
+     * @params name String nome que será usada para a busca
+     */
+    public void search(String name) {
         searchName(root, name, 0);
     }
     
+    /**
+     * searchName - método chamada no search para fazer uma busca por profundidade na árvare, usando o valor do nome
+     * 
+     * @params node
+     * @params name
+     * @params flag
+     */
     private void searchName(Node node, String name, int flag) {
         if (node.getData().getName().compareTo(name) == 0) {
             flag = 1;

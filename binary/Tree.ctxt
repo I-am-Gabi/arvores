@@ -1,8 +1,10 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Tree()
+comment0.text=\n\ Construtor\ que\ inicializar\ a\ raiz\ como\ nula\n
 comment1.params=pessoa
 comment1.target=void\ addNode(Pessoa)
+comment1.text=\n\ addNode\ -\ m\u00E9todo\ chamado\ para\ adicionar\ um\ n\u00F3\ na\ \u00E1rvore\n\ \n\ @params\ pessoa\ O\ objeto\ pessoa\ que\ seja\ adicionado\ em\ um\ n\u00F3\ da\ \u00E1rvore\n
 comment10.params=node
 comment10.target=void\ printOrdered(Node)
 comment11.params=
@@ -23,10 +25,13 @@ comment18.params=node\ size
 comment18.target=int\ biggerValue(Node,\ int)
 comment2.params=node\ pessoa
 comment2.target=void\ add(Node,\ Pessoa)
+comment2.text=\n\ add\ -\ m\u00E9todo\ que\ adiciona\ efetivamente\ um\ valor\ em\ um\ determinado\ n\u00F3.\ Ele\ verifica\ pelo\ valor\ o\ nome\ se\ a\ \n\ inst\u00E2ncia\ passada\ de\ Pessoa\ deve\ ficar\ a\ esquerda\ ou\ a\ direita\ do\ n\u00F3.\n\ \n\ @params\ node\ n\u00F3\ que\ ter\u00E1\ os\ filhos\ verificados\ para\ um\ deles\ ser\ preenchido\n\ @params\ pessoa\ inst\u00E2ncia\ que\ ser\u00E1\ atribuida\ ao\ campo\ Data\ do\ n\u00F3\ adicionado\n
 comment3.params=name
-comment3.target=void\ seach(java.lang.String)
+comment3.target=void\ search(java.lang.String)
+comment3.text=\n\ search\ -\ m\u00E9todo\ chamada\ para\ pesquisar\ registro\ por\ nome.\ \n\ \n\ @params\ name\ String\ nome\ que\ ser\u00E1\ usada\ para\ a\ busca\n
 comment4.params=node\ name\ flag
 comment4.target=void\ searchName(Node,\ java.lang.String,\ int)
+comment4.text=\n\ searchName\ -\ m\u00E9todo\ chamada\ no\ search\ para\ fazer\ uma\ busca\ por\ profundidade\ na\ \u00E1rvare,\ usando\ o\ valor\ do\ nome\n\ \n\ @params\ node\n\ @params\ name\n\ @params\ flag\n
 comment5.params=CPF
 comment5.target=boolean\ hasNode(java.lang.String)
 comment6.params=node\ CPF
