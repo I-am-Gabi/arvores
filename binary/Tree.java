@@ -1,5 +1,6 @@
 import java.util.Calendar;
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Write a description of class Tree here.
  * 
@@ -192,13 +193,13 @@ public class Tree
     public void searchLargura(Pessoa pessoa) {
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
-        roamPrefix(root.getLeft, left);
-        roamPrefix(root.getRight, right); 
+        roamPrefix(root.getLeft(), left);
+        roamPrefix(root.getRight(), right); 
         
         boolean flag_encontrou = false;
-        
-        Iterator<String> itL = Iterators.forArray(left);
-        Iterator<String> itR = Iterators.forArray(right);
+         
+        Iterator<Node> itL = left.iterator();
+        Iterator<Node> itR = right.iterator();
         
         while(itL.hasNext() || itR.hasNext()) {
             Node n1 = null;
@@ -209,15 +210,15 @@ public class Tree
             else if (itR.hasNext()) {
                 n2 = itR.next();
             }
-            if (n1) {
-                if (n1.getData().getName().equals(pessoa.getName()) {
+            if (n1 != null) {
+                if (n1.getData().getName().equals(pessoa.getName())) {
                     System.out.print(n1.getData().getName() + " ");
                     flag_encontrou = true;
                     break;
                 }
             }
-            if (n2) {
-                if (n2.getData().getName().equals(pessoa.getName()) {
+            if (n2 != null) {
+                if (n2.getData().getName().equals(pessoa.getName())) {
                     System.out.print(n2.getData().getName() + " ");
                     flag_encontrou = true;
                     break;
@@ -232,18 +233,19 @@ public class Tree
     private void roamPrefix(Node node, ArrayList<Node> array){
         if (node != null){
             array.add(node); 
-            prefixLeft(node.getLeft());
-            prefixLeft(node.getRight());
+            roamPrefix(node.getLeft(), array);
+            roamPrefix(node.getRight(), array);
         }
     }
     
-    public void biggerValue(Node node, int size) {
+    public int biggerValue(Node node, int size) {
         if (node != null){
-            if (node.getData().getName().size() > size) {
-                size = node.getData().getName().size();
+            if (node.getData().getName().length() > size) {
+                size = node.getData().getName().length();
             }
-            prefixLeft(node.getLeft(), size);
-            prefixLeft(node.getRight(), size);
+            biggerValue(node.getLeft(), size);
+            biggerValue(node.getRight(), size);
         }
+        return size;
     }
 }
