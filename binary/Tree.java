@@ -100,7 +100,7 @@ public class Tree
         }
 
         else if (to.getLeft() != null && to.getRight() != null){
-            Node minValue = lowerValue(to,10);
+            Node minValue = lowerValue(to, 10, null);
             if(minValue.isLeft()){
                 minValue.getParent().setLeft(null);
             }
@@ -121,7 +121,7 @@ public class Tree
     } 
     
     private void removeLower(Node q){
-        Node aux = lowerValue(q,q.getData().getName().length());
+        Node aux = lowerValue(q,q.getData().getName().length(), null);
         
     }
     
@@ -287,18 +287,18 @@ public class Tree
     public Node lowerValue(){   
         Node node = root;
         if (root != null) {
-            node = lowerValue(root,root.getData().getName().length());
+            node = lowerValue(root, root.getData().getName().length(), null);
         }
         return node; 
     }
     
-    private Node lowerValue(Node node, int size) {
+    private Node lowerValue(Node node, int size, Node nodeMin) {
         if (node != null){
             if (node.getData().getName().length() < size) {
-                size = node.getData().getName().length();
+                nodeMin = node;
             } 
-            lowerValue(node.getLeft(), size);
-            //lowerValue(node.getRight(), size);
+            lowerValue(node.getLeft(), size, nodeMin);
+            lowerValue(node.getRight(), size, nodeMin);
         }
         return node;
     } 
@@ -306,18 +306,18 @@ public class Tree
     public Node greaterValue(){
         Node node = root;  
         if (root != null) {
-                node = greaterValue(root,root.getData().getName().length());      
+                node = greaterValue(root, root.getData().getName().length(), null);      
         }
         return node;   
     }
     
-    private Node greaterValue(Node node, int size) {
+    private Node greaterValue(Node node, int size, Node nodeMax) {
         if (node != null){
             if (node.getData().getName().length() > size) {
-                size = node.getData().getName().length();
+                nodeMax = node;
             } 
-            //greaterValue(node.getLeft(), size);
-            greaterValue(node.getRight(), size);
+            greaterValue(node.getLeft(), size, nodeMax);
+            greaterValue(node.getRight(), size, nodeMax);
         }
         return node;
     }    
@@ -353,12 +353,12 @@ public class Tree
     }
     
     public void CreatePeople(){
-         Pessoa pessoa1 = new Pessoa("Joah", 1977, 12, 5, "123456", "456789");
+        Pessoa pessoa1 = new Pessoa("Joah", 1977, 12, 5, "123456", "456789");
         Pessoa pessoa2 = new Pessoa("Loaner", 1950, 7, 7, "123123", "789456");
         Pessoa pessoa3 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
-         Pessoa pessoa4 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
+        Pessoa pessoa4 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
          
-         add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4);
+        add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4);
     }
     
 }
