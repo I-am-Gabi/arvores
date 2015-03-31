@@ -74,97 +74,135 @@ public class Tree
         }
     }
     
-    public void remove(Node p){
-        remove(p,p.getData().getName().length());
-    }
     
-    private void remove(Node to, int valor){
-    /*   
+    public void remove(Node to){
+        /* Verifica se não tem nenhum filho */
         if (to.getLeft() == null && to.getRight() == null){
             if (to.isLeft()){
-                to.getParent().setLeft(null);
+                if(to.getParent() != null) to.getParent().setLeft(null);
             }
             else {  
-                to.getParent().setRight(null);
+                if(to.getParent() != null) to.getParent().setRight(null);
             }
         }
-
-        else if (to.getLeft() == null || to.getRight() == null){
-            if (to.getParent() != null){
-                if (to.getLeft() != null){
+        /* Verifica se só tem um filho esquerdo */
+        if (to.getLeft() != null && to.getRight() == null){
+            to.getLeft().setParent(to.getParent());
+            if (to.isRoot()){
+                root = to;
+            }
+            else {
+                if (to.isLeft()){
                     to.getParent().setLeft(to.getLeft());
                 }
                 else {
-                    to.getParent().setRight(to.getRight());
+                    to.getParent().setRight(to.getLeft());
                 }
-            } 
+            }
         }
-
-        else if (to.getLeft() != null && to.getRight() != null){
-            Node minValue = lowerValue(to, 10, null);
-            if(minValue.isLeft()){
-                minValue.getParent().setLeft(null);
+        /* Verifica se só tem um filho direito */
+        if (to.getRight() != null && to.getLeft() == null){
+            to.getRight().setParent(to.getParent());
+            if (to.isRoot()){
+                root = to;
             }
             else {
-                minValue.getParent().setRight(null);
+                if (to.isLeft()){
+                    to.getParent().setLeft(to.getLeft());
+                }
+                else {
+                    to.getParent().setRight(to.getLeft());
+                }
+            }
+        }
+        /* Verifica se tem dois filhos */
+        else if (to.getLeft() != null && to.getRight() != null){
+            Node minValue = lowerValue(to);
+            
+            if (minValue != null){
+                if (minValue.isLeft()){
+                    minValue.getParent().setLeft(null);
+                }
+                else {
+                    minValue.getParent().setRight(null);
+                }
             }
 
-            if (to.isLeft()){
-                to.getParent().setLeft(minValue);
+            if (to.isRoot()){
+                minValue.setLeft(to.getLeft());
+                minValue.setRight(to.getRight());
+                if (minValue.getLeft() != null){
+                    minValue.getLeft().setParent(minValue);                    
+                }
+                if (minValue.getRight() != null){
+                    minValue.getRight().setParent(minValue);                    
+                }
+                minValue.setParent(null);
+                root = minValue;
             }
-            else{
-                to.getParent().setRight(minValue);
+            else {
+                to.getLeft().setParent(minValue);
+                to.getRight().setParent(minValue);
+                minValue.setLeft(to.getLeft());
+                minValue.setRight(to.getRight());
+                    if(to.isLeft()){
+                        to.getParent().setLeft(minValue);
+                    }
+                    else {
+                        to.getParent().setRight(minValue);
+                    }
             }
-            to.getParent().setParent(minValue);
+
 
         }
-
-     */   
 
     } 
     
     private void removeLower(Node q){
         Node aux = lowerValue(q);
-        
     }
     
     public Node searchBreadth(String name) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
-        roamPrefix(root.getLeft(), left);
-        roamPrefix(root.getRight(), right);  
         
-        Iterator<Node> itL = left.iterator();
-        Iterator<Node> itR = right.iterator();
-        
-        //verifica se o root é o objeto procurado
-        if (root.getData().getName().equals(name)){
-            return root;
-        }
-        
-        //caso não, entra no while.
-        while(itL.hasNext() || itR.hasNext()) {
-            Node n1 = null;
-            Node n2 = null;
-            if (itL.hasNext()) {
-                n1 = itL.next();
+        if (root != null){
+            roamPrefix(root.getLeft(), left); // PODE DAR NULL EXCEPTION SE CHAMAR COM ROOT NULL
+            roamPrefix(root.getRight(), right);  
+            
+            Iterator<Node> itL = left.iterator();
+            Iterator<Node> itR = right.iterator();
+            
+            //verifica se o root é o objeto procurado
+            if (root.getData().getName().equals(name)){
+                return root;
             }
-            else if (itR.hasNext()) {
-                n2 = itR.next();
-            }
-            if (n1 != null) {
-                if (n1.getData().getName().equals(name)) { 
-                    return n1; 
+            
+            //caso não, entra no while.
+            while(itL.hasNext() || itR.hasNext()) {
+                Node n1 = null;
+                Node n2 = null;
+                if (itL.hasNext()) {
+                    n1 = itL.next();
+                }
+                else if (itR.hasNext()) {
+                    n2 = itR.next();
+                }
+                if (n1 != null) {
+                    if (n1.getData().getName().equals(name)) { 
+                        return n1; 
+                    }
+                }
+                if (n2 != null) {
+                    if (n2.getData().getName().equals(name)) { 
+                        return n2; 
+                    }
                 }
             }
-            if (n2 != null) {
-                if (n2.getData().getName().equals(name)) { 
-                    return n2; 
-                }
-            }
+            
         }
-        System.out.print("Não encontrou registro");
-        return null;
+            System.out.print("Não encontrou registro");
+            return null;
     }
     
     /**
@@ -294,15 +332,7 @@ public class Tree
         }
         return node; 
     }
-
-    /* public Node lowerValue(){   
-        Node node = root;
-        if (root != null) {
-            node = lowerValue(root, root.getData().getName().length(), root);
-        }
-        return node; 
-    } */
-    
+  
     private Node lowerValue(Node node) {
         if (node != null){
             if (node.getLeft() == null){

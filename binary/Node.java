@@ -100,4 +100,11 @@ public class Node {
         return false;
     }
 
+    public boolean isRoot(){
+        if(parent == null){
+            return true;
+        }
+        return false;
+    }
+
 }
