@@ -8,8 +8,7 @@ public class Node {
     private Pessoa data;
     private Node left;
     private Node right;
-    private Node parent; 
-    private int height;
+    private Node parent;  
     
     public Node (){
         this.data = null;

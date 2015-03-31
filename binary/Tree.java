@@ -281,17 +281,13 @@ public class Tree
         }
     } 
     
-    public void getDeph(Node node) {
-        if (node != null) {
-            getDeph(node.getLeft());
-            getDeph(node.getRight());
-            calcDeph(node);
+    public int calcDepht(Node node) {
+        int depth = 0;
+        while(node.getParent() != null){
+            node = node.getParent();
+            depth++;
         }
-    }
-    
-    private void calcDeph(Node node) {
-        
-        
+        return depth;
     }
    
     private void roamPrefix(Node node, ArrayList<Node> array){
