@@ -83,9 +83,7 @@ public class TreeTest
     @Test
     public void testSearchDepth()
     {
-        Tree tree2 = new Tree();
-        tree2.CreatePeople();
-        assertEquals("Mariah", tree2.searchDepth("Mariah"));
+
     }
 }
 

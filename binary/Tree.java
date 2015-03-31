@@ -77,171 +77,86 @@ public class Tree
     
     public void remove(Node to){
         /* Verifica se não tem nenhum filho */
-        if (to.getLeft() == null && to.getRight() == null){
-            if (to.isLeft()){
-                if(to.getParent() != null) to.getParent().setLeft(null);
-            }
-            else {  
-                if(to.getParent() != null) to.getParent().setRight(null);
-            }
-        }
-        /* Verifica se só tem um filho esquerdo */
-        if (to.getLeft() != null && to.getRight() == null){
-            to.getLeft().setParent(to.getParent());
-            if (to.isRoot()){
-                root = to;
-            }
-            else {
+        if (to != null) { 
+            if (to.getLeft() == null && to.getRight() == null){
                 if (to.isLeft()){
-                    to.getParent().setLeft(to.getLeft());
+                    if(to.getParent() != null) to.getParent().setLeft(null);
+                }
+                else {  
+                    if(to.getParent() != null) to.getParent().setRight(null);
+                }
+            }
+            /* Verifica se só tem um filho esquerdo */
+            if (to.getLeft() != null && to.getRight() == null){
+                to.getLeft().setParent(to.getParent());
+                if (to.isRoot()){
+                    root = to;
                 }
                 else {
-                    to.getParent().setRight(to.getLeft());
-                }
-            }
-        }
-        /* Verifica se só tem um filho direito */
-        if (to.getRight() != null && to.getLeft() == null){
-            to.getRight().setParent(to.getParent());
-            if (to.isRoot()){
-                root = to;
-            }
-            else {
-                if (to.isLeft()){
-                    to.getParent().setLeft(to.getLeft());
-                }
-                else {
-                    to.getParent().setRight(to.getLeft());
-                }
-            }
-        }
-        /* Verifica se tem dois filhos */
-        else if (to.getLeft() != null && to.getRight() != null){
-            Node minValue = lowerValue(to);
-            
-            if (minValue != null){
-                if (minValue.isLeft()){
-                    minValue.getParent().setLeft(null);
-                }
-                else {
-                    minValue.getParent().setRight(null);
-                }
-            }
-
-            if (to.isRoot()){
-                minValue.setLeft(to.getLeft());
-                minValue.setRight(to.getRight());
-                if (minValue.getLeft() != null){
-                    minValue.getLeft().setParent(minValue);                    
-                }
-                if (minValue.getRight() != null){
-                    minValue.getRight().setParent(minValue);                    
-                }
-                minValue.setParent(null);
-                root = minValue;
-            }
-            else {
-                to.getLeft().setParent(minValue);
-                to.getRight().setParent(minValue);
-                minValue.setLeft(to.getLeft());
-                minValue.setRight(to.getRight());
-                    if(to.isLeft()){
-                        to.getParent().setLeft(minValue);
+                    if (to.isLeft()){
+                        to.getParent().setLeft(to.getLeft());
                     }
                     else {
-                        to.getParent().setRight(minValue);
+                        to.getParent().setRight(to.getLeft());
                     }
+                }
             }
-
-
-        }
-
-    } 
-
-    public void remove(String name){
-        Node to = searchDepth(name);
-        /* Verifica se não tem nenhum filho */
-        if (to.getLeft() == null && to.getRight() == null){
-            if (to.isLeft()){
-                if(to.getParent() != null) to.getParent().setLeft(null);
-            }
-            else {  
-                if(to.getParent() != null) to.getParent().setRight(null);
-            }
-        }
-        /* Verifica se só tem um filho esquerdo */
-        if (to.getLeft() != null && to.getRight() == null){
-            to.getLeft().setParent(to.getParent());
-            if (to.isRoot()){
-                root = to;
-            }
-            else {
-                if (to.isLeft()){
-                    to.getParent().setLeft(to.getLeft());
+            /* Verifica se só tem um filho direito */
+            if (to.getRight() != null && to.getLeft() == null){
+                to.getRight().setParent(to.getParent());
+                if (to.isRoot()){
+                    root = to;
                 }
                 else {
-                    to.getParent().setRight(to.getLeft());
-                }
-            }
-        }
-        /* Verifica se só tem um filho direito */
-        if (to.getRight() != null && to.getLeft() == null){
-            to.getRight().setParent(to.getParent());
-            if (to.isRoot()){
-                root = to;
-            }
-            else {
-                if (to.isLeft()){
-                    to.getParent().setLeft(to.getLeft());
-                }
-                else {
-                    to.getParent().setRight(to.getLeft());
-                }
-            }
-        }
-        /* Verifica se tem dois filhos */
-        else if (to.getLeft() != null && to.getRight() != null){
-            Node minValue = lowerValue(to);
-            
-            if (minValue != null){
-                if (minValue.isLeft()){
-                    minValue.getParent().setLeft(null);
-                }
-                else {
-                    minValue.getParent().setRight(null);
-                }
-            }
-
-            if (to.isRoot()){
-                minValue.setLeft(to.getLeft());
-                minValue.setRight(to.getRight());
-                if (minValue.getLeft() != null){
-                    minValue.getLeft().setParent(minValue);                    
-                }
-                if (minValue.getRight() != null){
-                    minValue.getRight().setParent(minValue);                    
-                }
-                minValue.setParent(null);
-                root = minValue;
-            }
-            else {
-                to.getLeft().setParent(minValue);
-                to.getRight().setParent(minValue);
-                minValue.setLeft(to.getLeft());
-                minValue.setRight(to.getRight());
-                    if(to.isLeft()){
-                        to.getParent().setLeft(minValue);
+                    if (to.isLeft()){
+                        to.getParent().setLeft(to.getLeft());
                     }
                     else {
-                        to.getParent().setRight(minValue);
+                        to.getParent().setRight(to.getLeft());
                     }
+                }
             }
-
-
-        }
-
-    } 
+            /* Verifica se tem dois filhos */
+            else if (to.getLeft() != null && to.getRight() != null){
+                Node minValue = lowerValue(to);
+                
+                if (minValue != null){
+                    if (minValue.isLeft()){
+                        minValue.getParent().setLeft(null);
+                    }
+                    else {
+                        minValue.getParent().setRight(null);
+                    }
+                }
     
+                if (to.isRoot()){
+                    minValue.setLeft(to.getLeft());
+                    minValue.setRight(to.getRight());
+                    if (minValue.getLeft() != null){
+                        minValue.getLeft().setParent(minValue);                    
+                    }
+                    if (minValue.getRight() != null){
+                        minValue.getRight().setParent(minValue);                    
+                    }
+                    minValue.setParent(null);
+                    root = minValue;
+                }
+                else {
+                    to.getLeft().setParent(minValue);
+                    to.getRight().setParent(minValue);
+                    minValue.setLeft(to.getLeft());
+                    minValue.setRight(to.getRight());
+                    if(to.isLeft()){
+                        to.getParent().setLeft(minValue);
+                    }
+                        else {
+                        to.getParent().setRight(minValue);
+                    }
+                } 
+            }
+        }
+    } 
+ 
     private void removeLower(Node q){
         Node aux = lowerValue(q);
     }
@@ -285,8 +200,8 @@ public class Tree
             }
             
         }
-            System.out.print("Não encontrou registro");
-            return null;
+        System.out.print("Não encontrou registro");
+        return null;
     }
     
     /**
@@ -296,46 +211,23 @@ public class Tree
      * @return no Node encontrado pelo nome
      */
     public Node searchDepth(String name) {
-        Node no = searchDepth(root, name, 0);  
+        Node no = searchDepth(root, name);  
         return no;
     }
-    
-    /**
-     * searchName - método chamada no search para fazer uma busca por profundidade na árvare, usando o valor do nome
-     * 
-     * @params node nó atual usadao para a busca
-     * @params name String com valor usado como parâmetro para a busca
-     * @params flag flag que indica se já foi encontrado ou não o nó com valor buscado
-     * 
-     * @return node nó com valor buscado
-     */
-    private Node searchDepth(Node node, String name, int flag) { 
-        if (node.getData().getName().compareTo(name) == 0) { 
-            System.out.println(node.getData().getName());
-            return node;
-        }
-        else {
-            if (node.getData().getName().compareTo(name) > 0) {
-                if (node.getLeft() == null) {
-                    flag = 2;
-                }
-                else {
-                    node = node.getLeft();
-                }
+        
+    public Node searchDepth(Node node, String name){
+        if (node != null){
+            if (node.getData().getName().compareTo(name) == 0){
+                return node;
+            }
+            if (node.getData().getName().compareTo(name) > 0){
+                return searchDepth(node.getLeft(),name);
             }
             else {
-                if (node.getRight() == null) {
-                    flag = 3;
-                }
-                else {
-                    node = node.getRight();
-                }
-            }
-            if (flag < 1) {
-                searchDepth(node, name, flag);
+                return searchDepth(node.getRight(),name);
             }
         }
-        return null;
+        return node;
     }
     
     /**
@@ -438,6 +330,9 @@ public class Tree
         return node;
     }
     
+    /**
+     *  
+     */
     private Node greaterValue(Node node) {
         if (node != null){
             if (node.getRight() == null){
@@ -484,13 +379,12 @@ public class Tree
         } 
     }
     
+    /**
+     * getRoot() - Método que retorna o nó raiz da árvore
+     * @return root raiz da arvore 
+     */
     public Node getRoot(){
-        if (root != null) {
-            System.out.println();
-            System.out.println("ROOT: Name: " + root.getData().getName() + " | CPF: " + root.getData().getCPF() + " ");
-            return root;
-        }
-        return null;
+        return root;
     }
     
     public void CreatePeople(){

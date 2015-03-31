@@ -16,13 +16,13 @@ public class Agenda {
         }
     }
     public Pessoa buscaPessoa(String nome){
-            Node node = pessoas.searchBreadth(nome);
-            if ( node!= null ) {
-                return node.getData();
-            }
-            else {
-                return null;
-            }
+        Node node = pessoas.searchBreadth(nome);
+        if ( node!= null ) {
+            return node.getData();
+        }
+        else {
+            return null;
+        }
     }
     public void imprimeAgenda(){
        pessoas.printPrefix();   
