@@ -7,9 +7,8 @@ comment10.params=parent
 comment10.target=void\ setParent(Node)
 comment11.params=height
 comment11.target=void\ setHeight(int)
-comment12.params=where\ toadd
-comment12.target=void\ addExistentNode(Node,\ Node)
-comment12.text=\ public\ void\ addNode(Node\ where,\ Pessoa\ pessoa){\n\ \ \ \ \ \ \ \ int\ pessoaCPF\ \=\ Integer.parseInt(pessoa.getCPF());\n\ \ \ \ \ \ \ \ int\ dataCPF\ \=\ Integer.parseInt(where.getData().getCPF());\ \ \ \ \ \ \ \ \n\ \ \ \ \ \ \ \ if(\ pessoaCPF\ <\ dataCPF\ ){\n\ \ \ \ \ \ \ \ \ \ \ \ if(where.getLeft()\ \!\=\ null){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addNode(where.getLeft(),pessoa);\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ \ \ \ \ else{\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where.setLeft(new\ Node(pessoa));\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where.getLeft().setParent(where);\ \n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ else\ if(pessoaCPF\ >\ dataCPF){\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (where.getRight()\ \!\=\ null){\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addNode(where.getRight(),pessoa);\n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ \ \ \ \ else\ {\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where.setRight(new\ Node(pessoa));\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where.getRight().setParent(where);\ \ \n\ \ \ \ \ \ \ \ \ \ \ \ }\n\ \ \ \ \ \ \ \ }\n}
+comment12.params=
+comment12.target=boolean\ isLeft()
 comment2.params=
 comment2.target=Pessoa\ getData()
 comment3.params=

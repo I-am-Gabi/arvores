@@ -74,22 +74,56 @@ public class Tree
         }
     }
     
-     public void remove(Node toremove){
-        Node left = toremove.getLeft();
-        Node right = toremove.getRight();
-        Node parent = toremove.getParent();
-        
-        if (parent.getLeft() == toremove){
-            parent.setLeft(null);
+    public void remove(Node p){
+        remove(p,p.getData().getName().length());
+    }
+    
+    private void remove(Node to, int valor){
+        if (to.getLeft() == null && to.getRight() == null){
+            if (to.isLeft()){
+                to.getParent().setLeft(null);
+            }
+            else {  
+                to.getParent().setRight(null);
+            }
         }
-        else {
-            parent.setRight(null);
+
+        else if (to.getLeft() == null || to.getRight() == null){
+            if (to.getParent() != null){
+                if (to.getLeft() != null){
+                    to.getParent().setLeft(to.getLeft());
+                }
+                else {
+                    to.getParent().setRight(to.getRight());
+                }
+            } 
         }
-        
-        //parent.addExistentNode(parent, left);
-        //parent.addExistentNode(parent, right);
-        
+
+        else if (to.getLeft() != null && to.getRight() != null){
+            Node minValue = lowerValue(to,10);
+            if(minValue.isLeft()){
+                minValue.getParent().setLeft(null);
+            }
+            else {
+                minValue.getParent().setRight(null);
+            }
+
+            if (to.isLeft()){
+                to.getParent().setLeft(minValue);
+            }
+            else{
+                to.getParent().setRight(minValue);
+            }
+            to.getParent().setParent(minValue);
+
+        }
+
     } 
+    
+    private void removeLower(Node q){
+        Node aux = lowerValue(q,q.getData().getName().length());
+        
+    }
     
     public Node searchBreadth(String name) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
@@ -250,48 +284,42 @@ public class Tree
         }
     }
             
-    public int lowerValue(){
-        int value = -1;    
+    public Node lowerValue(){   
+        Node node = root;
         if (root != null) {
-            value = lowerValue(root,root.getData().getName().length());
-            if (value == -1){
-                return root.getData().getName().length();
-            }
+            node = lowerValue(root,root.getData().getName().length());
         }
-        return value; 
+        return node; 
     }
     
-    private int lowerValue(Node node, int size) {
+    private Node lowerValue(Node node, int size) {
         if (node != null){
             if (node.getData().getName().length() < size) {
                 size = node.getData().getName().length();
             } 
             lowerValue(node.getLeft(), size);
-            lowerValue(node.getRight(), size);
+            //lowerValue(node.getRight(), size);
         }
-        return size;
+        return node;
     } 
         
-    public int greaterValue(){
-        int value = -1;  
+    public Node greaterValue(){
+        Node node = root;  
         if (root != null) {
-                value = greaterValue(root,root.getData().getName().length());
-                if (value == -1){
-                    return root.getData().getName().length();
-                }
+                node = greaterValue(root,root.getData().getName().length());      
         }
-        return value;   
+        return node;   
     }
     
-    private int greaterValue(Node node, int size) {
+    private Node greaterValue(Node node, int size) {
         if (node != null){
             if (node.getData().getName().length() > size) {
                 size = node.getData().getName().length();
             } 
-            greaterValue(node.getLeft(), size);
+            //greaterValue(node.getLeft(), size);
             greaterValue(node.getRight(), size);
         }
-        return size;
+        return node;
     }    
     
     public void printPrefix(){
@@ -320,5 +348,17 @@ public class Tree
         } 
     }
     
+    public Node getRoot(){
+        return root;
+    }
+    
+    public void CreatePeople(){
+         Pessoa pessoa1 = new Pessoa("Joah", 1977, 12, 5, "123456", "456789");
+        Pessoa pessoa2 = new Pessoa("Loaner", 1950, 7, 7, "123123", "789456");
+        Pessoa pessoa3 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
+         Pessoa pessoa4 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
+         
+         add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4);
+    }
     
 }
