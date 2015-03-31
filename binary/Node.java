@@ -62,4 +62,16 @@ public class Node {
     public void setHeight(int height) {
         this.height = height;
     } 
+
+    public boolean isLeft(){
+        if (this.getParent() != null){
+            if (this.getParent().getLeft() == this){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
+    }
 }

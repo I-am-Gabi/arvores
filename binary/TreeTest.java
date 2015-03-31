@@ -50,15 +50,36 @@ public class TreeTest
         tree1.add(pessoa1);
         assertNotNull(tree1.searchBreadth("Joseph"));
     }
+    
+    @Test
+    public void testSearchDepthRoot(){
+        Pessoa pessoa1 = new Pessoa("Joseph", 1977, 10, 8, "45678912311", "8455796");
+        tree1.add(pessoa1);
+        assertNotNull(tree1.searchDepth("Joseph"));        
+    }
 
     @Test
     public void testGreaterAndLowerValueRoot()
     {
         Pessoa pessoa1 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
         tree1.add(pessoa1);
-        assertEquals(8, tree1.greaterValue());
-        assertEquals(8, tree1.lowerValue());
+        assertEquals(tree1.getRoot(), tree1.greaterValue());
+        assertEquals(tree1.getRoot(), tree1.lowerValue());
+    }
+
+    @Test
+    public void testRemove()
+    {
+        Pessoa pessoa1 = new Pessoa("Joah", 1977, 12, 5, "123456", "456789");
+        Pessoa pessoa2 = new Pessoa("Loaner", 1950, 7, 7, "123123", "789456");
+        Pessoa pessoa3 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
+        tree1.add(pessoa1);
+        tree1.add(pessoa2);
+        tree1.add(pessoa3);
+        
+        tree1.remove(tree1.searchDepth("Loaner"));
     }
 }
+
 
 
