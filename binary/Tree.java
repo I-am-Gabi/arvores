@@ -313,31 +313,7 @@ public class Tree
             }            
         }
         return null;
-    }
-
-    /* private Node lowerValue(Node node, int size, Node nodeMin) {
-        if (node != null){
-            // if (node.getData().getName().length() < size) {
-            //    nodeMin = node;
-            // } 
-            Node n1 = lowerValue(node.getLeft(), size, nodeMin);
-            Node n2 = lowerValue(node.getRight(), size, nodeMin);
-            if (n1 != null && n2 != null && (n1.getData().getName().length() < n2.getData().getName().length())) {
-                nodeMin = n1;
-            }
-            else if (n1 != null && n2 == null) { 
-                nodeMin = n1;
-            }
-            else if (n2 != null && n1 == null) {
-                nodeMin = n2;
-            }
-            else if (n1 == null && n2 == null){
-                nodeMin = node;
-            }
-        }
-        return nodeMin;
-    }  
-    */
+    } 
         
     public Node greaterValue(){
         Node node = root;
@@ -346,15 +322,6 @@ public class Tree
         }
         return node;
     }
-
-    /*  public Node greaterValue(){
-        Node node = root;  
-        if (root != null) {
-                node = greaterValue(root, root.getData().getName().length(), root);      
-        }
-        return node;   
-    }
-    */
     
     private Node greaterValue(Node node) {
         if (node != null){
@@ -366,33 +333,7 @@ public class Tree
             }
         }
         return null;
-    }
-
-/*
-    private Node greaterValue(Node node, int size, Node nodeMax) {
-        if (node != null){
-            // if (node.getData().getName().length() > size) {
-            //    nodeMax = node;
-            // } 
-            Node n1 = greaterValue(node.getLeft(), size, nodeMax);
-            Node n2 = greaterValue(node.getRight(), size, nodeMax);
-            if ((n1 != null) && (n2 != null) && (n1.getData().getName().length() > n2.getData().getName().length())) {
-                nodeMax = n1;
-            }
-            else if (n1 != null && n2 == null) { 
-                nodeMax = n1;
-            }
-            else if (n2 != null && n1 == null) {
-                nodeMax = n2;
-            }
-            else if (n1 == null && n2 == null) {
-                nodeMax = node;
-            }
-        }
-        return nodeMax;
-    }  
-
-*/          
+    } 
     
     public void printPrefix(){
         System.out.println();
