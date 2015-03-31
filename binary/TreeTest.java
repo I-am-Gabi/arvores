@@ -79,12 +79,6 @@ public class TreeTest
         
         tree1.remove(tree1.searchDepth("Loaner"));
     }
-
-    @Test
-    public void testSearchDepth()
-    {
-
-    }
 }
 
 

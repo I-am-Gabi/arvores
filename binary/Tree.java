@@ -251,35 +251,20 @@ public class Tree
         return false;
     }
                         
-    public void getHeight(Node node) {
-        if (node != null) {
-            getHeight(node.getLeft());
-            getHeight(node.getRight());
-            calcHeight(node);
+    public int calcHeight(Node node) {
+        int a = 0, b = 0;
+        if (node == null) {
+            return 0;
         }
+        else {
+            a = calcHeight(node.getLeft()) + 1;
+            b = calcHeight(node.getRight()) + 1;
+        }
+        if (a > b) 
+            return a;
+        else 
+            return b;
     }
-    
-    private void calcHeight(Node node) {
-        int alt1, alt2 = 0;
-        if (node.getLeft() == null) {
-            alt1 = 0;
-        }
-        else {
-            alt1 = node.getLeft().getHeight();
-        }
-        if (node.getRight() == null) {
-            alt2 = 0;
-        }
-        else {
-            alt2 = node.getRight().getHeight();
-        }
-        if (alt1 > alt2) {
-            node.setHeight(alt1 + 1);
-        }
-        else {
-            node.setHeight(alt2 + 1);
-        }
-    } 
     
     public int calcDepht(Node node) {
         int depth = 0;

@@ -38,10 +38,6 @@ public class Node {
         return parent;
     }
     
-    public int getHeight() {
-        return height;
-    }
-    
     public void setData(Pessoa pessoa) {
         this.data = pessoa;
     }
@@ -56,10 +52,6 @@ public class Node {
     
     public void setParent(Node parent){
         this.parent = parent;
-    }
-    
-    public void setHeight(int height) {
-        this.height = height;
     } 
     
     public void addExistentNode(Node where, Node toadd){
