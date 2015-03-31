@@ -79,7 +79,16 @@ public class TreeTest
         
         tree1.remove(tree1.searchDepth("Loaner"));
     }
+
+    @Test
+    public void testSearchDepth()
+    {
+        Tree tree2 = new Tree();
+        tree2.CreatePeople();
+        assertEquals("Mariah", tree2.searchDepth("Mariah"));
+    }
 }
+
 
 
 

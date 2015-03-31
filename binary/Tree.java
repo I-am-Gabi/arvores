@@ -157,6 +157,90 @@ public class Tree
         }
 
     } 
+
+    public void remove(String name){
+        Node to = searchDepth(name);
+        /* Verifica se não tem nenhum filho */
+        if (to.getLeft() == null && to.getRight() == null){
+            if (to.isLeft()){
+                if(to.getParent() != null) to.getParent().setLeft(null);
+            }
+            else {  
+                if(to.getParent() != null) to.getParent().setRight(null);
+            }
+        }
+        /* Verifica se só tem um filho esquerdo */
+        if (to.getLeft() != null && to.getRight() == null){
+            to.getLeft().setParent(to.getParent());
+            if (to.isRoot()){
+                root = to;
+            }
+            else {
+                if (to.isLeft()){
+                    to.getParent().setLeft(to.getLeft());
+                }
+                else {
+                    to.getParent().setRight(to.getLeft());
+                }
+            }
+        }
+        /* Verifica se só tem um filho direito */
+        if (to.getRight() != null && to.getLeft() == null){
+            to.getRight().setParent(to.getParent());
+            if (to.isRoot()){
+                root = to;
+            }
+            else {
+                if (to.isLeft()){
+                    to.getParent().setLeft(to.getLeft());
+                }
+                else {
+                    to.getParent().setRight(to.getLeft());
+                }
+            }
+        }
+        /* Verifica se tem dois filhos */
+        else if (to.getLeft() != null && to.getRight() != null){
+            Node minValue = lowerValue(to);
+            
+            if (minValue != null){
+                if (minValue.isLeft()){
+                    minValue.getParent().setLeft(null);
+                }
+                else {
+                    minValue.getParent().setRight(null);
+                }
+            }
+
+            if (to.isRoot()){
+                minValue.setLeft(to.getLeft());
+                minValue.setRight(to.getRight());
+                if (minValue.getLeft() != null){
+                    minValue.getLeft().setParent(minValue);                    
+                }
+                if (minValue.getRight() != null){
+                    minValue.getRight().setParent(minValue);                    
+                }
+                minValue.setParent(null);
+                root = minValue;
+            }
+            else {
+                to.getLeft().setParent(minValue);
+                to.getRight().setParent(minValue);
+                minValue.setLeft(to.getLeft());
+                minValue.setRight(to.getRight());
+                    if(to.isLeft()){
+                        to.getParent().setLeft(minValue);
+                    }
+                    else {
+                        to.getParent().setRight(minValue);
+                    }
+            }
+
+
+        }
+
+    } 
     
     private void removeLower(Node q){
         Node aux = lowerValue(q);
@@ -226,7 +310,8 @@ public class Tree
      * @return node nó com valor buscado
      */
     private Node searchDepth(Node node, String name, int flag) {
-        if (node.getData().getName().compareTo(name) == 0) { 
+        System.out.println(node.getData().getName());
+        if (node.getData().getName().compareTo(name) == 0) {  
             return node;
         }
         else {
@@ -392,18 +477,24 @@ public class Tree
     }
     
     public Node getRoot(){
-        return root;
+        if (root != null)
+            System.out.println("ROOT: Name: " + root.getData().getName() + " | CPF: " + root.getData().getCPF() + " ");
+            return root;
+        }
+        return null;
     }
     
     public void CreatePeople(){
         
+        Pessoa pessoa0 = new Pessoa("Larissa", 1975, 12, 5, "09127", "51351324");
         Pessoa pessoa1 = new Pessoa("Jo", 1977, 12, 5, "12323456", "4456789");
-        Pessoa pessoa6 = new Pessoa("J", 1977, 12, 5, "123456", "456789");
-        Pessoa pessoa2 = new Pessoa("Loanerresman", 1950, 7, 7, "123123", "789456");
-        Pessoa pessoa3 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
-        Pessoa pessoa4 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
+        Pessoa pessoa2 = new Pessoa("J", 1977, 12, 5, "123456", "456789");
+        Pessoa pessoa3 = new Pessoa("Juliana", 1977, 12, 5, "09393", "849028");
+        Pessoa pessoa4 = new Pessoa("Loanerresman", 1950, 7, 7, "123123", "789456");
+        Pessoa pessoa5 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
+        Pessoa pessoa6 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
          
-        add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4);add(pessoa6);
+        add(pessoa0); add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4); add(pessoa5); add(pessoa6);
     }
     
 }
