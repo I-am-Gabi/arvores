@@ -296,7 +296,7 @@ public class Tree
      * @return no Node encontrado pelo nome
      */
     public Node searchDepth(String name) {
-        Node no = searchDepth(root, name, 0); 
+        Node no = searchDepth(root, name, 0);  
         return no;
     }
     
@@ -309,13 +309,13 @@ public class Tree
      * 
      * @return node nó com valor buscado
      */
-    private Node searchDepth(Node node, String name, int flag) {
-        System.out.println(node.getData().getName());
-        if (node.getData().getName().compareTo(name) == 0) {  
+    private Node searchDepth(Node node, String name, int flag) { 
+        if (node.getData().getName().compareTo(name) == 0) { 
+            System.out.println(node.getData().getName());
             return node;
         }
         else {
-            if (node.getData().getName().compareTo(name) < 0) {
+            if (node.getData().getName().compareTo(name) > 0) {
                 if (node.getLeft() == null) {
                     flag = 2;
                 }
@@ -452,12 +452,16 @@ public class Tree
     
     public void printPrefix(){
         System.out.println();
+        System.out.println("---------------------PREFIX--------------------");
+        System.out.println("-----------------------------------------------");
         printPrefix(root);
     }
         
     private void printPrefix(Node node){
         if (node != null){
-            System.out.print("| " + node.getData().getName() + " " + node.getData().getCPF() + " ");
+            System.out.println("> NOME: " + node.getData().getName() + " " + node.getData().getCPF() + " ");
+            System.out.println("> CPF: " + node.getData().getCPF() + " ");
+            System.out.println("-----------------------------------------------");
             printPrefix(node.getLeft());
             printPrefix(node.getRight());
         }
@@ -465,6 +469,8 @@ public class Tree
     
     public void printPosfix(){
         System.out.println();
+        System.out.println("---------------------POSFIX--------------------");
+        System.out.println("-----------------------------------------------");
         printPosfix(root);
     }        
     
@@ -472,12 +478,15 @@ public class Tree
         if (node != null){
             printPosfix(node.getLeft());
             printPosfix(node.getRight());
-            System.out.print("| " + node.getData().getName() + " " + node.getData().getCPF() + " ");
+            System.out.println("> NOME: " + node.getData().getName() + " " + node.getData().getCPF() + " ");
+            System.out.println("> CPF: " + node.getData().getCPF() + " ");
+            System.out.println("-----------------------------------------------");
         } 
     }
     
     public Node getRoot(){
-        if (root != null)
+        if (root != null) {
+            System.out.println();
             System.out.println("ROOT: Name: " + root.getData().getName() + " | CPF: " + root.getData().getCPF() + " ");
             return root;
         }
