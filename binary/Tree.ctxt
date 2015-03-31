@@ -1,10 +1,10 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Tree()
-comment0.text=\n\ Construtor\ que\ inicializar\ a\ raiz\ como\ nula\n
+comment0.text=\r\n\ Construtor\ que\ inicializar\ a\ raiz\ como\ nula\r\n
 comment1.params=pessoa
 comment1.target=void\ add(Pessoa)
-comment1.text=\n\ addNode\ -\ m\u00E9todo\ chamado\ para\ adicionar\ um\ n\u00F3\ na\ \u00E1rvore\n\ \n\ @params\ pessoa\ O\ objeto\ pessoa\ que\ seja\ adicionado\ em\ um\ n\u00F3\ da\ \u00E1rvore\n
+comment1.text=\r\n\ addNode\ -\ m\u00E9todo\ chamado\ para\ adicionar\ um\ n\u00F3\ na\ \u00E1rvore\r\n\ \r\n\ @params\ pessoa\ O\ objeto\ pessoa\ que\ seja\ adicionado\ em\ um\ n\u00F3\ da\ \u00E1rvore\r\n
 comment10.params=node\ CPF
 comment10.target=boolean\ seachCPF(Node,\ java.lang.String)
 comment11.params=node
@@ -19,17 +19,21 @@ comment15.params=node\ array
 comment15.target=void\ roamPrefix(Node,\ java.util.ArrayList)
 comment16.params=
 comment16.target=Node\ lowerValue()
-comment17.params=node\ size\ nodeMin
-comment17.target=Node\ lowerValue(Node,\ int,\ Node)
+comment17.params=node
+comment17.target=Node\ lowerValue(Node)
+comment17.text=\ public\ Node\ lowerValue(){\ \ \ \r\n\ \ \ \ \ \ \ \ Node\ node\ \=\ root;\r\n\ \ \ \ \ \ \ \ if\ (root\ \!\=\ null)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ node\ \=\ lowerValue(root,\ root.getData().getName().length(),\ root);\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ node;\ \r\n}
 comment18.params=
 comment18.target=Node\ greaterValue()
-comment19.params=node\ size\ nodeMax
-comment19.target=Node\ greaterValue(Node,\ int,\ Node)
+comment18.text=\ private\ Node\ lowerValue(Node\ node,\ int\ size,\ Node\ nodeMin)\ {\r\n\ \ \ \ \ \ \ \ if\ (node\ \!\=\ null){\r\n\ \ \ \ \ \ \ \ \ \ \ \ //\ if\ (node.getData().getName().length()\ <\ size)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ //\ \ \ \ nodeMin\ \=\ node;\r\n\ \ \ \ \ \ \ \ \ \ \ \ //\ }\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ Node\ n1\ \=\ lowerValue(node.getLeft(),\ size,\ nodeMin);\r\n\ \ \ \ \ \ \ \ \ \ \ \ Node\ n2\ \=\ lowerValue(node.getRight(),\ size,\ nodeMin);\r\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (n1\ \!\=\ null\ &&\ n2\ \!\=\ null\ &&\ (n1.getData().getName().length()\ <\ n2.getData().getName().length()))\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMin\ \=\ n1;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (n1\ \!\=\ null\ &&\ n2\ \=\=\ null)\ {\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMin\ \=\ n1;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (n2\ \!\=\ null\ &&\ n1\ \=\=\ null)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMin\ \=\ n2;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (n1\ \=\=\ null\ &&\ n2\ \=\=\ null){\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMin\ \=\ node;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ nodeMin;\r\n\ \ \ \ }\ \ \r\n
+comment19.params=node
+comment19.target=Node\ greaterValue(Node)
+comment19.text=\ \ public\ Node\ greaterValue(){\r\n\ \ \ \ \ \ \ \ Node\ node\ \=\ root;\ \ \r\n\ \ \ \ \ \ \ \ if\ (root\ \!\=\ null)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node\ \=\ greaterValue(root,\ root.getData().getName().length(),\ root);\ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ node;\ \ \ \r\n\ \ \ \ }\r\n
 comment2.params=node\ pessoa
 comment2.target=void\ add(Node,\ Pessoa)
-comment2.text=\n\ add\ -\ m\u00E9todo\ que\ adiciona\ efetivamente\ um\ valor\ em\ um\ determinado\ n\u00F3.\ Ele\ verifica\ pelo\ valor\ o\ nome\ se\ a\ \n\ inst\u00E2ncia\ passada\ de\ Pessoa\ deve\ ficar\ a\ esquerda\ ou\ a\ direita\ do\ n\u00F3.\n\ \n\ @params\ node\ n\u00F3\ que\ ter\u00E1\ os\ filhos\ verificados\ para\ um\ deles\ ser\ preenchido\n\ @params\ pessoa\ inst\u00E2ncia\ que\ ser\u00E1\ atribuida\ ao\ campo\ Data\ do\ n\u00F3\ adicionado\n
+comment2.text=\r\n\ add\ -\ m\u00E9todo\ que\ adiciona\ efetivamente\ um\ valor\ em\ um\ determinado\ n\u00F3.\ Ele\ verifica\ pelo\ valor\ o\ nome\ se\ a\ \r\n\ inst\u00E2ncia\ passada\ de\ Pessoa\ deve\ ficar\ a\ esquerda\ ou\ a\ direita\ do\ n\u00F3.\r\n\ \r\n\ @params\ node\ n\u00F3\ que\ ter\u00E1\ os\ filhos\ verificados\ para\ um\ deles\ ser\ preenchido\r\n\ @params\ pessoa\ inst\u00E2ncia\ que\ ser\u00E1\ atribuida\ ao\ campo\ Data\ do\ n\u00F3\ adicionado\r\n
 comment20.params=
 comment20.target=void\ printPrefix()
+comment20.text=\r\n\ \ \ \ private\ Node\ greaterValue(Node\ node,\ int\ size,\ Node\ nodeMax)\ {\r\n\ \ \ \ \ \ \ \ if\ (node\ \!\=\ null){\r\n\ \ \ \ \ \ \ \ \ \ \ \ //\ if\ (node.getData().getName().length()\ >\ size)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ //\ \ \ \ nodeMax\ \=\ node;\r\n\ \ \ \ \ \ \ \ \ \ \ \ //\ }\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ Node\ n1\ \=\ greaterValue(node.getLeft(),\ size,\ nodeMax);\r\n\ \ \ \ \ \ \ \ \ \ \ \ Node\ n2\ \=\ greaterValue(node.getRight(),\ size,\ nodeMax);\r\n\ \ \ \ \ \ \ \ \ \ \ \ if\ ((n1\ \!\=\ null)\ &&\ (n2\ \!\=\ null)\ &&\ (n1.getData().getName().length()\ >\ n2.getData().getName().length()))\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMax\ \=\ n1;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (n1\ \!\=\ null\ &&\ n2\ \=\=\ null)\ {\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMax\ \=\ n1;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (n2\ \!\=\ null\ &&\ n1\ \=\=\ null)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMax\ \=\ n2;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (n1\ \=\=\ null\ &&\ n2\ \=\=\ null)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nodeMax\ \=\ node;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ nodeMax;\r\n\ \ \ \ }\ \ \r\n\r\n
 comment21.params=node
 comment21.target=void\ printPrefix(Node)
 comment22.params=
@@ -50,11 +54,11 @@ comment6.params=name
 comment6.target=Node\ searchBreadth(java.lang.String)
 comment7.params=name
 comment7.target=Node\ searchDepth(java.lang.String)
-comment7.text=\n\ search\ -\ m\u00E9todo\ chamada\ para\ pesquisar\ registro\ por\ nome.\ \n\ \n\ @params\ name\ String\ nome\ que\ ser\u00E1\ usada\ para\ a\ busca\n\ @return\ no\ Node\ encontrado\ pelo\ nome\n
+comment7.text=\r\n\ search\ -\ m\u00E9todo\ chamada\ para\ pesquisar\ registro\ por\ nome.\ \r\n\ \r\n\ @params\ name\ String\ nome\ que\ ser\u00E1\ usada\ para\ a\ busca\r\n\ @return\ no\ Node\ encontrado\ pelo\ nome\r\n
 comment8.params=node\ name\ flag
 comment8.target=Node\ searchDepth(Node,\ java.lang.String,\ int)
-comment8.text=\n\ searchName\ -\ m\u00E9todo\ chamada\ no\ search\ para\ fazer\ uma\ busca\ por\ profundidade\ na\ \u00E1rvare,\ usando\ o\ valor\ do\ nome\n\ \n\ @params\ node\ n\u00F3\ atual\ usadao\ para\ a\ busca\n\ @params\ name\ String\ com\ valor\ usado\ como\ par\u00E2metro\ para\ a\ busca\n\ @params\ flag\ flag\ que\ indica\ se\ j\u00E1\ foi\ encontrado\ ou\ n\u00E3o\ o\ n\u00F3\ com\ valor\ buscado\n\ \n\ @return\ node\ n\u00F3\ com\ valor\ buscado\n
+comment8.text=\r\n\ searchName\ -\ m\u00E9todo\ chamada\ no\ search\ para\ fazer\ uma\ busca\ por\ profundidade\ na\ \u00E1rvare,\ usando\ o\ valor\ do\ nome\r\n\ \r\n\ @params\ node\ n\u00F3\ atual\ usadao\ para\ a\ busca\r\n\ @params\ name\ String\ com\ valor\ usado\ como\ par\u00E2metro\ para\ a\ busca\r\n\ @params\ flag\ flag\ que\ indica\ se\ j\u00E1\ foi\ encontrado\ ou\ n\u00E3o\ o\ n\u00F3\ com\ valor\ buscado\r\n\ \r\n\ @return\ node\ n\u00F3\ com\ valor\ buscado\r\n
 comment9.params=CPF
 comment9.target=boolean\ hasNode(java.lang.String)
-comment9.text=\n\ hasNode\ -\ m\u00E9todo\ chamado\ quando\ queremos\ verificar\ se\ h\u00E1\ registro\ com\ o\ CPF\ passado\ por\ par\u00E2metro\n\ \n\ @params\ CPF\ valor\ do\ CPF\ que\ ser\u00E1\ usado\ para\ verificar\ a\ exist\u00EAncia\ de\ um\ registro\ semelhante\n\ @return\ True\ caso\ tenha\ encontrado,\ ou\ False\ caso\ contr\u00E1rio\n
+comment9.text=\r\n\ hasNode\ -\ m\u00E9todo\ chamado\ quando\ queremos\ verificar\ se\ h\u00E1\ registro\ com\ o\ CPF\ passado\ por\ par\u00E2metro\r\n\ \r\n\ @params\ CPF\ valor\ do\ CPF\ que\ ser\u00E1\ usado\ para\ verificar\ a\ exist\u00EAncia\ de\ um\ registro\ semelhante\r\n\ @return\ True\ caso\ tenha\ encontrado,\ ou\ False\ caso\ contr\u00E1rio\r\n
 numComments=26

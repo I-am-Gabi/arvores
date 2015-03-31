@@ -79,6 +79,7 @@ public class Tree
     }
     
     private void remove(Node to, int valor){
+    /*   
         if (to.getLeft() == null && to.getRight() == null){
             if (to.isLeft()){
                 to.getParent().setLeft(null);
@@ -118,10 +119,12 @@ public class Tree
 
         }
 
+     */   
+
     } 
     
     private void removeLower(Node q){
-        Node aux = lowerValue(q,q.getData().getName().length(), null);
+        Node aux = lowerValue(q);
         
     }
     
@@ -287,12 +290,32 @@ public class Tree
     public Node lowerValue(){   
         Node node = root;
         if (root != null) {
-            node = lowerValue(root, root.getData().getName().length(), root);
+            node = lowerValue(root);
         }
         return node; 
     }
+
+    /* public Node lowerValue(){   
+        Node node = root;
+        if (root != null) {
+            node = lowerValue(root, root.getData().getName().length(), root);
+        }
+        return node; 
+    } */
     
-    private Node lowerValue(Node node, int size, Node nodeMin) {
+    private Node lowerValue(Node node) {
+        if (node != null){
+            if (node.getLeft() == null){
+                return node;
+            }
+            else {           
+                return lowerValue(node.getLeft());
+            }            
+        }
+        return null;
+    }
+
+    /* private Node lowerValue(Node node, int size, Node nodeMin) {
         if (node != null){
             // if (node.getData().getName().length() < size) {
             //    nodeMin = node;
@@ -313,16 +336,39 @@ public class Tree
             }
         }
         return nodeMin;
-    } 
+    }  
+    */
         
     public Node greaterValue(){
+        Node node = root;
+        if (root != null){
+            node = greaterValue(root);
+        }
+        return node;
+    }
+
+    /*  public Node greaterValue(){
         Node node = root;  
         if (root != null) {
                 node = greaterValue(root, root.getData().getName().length(), root);      
         }
         return node;   
     }
+    */
     
+    private Node greaterValue(Node node) {
+        if (node != null){
+            if (node.getRight() == null){
+                return node;
+            }
+            else {
+                return greaterValue(node.getRight());
+            }
+        }
+        return null;
+    }
+
+/*
     private Node greaterValue(Node node, int size, Node nodeMax) {
         if (node != null){
             // if (node.getData().getName().length() > size) {
@@ -344,7 +390,9 @@ public class Tree
             }
         }
         return nodeMax;
-    }    
+    }  
+
+*/          
     
     public void printPrefix(){
         System.out.println();
@@ -377,12 +425,14 @@ public class Tree
     }
     
     public void CreatePeople(){
-        Pessoa pessoa1 = new Pessoa("Jo", 1977, 12, 5, "123456", "456789");
+        
+        Pessoa pessoa1 = new Pessoa("Jo", 1977, 12, 5, "12323456", "4456789");
+        Pessoa pessoa6 = new Pessoa("J", 1977, 12, 5, "123456", "456789");
         Pessoa pessoa2 = new Pessoa("Loanerresman", 1950, 7, 7, "123123", "789456");
         Pessoa pessoa3 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
         Pessoa pessoa4 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
          
-        add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4);
+        add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4);add(pessoa6);
     }
     
 }

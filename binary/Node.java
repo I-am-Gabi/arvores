@@ -62,7 +62,6 @@ public class Node {
     public void setHeight(int height) {
         this.height = height;
     } 
-<<<<<<< HEAD
     
     public void addExistentNode(Node where, Node toadd){
         if (toadd != null){
@@ -89,8 +88,6 @@ public class Node {
         }
     }
     
-=======
-
     public boolean isLeft(){
         if (this.getParent() != null){
             if (this.getParent().getLeft() == this){
@@ -102,5 +99,5 @@ public class Node {
         }
         return false;
     }
->>>>>>> 2c8bcb8b2322c9a0d8a2cc3fd57fb6cdee156014
+
 }
