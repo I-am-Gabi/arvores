@@ -1,3 +1,10 @@
+/**
+ * Write a description of class Tree here.
+ * 
+ * @author Gabriela Cavalcante da Silva, Roberto Dantas.
+ * @version 1.0
+ */
+
 public class Agenda {
     
     private Tree pessoas;
