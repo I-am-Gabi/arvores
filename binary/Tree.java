@@ -20,7 +20,7 @@ public class Tree
     } 
     
     /**
-     * addNode - método chamado para adicionar um nó na árvore
+     * add - método chamado para adicionar um nó na árvore
      * 
      * @params pessoa O objeto pessoa que será adicionado em um nó da árvore
      */
@@ -89,6 +89,9 @@ public class Tree
         /* Verifica se não tem nenhum filho */
         if (to != null) { 
             if (to.getLeft() == null && to.getRight() == null){
+                if (to.getParent() == null){
+                    root = null;
+                }
                 if (to.isLeft()){
                     if(to.getParent() != null) to.getParent().setLeft(null);
                 }
@@ -221,10 +224,10 @@ public class Tree
     }
     
     /**
-     * search - método chamada para pesquisar registro por nome. 
+     * searchDepth - buscar um elemento utilizando a estratégia de busca em profundidade
      * 
-     * @params name String nome que será usada para a busca
-     * @return no Node encontrado pelo nome
+     * @params name nome da pessoa que está sendo pesquisada
+     * @return node nó com o valor que está sendo buscado
      */
     public Node searchDepth(String name) {
         Node no = searchDepth(root, name);  
@@ -238,7 +241,7 @@ public class Tree
      * @params name nome da pessoa que está sendo pesquisada
      * @return node nó com o valor que está sendo buscado
      */
-    public Node searchDepth(Node node, String name){
+    private Node searchDepth(Node node, String name){
         if (node != null){
             if (node.getData().getName().compareTo(name) == 0) {
                 return node;
@@ -407,7 +410,7 @@ public class Tree
     } 
     
     /**
-     * printPosfix - método chamado par imprimir os elementos da árvore 
+     * printPosfix - método chamado para imprimir os elementos da árvore 
      * seguindo um caminhamento pós-fixado
      */
     public void printPosfix(){

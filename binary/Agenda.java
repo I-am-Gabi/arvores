@@ -18,6 +18,7 @@ public class Agenda {
     
     /**
      * armazenaPessoa - método chamada para adicionar uma pessoa na agenda
+     * @params pessoa Pessoa a ser armazenada
      */
     public void armazenaPessoa(Pessoa pessoa){
        pessoas.add(pessoa);   
@@ -39,7 +40,7 @@ public class Agenda {
      * buscaPessoa - método que retorna o nó com o valor desejado (passado por parâmetro)
      * 
      * @params nome String com valor a ser buscado
-     * @return nó com o valor que está sendo buscado
+     * @return Pessoa que está sendo buscado
      */
     public Pessoa buscaPessoa(String nome){
         Node node = pessoas.searchBreadth(nome);

@@ -142,7 +142,7 @@ public class Pessoa
     }
     
     /**
-     * showInfo - imprime todos os dados da instância 
+     * print - imprime todos os dados da instância 
      */
     public void print() {
         System.out.println();
