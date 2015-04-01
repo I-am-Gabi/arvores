@@ -1,5 +1,5 @@
 /**
- * Write a description of class Tree here.
+ * Classe Tree, usada para criar objetos que representarão TADS árvores no nosso sistema
  * 
  * @author Gabriela Cavalcante da Silva, Roberto Dantas.
  * @version 1.0
