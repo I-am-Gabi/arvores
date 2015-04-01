@@ -29,21 +29,23 @@ public class Tree
      * 
      * @params pessoa O objeto pessoa que seja adicionado em um nó da árvore
      */
-    public void add(Pessoa pessoa) {
+    public Node add(Pessoa pessoa) {
         if (root == null) { // caso a raiz ainda esteja vazia
             root = new Node();    // inicializa o Node raiz root
             root.setData(pessoa); // adiciona o parametro pessoa na raiz
             root.setLeft(null);   // seta o nó esquerdo como null
             root.setRight(null);  // seta o nó direito como null
+            return root;
         }
         else {
             if (hasNode(pessoa.getCPF())) { // verifica se já existe um registro com esse CPF
                 System.out.print("Essa pessoa já existe");
             }
             else {
-                add(root, pessoa); // chama o método add passando a raiz e a pessoa
+                return add(root, pessoa); // chama o método add passando a raiz e a pessoa
             }
         }
+        return null;
     }
     
      /**
@@ -53,23 +55,25 @@ public class Tree
      * @params node nó que terá os filhos verificados para um deles ser preenchido
      * @params pessoa instância que será atribuida ao campo Data do nó adicionado
      */
-    private void add(Node node, Pessoa pessoa) { 
+    private Node add(Node node, Pessoa pessoa) { 
         if (pessoa.getName().compareTo(node.getData().getName()) < 0) { // se o nome deve ficar a esquerda
             if (node.getLeft() != null) {
-                add(node.getLeft(), pessoa);
+                return add(node.getLeft(), pessoa);
             }
             else {
                 node.setLeft(new Node(pessoa));
                 node.getLeft().setParent(node); 
+                return node.getLeft();
             }
         }
         else {
             if (node.getRight() != null) {
-                add(node.getRight(), pessoa);
+                return add(node.getRight(), pessoa);
             }
             else {
                 node.setRight(new Node(pessoa));
                 node.getRight().setParent(node); 
+                return node.getRight();
             } 
         }
     }

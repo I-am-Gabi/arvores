@@ -14,7 +14,10 @@ import org.junit.Test;
 public class TreeTest
 {
     private Tree tree1;
-
+    private Tree tree_withFour;
+    private Tree tree_empty1;
+    private Tree tree_empty2;
+    private Tree tree_empty3;
     /**
      * Default constructor for test class TreeTest
      */
@@ -29,8 +32,17 @@ public class TreeTest
      */
     @Before
     public void setUp()
-    {
-        tree1 = new Tree();
+    {    
+        tree_withFour = new Tree();
+        Pessoa pessoa1 = new Pessoa("Pessoa 1", 1970, 9, 9, "111111", "765432");
+        Pessoa pessoa2 = new Pessoa("Pessoa 2", 1960, 6, 6, "222222", "2165498");
+        Pessoa pessoa3 = new Pessoa("Pessoa 3", 1950, 3, 3, "333333", "456457");
+        Pessoa pessoa4 = new Pessoa("Pessoa 4", 1940, 1, 1, "444444", "4846845");
+        tree_withFour.add(pessoa1);
+        tree_withFour.add(pessoa2);
+        tree_withFour.add(pessoa3);
+        tree_withFour.add(pessoa4);
+        
     }
 
     /**
@@ -43,41 +55,48 @@ public class TreeTest
     {
     }
 
+
     @Test
-    public void testSearchBreadthRoot()
+    public void testAddRoot()
     {
-        Pessoa pessoa1 = new Pessoa("Joseph", 1977, 10, 8, "45678912311", "8455796");
-        tree1.add(pessoa1);
-        assertNotNull(tree1.searchBreadth("Joseph"));
+        tree_empty1 = new Tree();
+        Pessoa pessoa1 = new Pessoa("Name", 1970, 10, 10, "123456", "654321");
+        assertSame(tree_empty1.add(pessoa1),tree_empty1.getRoot());
+    }
+
+    @Test
+    public void testAddTwoNodes()
+    {
+        tree_empty2 = new Tree();
+        Pessoa pessoa1 = new Pessoa("Pessoa 1", 1970, 5, 5, "234567", "765432");
+        Pessoa pessoa2 = new Pessoa("Pessoa 2", 1960, 3, 3, "8945612", "2165498");
+        assertNotNull(tree_empty2.add(pessoa1));
+        assertNotNull(tree_empty2.add(pessoa2));
     }
     
     @Test
-    public void testSearchDepthRoot(){
-        Pessoa pessoa1 = new Pessoa("Joseph", 1977, 10, 8, "45678912311", "8455796");
-        tree1.add(pessoa1);
-        assertNotNull(tree1.searchDepth("Joseph"));        
+    public void testAddFourNodes(){
+        tree_empty3 = new Tree();        
+        Pessoa pessoa1 = new Pessoa("Pessoa 1", 1970, 9, 9, "111111", "765432");
+        Pessoa pessoa2 = new Pessoa("Pessoa 2", 1960, 6, 6, "222222", "2165498");
+        Pessoa pessoa3 = new Pessoa("Pessoa 3", 1950, 3, 3, "333333", "456457");
+        Pessoa pessoa4 = new Pessoa("Pessoa 4", 1940, 1, 1, "444444", "4846845");
+        assertNotNull(tree_empty3.add(pessoa1));
+        assertNotNull(tree_empty3.add(pessoa2));
+        assertNotNull(tree_empty3.add(pessoa3));
+        assertNotNull(tree_empty3.add(pessoa4));
     }
 
     @Test
-    public void testGreaterAndLowerValueRoot()
+    public void testPrintPosfix()
     {
-        Pessoa pessoa1 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
-        tree1.add(pessoa1);
-        assertEquals(tree1.getRoot(), tree1.greaterValue());
-        assertEquals(tree1.getRoot(), tree1.lowerValue());
+        tree_withFour.printPosfix();
     }
-
+    
     @Test
-    public void testRemove()
+    public void testPrintPrefix()
     {
-        Pessoa pessoa1 = new Pessoa("Joah", 1977, 12, 5, "123456", "456789");
-        Pessoa pessoa2 = new Pessoa("Loaner", 1950, 7, 7, "123123", "789456");
-        Pessoa pessoa3 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
-        tree1.add(pessoa1);
-        tree1.add(pessoa2);
-        tree1.add(pessoa3);
-        
-        tree1.remove(tree1.searchDepth("Loaner"));
+        tree_withFour.printPrefix();
     }
 }
 
