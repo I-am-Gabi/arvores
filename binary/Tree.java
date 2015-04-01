@@ -4,15 +4,10 @@ import java.util.Iterator;
 /**
  * Write a description of class Tree here.
  * 
- * @author Roberto D.; Gabriela C.; Gustavo A.
+ * @author Gabriela Cavalcante da Silva, Roberto Dantas.
  * @version 1.0
  */
 
-/* 
- *  Calendar nascimento = Calendar.getInstance();
- *  nascimento.set(2000,Calendar.AUGUST,20);
- */
-    
 public class Tree
 {
     private Node root;
@@ -161,10 +156,6 @@ public class Tree
         }
     } 
  
-    private void removeLower(Node q){
-        Node aux = lowerValue(q);
-    }
-    
     public Node searchBreadth(String name) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
@@ -370,19 +361,6 @@ public class Tree
      */
     public Node getRoot(){
         return root;
-    }
-    
-    public void CreatePeople(){
-        
-        Pessoa pessoa0 = new Pessoa("Larissa", 1975, 12, 5, "09127", "51351324");
-        Pessoa pessoa1 = new Pessoa("Jo", 1977, 12, 5, "12323456", "4456789");
-        Pessoa pessoa2 = new Pessoa("J", 1977, 12, 5, "123456", "456789");
-        Pessoa pessoa3 = new Pessoa("Juliana", 1977, 12, 5, "09393", "849028");
-        Pessoa pessoa4 = new Pessoa("Loanerresman", 1950, 7, 7, "123123", "789456");
-        Pessoa pessoa5 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
-        Pessoa pessoa6 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
-         
-        add(pessoa0); add(pessoa1); add(pessoa2); add(pessoa3); add(pessoa4); add(pessoa5); add(pessoa6);
     }
     
 }

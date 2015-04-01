@@ -1,7 +1,7 @@
 /**
  * Write a description of class Node here.
  * 
- * @author Roberto D.; Gabriela C.; Gustavo A.
+ * @author Gabriela Cavalcante da Silva, Roberto Dantas.
  * @version 1.0
  */
 public class Node {
@@ -17,6 +17,7 @@ public class Node {
         this.data = null;
         this.left = null;
         this.right = null; 
+        this.parent = null;
     }
     
     /**
@@ -27,7 +28,8 @@ public class Node {
     public Node (Pessoa pessoa){
         this.data = pessoa;
         this.left = null;
-        this.right = null;  
+        this.right = null;
+        this.parent = null;  
     }    
     
     /**
@@ -101,32 +103,7 @@ public class Node {
     public void setParent(Node parent){
         this.parent = parent;
     } 
-    
-    public void addExistentNode(Node where, Node toadd){
-        if (toadd != null){
-            int pessoaCPF = Integer.parseInt(toadd.getData().getCPF());
-            int dataCPF = Integer.parseInt(data.getCPF());        
-            if( pessoaCPF < dataCPF ){
-                if(where.getLeft() != null){
-                    addExistentNode(where.getLeft(),toadd);
-                }
-                else{
-                    where.setLeft(toadd);
-                    where.getLeft().setParent(where); 
-                }
-            }
-            else if(pessoaCPF > dataCPF){
-                if (where.getRight() != null){
-                    addExistentNode(where.getRight(),toadd);
-                }
-                else {
-                    where.setRight(toadd);
-                    where.getRight().setParent(where); 
-                }
-            }
-        }
-    }
-    
+        
     public boolean isLeft(){
         if (this.getParent() != null){
             if (this.getParent().getLeft() == this){

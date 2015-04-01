@@ -14,7 +14,7 @@ import org.junit.Test;
 public class TreeTest
 {
     private Tree tree1;
-    private Tree tree_withFour;
+    private Tree tree_withSix;
     private Tree tree_empty1;
     private Tree tree_empty2;
     private Tree tree_empty3;
@@ -33,16 +33,20 @@ public class TreeTest
     @Before
     public void setUp()
     {    
-        tree_withFour = new Tree();
-        Pessoa pessoa1 = new Pessoa("Pessoa 1", 1970, 9, 9, "111111", "765432");
-        Pessoa pessoa2 = new Pessoa("Pessoa 2", 1960, 6, 6, "222222", "2165498");
-        Pessoa pessoa3 = new Pessoa("Pessoa 3", 1950, 3, 3, "333333", "456457");
-        Pessoa pessoa4 = new Pessoa("Pessoa 4", 1940, 1, 1, "444444", "4846845");
-        tree_withFour.add(pessoa1);
-        tree_withFour.add(pessoa2);
-        tree_withFour.add(pessoa3);
-        tree_withFour.add(pessoa4);
-        
+        tree_withSix = new Tree();
+        Pessoa pessoa0 = new Pessoa("Larissa", 1975, 12, 5, "09127", "51351324");
+        Pessoa pessoa1 = new Pessoa("Jo", 1977, 12, 5, "12323456", "4456789");
+        Pessoa pessoa2 = new Pessoa("J", 1977, 12, 5, "123456", "456789");
+        Pessoa pessoa3 = new Pessoa("Juliana", 1977, 12, 5, "09393", "849028");
+        Pessoa pessoa4 = new Pessoa("Loanerresman", 1950, 7, 7, "123123", "789456");
+        Pessoa pessoa5 = new Pessoa("Poplin", 1955, 5, 5, "454545", "789542");
+        Pessoa pessoa6 = new Pessoa("Mariah J", 1977, 10, 20, "456789", "123456");
+        tree_withSix.add(pessoa1);
+        tree_withSix.add(pessoa2);
+        tree_withSix.add(pessoa3);
+        tree_withSix.add(pessoa4);
+        tree_withSix.add(pessoa5);
+        tree_withSix.add(pessoa6);
     }
 
     /**
@@ -90,15 +94,45 @@ public class TreeTest
     @Test
     public void testPrintPosfix()
     {
-        tree_withFour.printPosfix();
+        tree_withSix.printPosfix();
     }
     
     @Test
     public void testPrintPrefix()
     {
-        tree_withFour.printPrefix();
+        tree_withSix.printPrefix();
+    }
+
+    @Test
+    public void testSearchBreadth()
+    {
+        Node node1 = tree_withSix.searchBreadth("Juliana");
+        assertEquals(tree_withSix.getRoot().getRight(), node1);
+        
+        Node node2 = tree_withSix.searchBreadth("J");
+        assertEquals(tree_withSix.getRoot().getLeft(), node2);
+    }
+    
+    @Test
+    public void testSearchDepth()
+    {
+        Node node1 = tree_withSix.searchDepth("Juliana");
+        assertEquals(tree_withSix.getRoot().getRight(), node1);
+        
+        Node node2 = tree_withSix.searchDepth("J");
+        assertEquals(tree_withSix.getRoot().getLeft(), node2);
+    }
+
+    @Test
+    public void testRemoveNodeEmptyTree()
+    {
+        Tree tree1 = new Tree();
+        Node node1 = new Node();
+        tree1.remove(node1);
     }
 }
+
+
 
 
 
