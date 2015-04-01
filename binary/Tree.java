@@ -89,6 +89,9 @@ public class Tree
         /* Verifica se não tem nenhum filho */
         if (to != null) { 
             if (to.getLeft() == null && to.getRight() == null){
+                if (to.getParent() == null){
+                    root = null;
+                }
                 if (to.isLeft()){
                     if(to.getParent() != null) to.getParent().setLeft(null);
                 }

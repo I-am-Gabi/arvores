@@ -14,6 +14,7 @@ VERSION or DATE: 1.0 1/3/2015
 HOW TO START THIS PROJECT:
 
 AUTHORS: 
-Gabriela Cavalcante, Roberto Dantas
+Gabriela Cavalcante  2013022760 , Roberto Dantas 2014027940.
 
 USER INSTRUCTIONS:
+Documentação na pasta /doc
