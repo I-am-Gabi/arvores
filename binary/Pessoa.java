@@ -3,46 +3,47 @@ import java.lang.Integer;
 import java.util.Date;
 import java.text.DateFormat;
 /**
- * Write a description of class Pessoa here.
+ * Classe Pessoa representar· a entidade 'pessoa' do "mundo real" que ser· 
+ * registrada na Agenda
  * 
- * @author Gabriela Cavalcante da Silva , Gustavo Alves , Roberto Dantas.
+ * @author Gabriela Cavalcante da Silva, Roberto Dantas.
  * @version 1.00
  */
 public class Pessoa
-{
-    // instance variables - replace the example below with your own
-    private String name;
-    private Calendar bday;
-    private String CPF;
-    private String phone;
+{ 
+    private String name;    // campo nome
+    private Calendar bday;  // campo dia de nascimento
+    private String CPF;     // campo CPF
+    private String phone;   // campo telefone
 
     /**
-     * Constructor for objects of class Pessoa
-     */
-    public Pessoa(){
-        this.name = " ";
-        this.bday = Calendar.getInstance();
-        this.CPF = "0";
-        this.phone = " ";
-    }
-    
-    public Pessoa(String name, Calendar bday, String CPF, String phone){
+     * Construtor para objetos da classe Pessoa
+     * 
+     * @params name nome da pessoa
+     * @params bday data de anivers·rio 
+     * @params CPF n˙mero de cpf
+     * @params phone n˙mero de telefone
+     */    
+    public Pessoa(String name, Calendar bday, String CPF, String phone) {
         this.name = name;
         this.bday = Calendar.getInstance();
         this.bday.clear();
         this.bday.set(bday.get(Calendar.YEAR), bday.get(Calendar.MONTH), bday.get(Calendar.DAY_OF_MONTH)); 
         this.CPF = CPF;
         this.phone = phone;
-    } 
+    }  
     
-    public Pessoa(String CPF){
-        this.name = " ";
-        this.bday = Calendar.getInstance();
-        this.CPF = CPF;
-        this.phone = " ";
-    }
-    
-    public Pessoa(String name, int year, int month, int day, String CPF, String phone){
+    /**
+     * Construtor para objetos da Classe pessoa
+     * 
+     * @params name nome da pessoa
+     * @params year ano de nascimanto da pessoa
+     * @params month mÍs de nascimento da pessoa
+     * @params day dia de nascimento da pessoa
+     * @params CPF n˙mero de cpf
+     * @params phone n˙mero de telefone
+     */
+    public Pessoa(String name, int year, int month, int day, String CPF, String phone) {
         this.name = name;
         this.bday = Calendar.getInstance();
         this.bday.clear();
@@ -52,45 +53,45 @@ public class Pessoa
     }
     
     /**
-     * getNome - retorna valor do campo nome
+     * getName - retorna valor do campo name (name)
      *  
-     * @return nome valor do atributo nome da inst√¢ncia
+     * @return name valor do atributo nome da inst‚ncia
      */
     public String getName() {
         return name;
     }
     
     /**
-     * getNascimento - retorna valor do campo nascimento
+     * getBday - retorna valor do campo bday (data de nascimento)
      *  
-     * @return nascimento valor do atributo nascimento da inst√¢ncia
+     * @return bday valor do atributo nascimento da inst‚ncia
      */
     public Calendar getBday() {
         return bday;
     }
     
     /**
-     * getCpf - retorna valor do campo CPF
+     * getCPF - retorna valor do campo CPF
      *  
-     * @return CPF valor do atributo CPF da inst√¢ncia
+     * @return CPF valor do atributo CPF da inst‚ncia
      */
     public String getCPF() {
         return CPF;
     }
     
     /**
-     * getTelefone - retorna valor do campo this.phone
+     * getPhone - retorna valor do campo phone (telefone)
      *  
-     * @return this.phone valor do atributo this.phone da inst√¢ncia
+     * @return phone valor do atributo phone da inst‚ncia
      */
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
     
     /**
-     * setNome - modifica o valor do campo nome
+     * setName - modifica o valor do campo nome
      *  
-     * @params nome_ valor que ser√° atribuido ao campo nome da inst√¢ncia
+     * @params name valor que ser· atribuido ao campo name (nome) da inst‚ncia
      */
     public void setName(String name) {
         this.name = name;
@@ -99,25 +100,25 @@ public class Pessoa
     /**
      * setNascimento - modifica o valor do campo nascimento
      *  
-     * @params cal objeto Calendar que contem os valores que ser√° atribuidos ao campo nascimento da inst√¢ncia
+     * @params c objeto Calendar que contem os valores que ser„o atribuidos ao campo nascimento da inst‚ncia
      */
     public void setBday(Calendar c) {
         this.bday.set(c.get(Calendar.YEAR), c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH)); 
     }
     
     /**
-     * setCpf - modifica o valor do campo CPF
+     * setCPF - modifica o valor do campo CPF
      *  
-     * @params cpf_ valor que ser√° atribuido ao campo CPF da inst√¢ncia
+     * @params CPF valor que ser· atribuido ao campo CPF da inst‚ncia
      */
     public void setCPF(String CPF) {
         this.CPF = CPF;
     }
     
     /**
-     * setTelefone - modifica o valor do campo this.phone
+     * setPhone - modifica o valor do campo phone
      *  
-     * @params telefone_ valor que ser√° atribuido ao campo this.phone da inst√¢ncia
+     * @params phone valor que ser· atribuido ao campo phone da inst‚ncia
      */
     public void setPhone(String phone) {
         this.phone = phone;
