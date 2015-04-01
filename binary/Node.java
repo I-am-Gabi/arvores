@@ -1,7 +1,7 @@
 /**
  * Classe Node será usada para representar o cada nó da árvore
  * 
- * @author Gabriela Cavalcante da Silva, Roberto Dantas.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 public class Node {

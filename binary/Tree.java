@@ -4,7 +4,7 @@ import java.util.Iterator;
 /**
  * Classe Tree que representa a árvore em nosso programa
  * 
- * @author Gabriela Cavalcante da Silva, Roberto Dantas.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 
@@ -100,7 +100,7 @@ public class Tree
             if (to.getLeft() != null && to.getRight() == null){
                 to.getLeft().setParent(to.getParent());
                 if (to.isRoot()){
-                    root = to;
+                    root = to.getLeft();
                 }
                 else {
                     if (to.isLeft()){
@@ -115,7 +115,7 @@ public class Tree
             if (to.getRight() != null && to.getLeft() == null){
                 to.getRight().setParent(to.getParent());
                 if (to.isRoot()){
-                    root = to;
+                    root = to.getRight();
                 }
                 else {
                     if (to.isLeft()){

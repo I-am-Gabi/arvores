@@ -6,7 +6,7 @@ import java.text.DateFormat;
  * Classe Pessoa representará a entidade 'pessoa' do "mundo real" que será 
  * registrada na Agenda
  * 
- * @author Gabriela Cavalcante da Silva, Roberto Dantas.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
  * @version 1.00
  */
 public class Pessoa

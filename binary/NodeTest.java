@@ -8,7 +8,11 @@ import org.junit.Test;
 /**
  * The test class NodeTest.
  *
+<<<<<<< HEAD
  * @author  Gabriela Cavalcante, Roberto Dantas
+=======
+ * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
+>>>>>>> 96379249c977b1bb65933dee997ae0e5f8d8bc00
  * @version 1.0
  */
 public class NodeTest

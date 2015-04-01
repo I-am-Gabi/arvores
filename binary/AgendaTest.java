@@ -8,8 +8,8 @@ import org.junit.Test;
 /**
  * The test class AgendaTest.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
+ * @version 1.0
  */
 public class AgendaTest
 {
