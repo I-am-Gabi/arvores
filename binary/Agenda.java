@@ -9,6 +9,9 @@ public class Agenda {
     
     private Tree pessoas;
     
+    /**
+     * Construtor que inicializa 
+     */
     public Agenda (){
         pessoas = new Tree();
     }

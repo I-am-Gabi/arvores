@@ -2,7 +2,7 @@ import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
- * Write a description of class Tree here.
+ * Classe Tree que representa a árvore em nosso programa
  * 
  * @author Gabriela Cavalcante da Silva, Roberto Dantas.
  * @version 1.0
