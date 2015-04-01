@@ -52,7 +52,7 @@ public class Agenda {
     }
     
     /**
-     * imprimeAgenda - método chamado para imprimir os dados dos registro que estão em Agenda
+     * imprimeAgenda - método chamado para imprimir os dados de todos os registros que estão em Agenda
      */
     public void imprimeAgenda(){
        pessoas.printPrefix();   
