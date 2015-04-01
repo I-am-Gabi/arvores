@@ -1,6 +1,7 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Agenda()
+comment0.text=\n\ Construtor\ que\ inicializa\ \n
 comment1.params=pessoa
 comment1.target=void\ armazenaPessoa(Pessoa)
 comment2.params=nome
