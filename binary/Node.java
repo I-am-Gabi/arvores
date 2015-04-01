@@ -1,5 +1,5 @@
 /**
- * Write a description of class Node here.
+ * Classe Node será usada para representar o cada nó da árvore
  * 
  * @author Gabriela Cavalcante da Silva, Roberto Dantas.
  * @version 1.0
