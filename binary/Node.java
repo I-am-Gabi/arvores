@@ -104,6 +104,11 @@ public class Node {
         this.parent = parent;
     } 
         
+    /**
+     * isLeft - método que retorna true caso o nó seja o nó esquerdo do seu pai
+     * 
+     * @return true caso ele seja o nó esquerdo, e false caso contrário
+     */ 
     public boolean isLeft(){
         if (this.getParent() != null){
             if (this.getParent().getLeft() == this){
@@ -116,6 +121,11 @@ public class Node {
         return false;
     }
 
+    /**
+     * isRoot - método verifica se o nó é um nó raiz
+     * 
+     * @return true caso o nó seja raiz, e false caso contrário
+     */ 
     public boolean isRoot(){
         if(parent == null){
             return true;
