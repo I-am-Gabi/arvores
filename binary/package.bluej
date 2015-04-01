@@ -3,14 +3,10 @@ dependency1.from=Node
 dependency1.to=Pessoa
 dependency1.type=UsesDependency
 dependency10.from=AgendaTest
-<<<<<<< HEAD
 dependency10.to=Pessoa
-=======
-dependency10.to=Agenda
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 dependency10.type=UsesDependency
 dependency11.from=AgendaTest
-dependency11.to=Pessoa
+dependency11.to=Agenda
 dependency11.type=UsesDependency
 dependency12.from=NodeTest
 dependency12.to=Pessoa
@@ -18,55 +14,39 @@ dependency12.type=UsesDependency
 dependency13.from=NodeTest
 dependency13.to=Node
 dependency13.type=UsesDependency
-<<<<<<< HEAD
 dependency14.from=PessoaTest
 dependency14.to=Pessoa
 dependency14.type=UsesDependency
 dependency2.from=Node
-=======
-dependency14.from=TreeTest
-dependency14.to=Node
-dependency14.type=UsesDependency
-dependency2.from=Tree
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 dependency2.to=Node
 dependency2.type=UsesDependency
 dependency3.from=Tree
 dependency3.to=Pessoa
 dependency3.type=UsesDependency
-dependency4.from=Agenda
-dependency4.to=Tree
+dependency4.from=Tree
+dependency4.to=Node
 dependency4.type=UsesDependency
 dependency5.from=Agenda
-dependency5.to=Pessoa
+dependency5.to=Tree
 dependency5.type=UsesDependency
-dependency6.from=TreeTest
+dependency6.from=Agenda
 dependency6.to=Pessoa
 dependency6.type=UsesDependency
-dependency7.from=Agenda
-dependency7.to=Node
+dependency7.from=TreeTest
+dependency7.to=Pessoa
 dependency7.type=UsesDependency
-dependency8.from=TreeTest
-dependency8.to=Tree
+dependency8.from=Agenda
+dependency8.to=Node
 dependency8.type=UsesDependency
-dependency9.from=PessoaTest
-dependency9.to=Pessoa
+dependency9.from=TreeTest
+dependency9.to=Tree
 dependency9.type=UsesDependency
-<<<<<<< HEAD
 objectbench.height=100
 objectbench.width=1314
 package.editor.height=578
 package.editor.width=1218
 package.editor.x=0
 package.editor.y=0
-=======
-objectbench.height=195
-objectbench.width=353
-package.editor.height=432
-package.editor.width=560
-package.editor.x=1097
-package.editor.y=129
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 package.numDependencies=14
 package.numTargets=8
 package.showExtends=true
@@ -78,45 +58,27 @@ readme.editor.x=466
 readme.editor.y=68
 target1.editor.height=700
 target1.editor.width=900
-<<<<<<< HEAD
 target1.editor.x=287
 target1.editor.y=68
 target1.height=50
 target1.name=TreeTest
-=======
-target1.editor.x=794
-target1.editor.y=209
-target1.height=50
-target1.name=PessoaTest
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target1.naviview.expanded=true
 target1.showInterface=false
 target1.type=UnitTestTargetJunit4
 target1.typeParameters=
 target1.width=90
-<<<<<<< HEAD
 target1.x=510
 target1.y=170
 target2.editor.height=700
 target2.editor.width=900
 target2.editor.x=40
 target2.editor.y=20
-=======
-target1.x=310
-target1.y=100
-target2.association=TreeTest
-target2.editor.height=700
-target2.editor.width=900
-target2.editor.x=852
-target2.editor.y=204
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target2.height=50
 target2.name=PessoaTest
 target2.naviview.expanded=false
 target2.showInterface=false
 target2.type=UnitTestTargetJunit4
 target2.typeParameters=
-<<<<<<< HEAD
 target2.width=110
 target2.x=160
 target2.y=280
@@ -127,23 +89,9 @@ target3.editor.y=20
 target3.height=50
 target3.name=NodeTest
 target3.naviview.expanded=false
-=======
-target2.width=80
-target2.x=70
-target2.y=70
-target3.association=TreeTest
-target3.editor.height=1040
-target3.editor.width=960
-target3.editor.x=971
-target3.editor.y=0
-target3.height=50
-target3.name=Tree
-target3.naviview.expanded=true
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target3.showInterface=false
 target3.type=UnitTestTargetJunit4
 target3.typeParameters=
-<<<<<<< HEAD
 target3.width=90
 target3.x=380
 target3.y=220
@@ -152,16 +100,6 @@ target4.editor.height=768
 target4.editor.width=1368
 target4.editor.x=-1
 target4.editor.y=0
-=======
-target3.width=80
-target3.x=30
-target3.y=320
-target4.association=AgendaTest
-target4.editor.height=1056
-target4.editor.width=1936
-target4.editor.x=-8
-target4.editor.y=-8
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target4.height=50
 target4.name=Tree
 target4.naviview.expanded=true
@@ -169,7 +107,6 @@ target4.showInterface=false
 target4.type=ClassTarget
 target4.typeParameters=
 target4.width=80
-<<<<<<< HEAD
 target4.x=480
 target4.y=200
 target5.editor.height=768
@@ -178,22 +115,11 @@ target5.editor.x=-1
 target5.editor.y=0
 target5.height=50
 target5.name=Node
-=======
-target4.x=60
-target4.y=290
-target5.editor.height=700
-target5.editor.width=900
-target5.editor.x=721
-target5.editor.y=178
-target5.height=50
-target5.name=Agenda
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target5.naviview.expanded=true
 target5.showInterface=false
 target5.type=ClassTarget
 target5.typeParameters=
 target5.width=80
-<<<<<<< HEAD
 target5.x=320
 target5.y=290
 target6.association=AgendaTest
@@ -201,21 +127,12 @@ target6.editor.height=768
 target6.editor.width=1368
 target6.editor.x=-1
 target6.editor.y=0
-=======
-target5.x=270
-target5.y=210
-target6.editor.height=700
-target6.editor.width=900
-target6.editor.x=760
-target6.editor.y=185
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target6.height=50
 target6.name=Agenda
 target6.naviview.expanded=true
 target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=
-<<<<<<< HEAD
 target6.width=80
 target6.x=650
 target6.y=80
@@ -223,15 +140,6 @@ target7.editor.height=768
 target7.editor.width=874
 target7.editor.x=0
 target7.editor.y=0
-=======
-target6.width=90
-target6.x=90
-target6.y=260
-target7.editor.height=700
-target7.editor.width=900
-target7.editor.x=853
-target7.editor.y=181
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target7.height=50
 target7.name=Pessoa
 target7.naviview.expanded=false
@@ -239,13 +147,8 @@ target7.showInterface=false
 target7.type=ClassTarget
 target7.typeParameters=
 target7.width=80
-<<<<<<< HEAD
 target7.x=80
 target7.y=360
-=======
-target7.x=110
-target7.y=50
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
 target8.editor.height=700
 target8.editor.width=900
 target8.editor.x=40
@@ -256,12 +159,6 @@ target8.naviview.expanded=false
 target8.showInterface=false
 target8.type=UnitTestTargetJunit4
 target8.typeParameters=
-<<<<<<< HEAD
 target8.width=110
 target8.x=680
 target8.y=50
-=======
-target8.width=80
-target8.x=280
-target8.y=130
->>>>>>> 500adc4fc1f60ba61854782ef12514e562680634
