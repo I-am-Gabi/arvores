@@ -60,7 +60,7 @@ public class Node {
     }
      
     /**
-     * getParent - método que retorna o nó a esqueda no nó atual
+     * getParent - método que retorna o nó pai do nó atual
      * 
      * @return parent nó pai da instância de Node atualizada
      */ 
