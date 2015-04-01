@@ -14,4 +14,7 @@ comment4.params=
 comment4.target=void\ testRemoverPessoa()
 comment5.params=
 comment5.target=void\ testBuscaPessoa()
-numComments=6
+comment6.params=
+comment6.target=void\ testImprimeAgenda()
+comment6.text=@Test\n\ \ \ \ public\ void\ testImprimeAgenda()\n\ \ \ \ {\n\ \ \ \ \ \ \ \ Agenda\ agenda1\ \=\ new\ Agenda();\n\ \ \ \ \ \ \ \ Pessoa\ pessoa1\ \=\ new\ Pessoa("Gabriela",\ 1994,\ 7,\ 19,\ "23418937",\ "1234098");\n\ \ \ \ \ \ \ \ agenda1.armazenaPessoa(pessoa1);\n\ \ \ \ \ \ \ \ assertEquals("\ |\ IDADE\ \:\ "\ +\ 12\ +\ \ "\ |\ CPF\ \:\ "\ +\ 23418937\ +\ "\ |\ Phone\ \:\ "\ +\ 1234098");\n}
+numComments=7
