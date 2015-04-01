@@ -22,10 +22,10 @@ public class Tree
     /**
      * addNode - método chamado para adicionar um nó na árvore
      * 
-     * @params pessoa O objeto pessoa que seja adicionado em um nó da árvore
+     * @params pessoa O objeto pessoa que será adicionado em um nó da árvore
      */
     public Node add(Pessoa pessoa) {
-        if (root == null) { // caso a raiz ainda esteja vazia
+        if (root == null) {       // caso a raiz ainda esteja vazia
             root = new Node();    // inicializa o Node raiz root
             root.setData(pessoa); // adiciona o parametro pessoa na raiz
             root.setLeft(null);   // seta o nó esquerdo como null
@@ -73,7 +73,18 @@ public class Tree
         }
     }
     
-    
+    /**
+     * remove - método que irá remover um nó da árvore.
+     * Três casos podem acontecer.
+     * 1) Caso o nó seja uma folha, e não possua sub-árvores
+     *  - nesse caso, é só setar como nulo o campo que "aponta" para o nó removido
+     * 2) Caso o nó possua apenas uma sub-árvore, a esquerda ou a direita
+     *  - nesse caso, o valor que faz referência ao nó removido passa a fazer referência 
+     *  a sub-árvore que existia ligado ao este nó
+     * 3) Caso o nó possua duas sub-árvores
+     *  - nessa situação, pegamos um valor menor, abaixo desse nó que quero remover (no caso, pegarmos um que seja uma folha. 
+     *  removemos esse nó folha que estava no final e substituimos o nó que queríamos remover inicialmente, por ele.
+     */
     public void remove(Node to){
         /* Verifica se não tem nenhum filho */
         if (to != null) { 
@@ -156,6 +167,16 @@ public class Tree
         }
     } 
  
+    /**
+     * searchBreadth - buscar um elemento utilizando a estratégia de busca em largura.
+     * Inicialmente ele cria dois ArrayLists para armazenar a subárvore a esquerda 
+     * e a direita. E então pesquisa o valor 'name' em ambos os arrays.
+     * A forma como esses arrays são criados e acessados, faz com que os valores
+     * sejam visitados pela técnica da largura
+     * 
+     * @params name String que possui o valor do name que será pesquisado 
+     * @return node nó com o valor que está sendo buscado
+     */
     public Node searchBreadth(String name) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
         ArrayList<Node> right = new ArrayList<Node>();
@@ -210,12 +231,19 @@ public class Tree
         return no;
     }
         
+    /**
+     * searchDepth - buscar um elemento utilizando a estratégia de busca em profundidade
+     * 
+     * @params node nó que marcará o ponto a partir do qual a busca acontecerá na árvore
+     * @params name nome da pessoa que está sendo pesquisada
+     * @return node nó com o valor que está sendo buscado
+     */
     public Node searchDepth(Node node, String name){
         if (node != null){
-            if (node.getData().getName().compareTo(name) == 0){
+            if (node.getData().getName().compareTo(name) == 0) {
                 return node;
             }
-            if (node.getData().getName().compareTo(name) > 0){
+            if (node.getData().getName().compareTo(name) > 0) {
                 return searchDepth(node.getLeft(),name);
             }
             else {
@@ -245,7 +273,14 @@ public class Tree
         }
         return false;
     }
-                        
+                      
+    /**
+     * calcHeight - método que calcula a altura de um determinado nó da árvore
+     * 
+     * @params node nó que terá a altura calculada
+     * @return a    caso o valor da altura da subarvore a esquerda seja maior que a da direita
+     * @return b    caso o valor da altura da subarvore a direita seja maior que a da esquerda
+     */
     public int calcHeight(Node node) {
         int a = 0, b = 0;
         if (node == null) {
@@ -261,11 +296,19 @@ public class Tree
             return b;
     }
     
+    /**
+     * calcDepht - método que calcula e retorna a profundidade de um nó
+     * 
+     * @params node nó que terá o valor da profundidade calculado
+     * @return depth profundidade do nó passado como argumento
+     */    
     public int calcDepht(Node node) {
         int depth = 0;
-        while(node.getParent() != null){
-            node = node.getParent();
-            depth++;
+        if (node != null) {
+            while(node.getParent() != null){
+                node = node.getParent();
+                depth++;
+            }
         }
         return depth;
     }
@@ -277,7 +320,13 @@ public class Tree
             roamPrefix(node.getRight(), array);
         }
     }
-            
+         
+    /**
+     * lowerValue - método chamado para retornar o menor valor da árvore.
+     * O menor valor será o do nó mais a esquerda.
+     * 
+     * @return node nó com menor valor da árvore
+     */
     public Node lowerValue(){   
         Node node = root;
         if (root != null) {
@@ -298,6 +347,12 @@ public class Tree
         return null;
     } 
         
+    /**
+     * greaterValue - método chamado para retornar o maior valor da árvore.
+     * No nosso caso, o maior valor será a informação que estiver no nó mais a direita.
+     * 
+     * @return node nós com maior valor da árvore
+     */
     public Node greaterValue(){
         Node node = root;
         if (root != null){
@@ -307,7 +362,10 @@ public class Tree
     }
     
     /**
+     *  greaterValue - método que retorna o nó com "maior" valor da árvore
+     *  No nosso caso, o maior valor será a informação que estiver no nó mais a direita.
      *  
+     *  @params node nó que marcará o início da busca pelo maior valor na árvore
      */
     private Node greaterValue(Node node) {
         if (node != null){
@@ -321,6 +379,10 @@ public class Tree
         return null;
     } 
     
+    /**
+     * printPrefix - método chamado para imprimir os valores da árvore 
+     * seguindo um caminhamento prefixado
+     */
     public void printPrefix(){
         System.out.println();
         System.out.println("---------------------PREFIX--------------------");
@@ -328,6 +390,12 @@ public class Tree
         printPrefix(root);
     }
         
+    /**
+     * printPrefix - método que imprimirá efetivamente os elementos da árvore 
+     * seguindo um caminhamento prefixado
+     * 
+     * @params node nó que marcará o início da impressão da árvore
+     */
     private void printPrefix(Node node){
         if (node != null){
             System.out.println("> NOME: " + node.getData().getName() + " " + node.getData().getCPF() + " ");
@@ -338,6 +406,10 @@ public class Tree
         }
     } 
     
+    /**
+     * printPosfix - método chamado par imprimir os elementos da árvore 
+     * seguindo um caminhamento pós-fixado
+     */
     public void printPosfix(){
         System.out.println();
         System.out.println("---------------------POSFIX--------------------");
@@ -345,6 +417,12 @@ public class Tree
         printPosfix(root);
     }        
     
+    /**
+     * printPosfix - método que efetivamente vai imprimir os elementos da árvore 
+     * seguindo um caminhamento pós-fixado
+     * 
+     * @params node nó que marca o início da impressão dos nós da árvore
+     */
     private void printPosfix(Node node){
         if (node != null){
             printPosfix(node.getLeft());
@@ -357,7 +435,8 @@ public class Tree
     
     /**
      * getRoot() - Método que retorna o nó raiz da árvore
-     * @return root raiz da arvore 
+     * 
+     * @return root nó raiz da arvore 
      */
     public Node getRoot(){
         return root;
