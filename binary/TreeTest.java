@@ -15,9 +15,12 @@ public class TreeTest
 {
     private Tree tree1;
     private Tree tree_withSix;
+    private Tree tree_empty0;
     private Tree tree_empty1;
     private Tree tree_empty2;
     private Tree tree_empty3;
+    private Tree tree_empty4;
+    private Tree tree_empty5;    
     /**
      * Default constructor for test class TreeTest
      */
@@ -130,7 +133,75 @@ public class TreeTest
         Node node1 = new Node();
         tree1.remove(node1);
     }
+
+    @Test
+    public void testHeight()
+    {
+        Node node1 = tree_withSix.searchDepth("Jo");
+        assertEquals(5, tree_withSix.calcHeight(node1));
+    }
+
+    @Test
+    public void testDepth()
+    {
+        Node node1 = tree_withSix.getRoot();
+        assertEquals(0, tree_withSix.calcDepht(node1));
+        
+        Node node2 = tree_withSix.searchDepth("Juliana");
+        assertEquals(1, tree_withSix.calcDepht(node2));
+    }
+
+    @Test
+    public void testGreaterValue()
+    {
+        tree_empty0 = new Tree();
+        assertEquals(null,tree_empty0.greaterValue());
+        assertEquals(tree_withSix.searchDepth("Poplin"), tree_withSix.greaterValue());
+    }  
+    
+    @Test
+    public void testLowerValue()
+    {
+        tree_empty4 = new Tree();
+        assertEquals(null,tree_empty4.greaterValue());
+        assertEquals(tree_withSix.searchDepth("J"), tree_withSix.lowerValue());
+    }      
+    
+    @Test
+    public void testPrintEmptyTree(){
+        tree_empty5 = new Tree();
+        tree_empty5.printPosfix();
+        tree_empty5.printPrefix();
+    }
+
+    @Test
+    public void testHeightNull()
+    {
+        assertEquals(0, tree_withSix.calcHeight(null));
+    }
+
+
+    @Test
+    public void testDepthNull()
+    {
+        assertEquals(0, tree_withSix.calcDepht(null));
+    }
+
+    @Test
+    public void testRemove()
+    {
+        Node node1 = tree_withSix.searchDepth("Poplin");
+        tree_withSix.remove(node1);
+        assertNotSame(node1, tree_withSix.greaterValue());
+    }
 }
+
+
+
+
+
+
+
 
 
 
