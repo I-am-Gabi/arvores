@@ -4,7 +4,7 @@ import java.util.Iterator;
 /**
  * Classe Tree que representa a árvore em nosso programa
  * 
- * @author Gabriela Cavalcante da Silva, Roberto Dantas.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 
