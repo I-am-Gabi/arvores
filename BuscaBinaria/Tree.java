@@ -22,7 +22,8 @@ public class Tree
     /**
      * add - método chamado para adicionar um nó na árvore
      * 
-     * @params pessoa O objeto pessoa que será adicionado em um nó da árvore
+     * @params key O valor da chave do nó que será adicionado em na árvore
+     * @return Retorna o nó que foi adicionado ou null caso a chave já exista na árvore
      */
     public Node add(int key) {
         if (root == null) {       // caso a raiz ainda esteja vazia
@@ -43,11 +44,12 @@ public class Tree
     }
     
      /**
-     * add - método que adiciona efetivamente um valor em um determinado nó. Ele verifica pelo valor o nome se a 
-     * instância passada de Pessoa deve ficar a esquerda ou a direita do nó.
+     * add - método que adiciona efetivamente um valor em um determinado nó. Ele verifica pelo valor da chave (key, enviado por parâmetro) se a 
+     * instância o novo nó deve ser o filho da esquerda ou a direita do nó.
      * 
      * @params node nó que terá os filhos verificados para um deles ser preenchido
-     * @params pessoa instância que será atribuida ao campo Data do nó adicionado
+     * @params key valor da chave que será atribuida ao campo key do nó adicionado
+     * @return Retorna o nó que foi adicionado
      */
     private Node add(Node node, int key) { 
         if (node.getKey() > key) { // se o nome deve ficar a esquerda
@@ -172,12 +174,12 @@ public class Tree
     /**
      * searchBreadth - buscar um elemento utilizando a estratégia de busca em largura.
      * Inicialmente ele cria dois ArrayLists para armazenar a subárvore a esquerda 
-     * e a direita. E então pesquisa o valor 'name' em ambos os arrays.
+     * e a direita. E então pesquisa o valor 'key' em ambos os arrays.
      * A forma como esses arrays são criados e acessados, faz com que os valores
      * sejam visitados pela técnica da largura
      * 
-     * @params name String que possui o valor do name que será pesquisado 
-     * @return node nó com o valor que está sendo buscado
+     * @params key inteiro que armazena o valor da chave a ser pesquisado 
+     * @return node nó com o valor que está sendo buscado, caso não encontre retorna null
      */
     public Node searchBreadth(int key) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
@@ -225,8 +227,8 @@ public class Tree
     /**
      * searchDepth - buscar um elemento utilizando a estratégia de busca em profundidade
      * 
-     * @params name nome da pessoa que está sendo pesquisada
-     * @return node nó com o valor que está sendo buscado
+     * @params key valor da chave do nó que está sendo pesquisada
+     * @return node nó com o valor que está sendo buscado. Retornará null caso valor não seja encontrado
      */
     public Node searchDepth(int key) {
         Node no = searchDepth(root, key);  
@@ -237,8 +239,8 @@ public class Tree
      * searchDepth - buscar um elemento utilizando a estratégia de busca em profundidade
      * 
      * @params node nó que marcará o ponto a partir do qual a busca acontecerá na árvore
-     * @params name nome da pessoa que está sendo pesquisada
-     * @return node nó com o valor que está sendo buscado
+     * @params key valor da chave que está sendo pesquisada
+     * @return node nó com o valor que está sendo buscado. Retornará null caso valor não seja encontrado
      */
     private Node searchDepth(Node node, int key){
         if (node != null){
@@ -256,9 +258,9 @@ public class Tree
     }
     
     /**
-     * hasNode - método chamado quando queremos verificar se há registro com o CPF passado por parâmetro
+     * hasNode - método chamado quando queremos verificar se há registro com a chave passada por parâmetro
      * 
-     * @params CPF valor do CPF que será usado para verificar a existência de um registro semelhante
+     * @params key valor da chave que será usado para verificar a existência de um registro semelhante
      * @return True caso tenha encontrado, ou False caso contrário
      */
     private boolean hasNode(int key) {
@@ -315,6 +317,12 @@ public class Tree
         return depth;
     }
    
+    /**
+     * Salva os valores de uma subárvore num Array em ordem prefixa
+     * 
+     * @param node nó raiz da subárvore
+     * @param array array no qual os valores da subárvore ficarão organizados em ordem prefixa.
+     */
     private void roamPrefix(Node node, ArrayList<Node> array){
         if (node != null){
             array.add(node); 
