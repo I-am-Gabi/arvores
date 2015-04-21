@@ -10,6 +10,8 @@ public class Node {
     private Node left;    // nó a esquerda
     private Node right;   // nó a direita
     private Node parent;  // nó pai
+    private Node min;   //nó que aponta para o menor valor da sub-árvore (pode ser ele mesmo)
+    private Node max;   //nó que aponta para o menor valor da sub-árvore (pode ser ele mesmo)
     
     /**
      * Construtor para objetos da classe Node 
@@ -18,6 +20,8 @@ public class Node {
         this.left = null;
         this.right = null; 
         this.parent = null;
+        this.min = null;
+        this.max = null;
     }
     
     /**
@@ -29,7 +33,9 @@ public class Node {
         this.key = key;
         this.left = null;
         this.right = null;
-        this.parent = null;  
+        this.parent = null;
+        this.min = this;
+        this.max = this;
     }    
     
     /**
@@ -75,6 +81,9 @@ public class Node {
      */ 
     public void setKey(int key) {
         this.key = key;
+        /*não altera os valores mínimo e máximo pois caso a key seja alterada, será necessário uma reorganização da árvore, estando
+         * fora do escopo do nó
+         */
     }
     
     /**
@@ -84,6 +93,9 @@ public class Node {
      */ 
     public void setLeft(Node left){
         this.left = left;
+        /*não altera o valor mínimo pois será necessário mudar o valor mínimo dos pais, o que está fora do escopo do nó,
+         * sendo a responsabilidade transferida para a árvore
+         */
     }
 
     /**
@@ -93,6 +105,9 @@ public class Node {
      */ 
     public void setRight(Node right){
         this.right = right;
+        /*não altera o valor máximo pois será necessário mudar o valor máximo dos pais, o que está fora do escopo do nó,
+         * sendo a responsabilidade transferida para a árvore
+         */
     }     
     
     /**

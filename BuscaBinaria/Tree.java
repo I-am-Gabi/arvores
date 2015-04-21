@@ -4,7 +4,7 @@ import java.util.Iterator;
 /**
  * Classe Tree que representa a árvore em nosso programa
  * 
- * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Gustavo Alves Bezerra 2014026460 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 
@@ -83,7 +83,7 @@ public class Tree
      * 3) Caso o nó possua duas sub-árvores
      *  - nessa situação, pegamos um valor menor, abaixo desse nó que quero remover (no caso, pegarmos um que seja uma folha. 
      *  removemos esse nó folha que estava no final e substituimos o nó que queríamos remover inicialmente, por ele.
-     */
+     */ 
     public void remove(Node to){
         /* Verifica se não tem nenhum filho */
         if (to != null) { 
