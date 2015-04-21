@@ -193,6 +193,12 @@ public class Tree
                     root = subs;
                 }
                 
+                /*
+                 * CASO TENHA 2 FILHOS, A COMPLEXIDADE É MANTIDA, antes era necessário percorrer a árvore para encontrar o nó máximo da subárvore
+                 * à esquerda, agora essa busca não é mais necessária, entretanto, é preciso fazer o caminho contrário para atualizar o valor do
+                 * máximo dos ancestrais
+                 */
+                
                 
                 /*Node minValue = lowerValue(to);
                 
