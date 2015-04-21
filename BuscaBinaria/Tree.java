@@ -30,14 +30,16 @@ public class Tree
             root = new Node(key);    // inicializa o Node raiz root
             root.setLeft(null);   // seta o nó esquerdo como null
             root.setRight(null);  // seta o nó direito como null
+            root.setMin(root); //como a árvore só tem o nó raiz, o valor mínimo será ele mesmo
+            root.setMax(root); //como a árvore só tem o nó raiz, o valor máximo será ele mesmo
             return root;
         }
         else {
-            if (hasNode(key)) { // verifica se já existe um registro com esse CPF
+            if (hasNode(key)) { // verifica se já existe um registro com essa chave
                 System.out.print("Já existe um nó com o key informado");
             }
             else {
-                return add(root, key); // chama o método add passando a raiz e a pessoa
+                return add(root, key); // chama o método add passando a raiz e a chave
             }
         }
         return null;
@@ -51,24 +53,36 @@ public class Tree
      * @params key valor da chave que será atribuida ao campo key do nó adicionado
      * @return Retorna o nó que foi adicionado
      */
-    private Node add(Node node, int key) { 
-        if (node.getKey() > key) { // se o nome deve ficar a esquerda
+    private Node add(Node node, int key) { //complexidade não alterada após min e max em O(1)
+        if (node.getKey() > key) { // se a chave deve ficar a esquerda
             if (node.getLeft() != null) {
-                return add(node.getLeft(), key);
+                Node temp = add(node.getLeft(), key); //temp armazenará o nó recentemente adicionado
+                //verifica se a chave recentemente adionada é mínima da subárvore da qual node é raiz
+                if (node.getMin().getKey() > temp.getKey()) {
+                    node.setMin(temp);//atualiza mínimo
+                }
+                return temp;
             }
             else {
                 node.setLeft(new Node(key));
                 node.getLeft().setParent(node); 
+                node.setMin(node.getLeft()); //altera o mínimo
                 return node.getLeft();
             }
         }
-        else {
+        else { //a chave deve ficar á direita
             if (node.getRight() != null) {
-                return add(node.getRight(), key);
+                Node temp = add(node.getRight(), key);
+                //verifica se a chave recentemente adionada é máxima da subárvore da qual node é raiz
+                if (node.getMax().getKey() < temp.getKey()) {
+                    node.setMax(temp); //atualiza máximo
+                }
+                return temp;
             }
             else {
                 node.setRight(new Node(key));
-                node.getRight().setParent(node); 
+                node.getRight().setParent(node);
+                node.setMax(node.getRight()); //altera o máximo
                 return node.getRight();
             } 
         }
@@ -333,26 +347,23 @@ public class Tree
          
     /**
      * lowerValue - método chamado para retornar o menor valor da árvore.
-     * O menor valor será o do nó mais a esquerda.
+     * O menor valor será o do nó mais a esquerda
      * 
      * @return node nó com menor valor da árvore
      */
     public Node lowerValue(){   
-        Node node = root;
-        if (root != null) {
-            node = lowerValue(root);
-        }
-        return node; 
+        return lowerValue(root); 
     }
   
+    /**
+     * lowerValue - retorna o nó com menor valor da subárvore da qual node é a raiz (nó mais à esquerda)
+     * 
+     * @param node raiz da subárvore
+     * @return retorna referência ao nó com menor chave da subárvore
+     */
     private Node lowerValue(Node node) {
         if (node != null){
-            if (node.getLeft() == null){
-                return node;
-            }
-            else {           
-                return lowerValue(node.getLeft());
-            }            
+            return node.getMin();
         }
         return null;
     } 
@@ -364,27 +375,18 @@ public class Tree
      * @return node nós com maior valor da árvore
      */
     public Node greaterValue(){
-        Node node = root;
-        if (root != null){
-            node = greaterValue(root);
-        }
-        return node;
+        return greaterValue(root);
     }
     
     /**
-     *  greaterValue - método que retorna o nó com "maior" valor da árvore
-     *  No nosso caso, o maior valor será a informação que estiver no nó mais a direita.
-     *  
-     *  @params node nó que marcará o início da busca pelo maior valor na árvore
+     * greaterValue - retorna o nó com maior valor da subárvore da qual node é a raiz (nó mais à direita)
+     * 
+     * @param node raiz da subárvore
+     * @return retorna referência ao nó com maior chave da subárvore
      */
     private Node greaterValue(Node node) {
         if (node != null){
-            if (node.getRight() == null){
-                return node;
-            }
-            else {
-                return greaterValue(node.getRight());
-            }
+            return node.getMax();
         }
         return null;
     } 
@@ -408,7 +410,10 @@ public class Tree
      */
     private void printPrefix(Node node){
         if (node != null){
-            System.out.println("" + node.getKey());
+            //NORMAL
+            //System.out.println("" + node.getKey());
+            //PARA TESTES DE ADD
+            System.out.println("" + node.getKey() + " Min: " + node.getMin().getKey() + " Max: " + node.getMax().getKey());
             System.out.println("-----------------------------------------------");
             printPrefix(node.getLeft());
             printPrefix(node.getRight());
@@ -449,5 +454,4 @@ public class Tree
     public Node getRoot(){
         return root;
     }
-    
 }

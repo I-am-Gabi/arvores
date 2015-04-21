@@ -1,7 +1,7 @@
 /**
  * Classe Tree, usada para criar objetos que representarão TADS árvores no nosso sistema
  * 
- * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Gustavo Alves Bezerra 2014026460 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 
@@ -14,6 +14,16 @@ public class TestTree {
      */
     public TestTree (){
         treeValues = new Tree();
+        add(50);
+        add(35);
+        add(70);
+        add(25);
+        add(40);
+        add(65);
+        add(90);
+        add(30);
+        add(80);
+        
     }
     
     /**
