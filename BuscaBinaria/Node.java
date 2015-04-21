@@ -75,6 +75,24 @@ public class Node {
     }
     
     /**
+     * getMin - método que retorna o nó que contem a chave com menor valor da subárvore cujo this é raiz
+     * 
+     * @return return referência ao nó com menor chave da subárvore
+     */
+    public Node getMin() {
+        return min;
+    }
+    
+    /**
+     * getMax - método que retorna o nó que contem a chave com maior valor da subárvore cujo this é raiz
+     * 
+     * @return return referência ao nó com menor chave da subárvore
+     */    
+    public Node getMax() {
+        return max;
+    }
+    
+    /**
      * setkey - método que modifica o valor do campo key
      * 
      * @params pessoa valor que será setado no campo key do nó
@@ -117,7 +135,25 @@ public class Node {
      */ 
     public void setParent(Node parent){
         this.parent = parent;
-    } 
+    }
+    
+    /**
+     * setMin - atualiza referência do nó que a chave é o menor valor da subárvore da qual this é a raiz
+     * 
+     * @param min novo nó que conterá o novo valor mínimo da subárvore da qual this é a raiz
+     */
+    public void setMin(Node min) {
+        this.min = min;
+    }
+
+    /**
+     * setMax - atualiza referência do nó que a chave é o maior valor da subárvore da qual this é a raiz
+     * 
+     * @param max novo nó que conterá o novo valor máximo da subárvore da qual this é a raiz
+     */
+    public void setMax(Node max) {
+        this.max = max;
+    }
         
     /**
      * isLeft - método que retorna true caso o nó seja o nó esquerdo do seu pai
