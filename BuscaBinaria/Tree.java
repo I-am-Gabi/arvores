@@ -101,17 +101,29 @@ public class Tree
      *  removemos esse nó folha que estava no final e substituimos o nó que queríamos remover inicialmente, por ele.
      */ 
     public void remove(Node to){
-        /* Verifica se não tem nenhum filho */
         if (to != null) { 
+            /* Verifica se não tem nenhum filho */
             if (to.getLeft() == null && to.getRight() == null){
                 if (to.getParent() == null){
                     root = null;
                 }
-                if (to.isLeft()){
-                    if(to.getParent() != null) to.getParent().setLeft(null);
+                if (to.isLeft()){ //se for folha à esquerda
+                    if(to.getParent() != null) {
+                        //atualiza os mínimos dos nós ancestrais antes de remover
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os mínimos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMin(to, to.getParent()); //se um nó folha foi removido da esquerda, o novo candidato a menor será o pai
+                        to.getParent().setLeft(null);
+                    }
                 }
-                else {  
-                    if(to.getParent() != null) to.getParent().setRight(null);
+                else { //se for folha à direita
+                    if(to.getParent() != null) {
+                        //atualiza os máximos dos nós ancestrais antes de remover
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os máximos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMax(to, to.getParent()); //se um nó folha foi removido da direita, o novo candidato a maior será o pai
+                        to.getParent().setRight(null);
+                    }
                 }
             }
             /* Verifica se só tem um filho esquerdo */
@@ -122,9 +134,15 @@ public class Tree
                 }
                 else {
                     if (to.isLeft()){
+                        //se to está à esquerda só tem um filho na esquerda, não será necessário atualizar o mínimo nos ancestrais
+                        //COMPLEXIDADE MANTIDA
                         to.getParent().setLeft(to.getLeft());
                     }
                     else {
+                        //se to está à direita e só possui um nó à esquerda, será necessário atualizar o máximo dos ancestrais
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os máximos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMax(to, to.getLeft()); //o novo candidato a max é o nó filho à esquerda
                         to.getParent().setRight(to.getLeft());
                     }
                 }
@@ -137,16 +155,46 @@ public class Tree
                 }
                 else {
                     if (to.isLeft()){
-                        to.getParent().setLeft(to.getLeft());
+                        //se to está à esquerda e só possui um nó à direita, será necessário atualizar o mínimo dos ancestrais
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os mínimos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMin(to, to.getRight()); //o novo candidato a min é o nó filho à direita
+                        to.getParent().setLeft(to.getRight());
                     }
                     else {
-                        to.getParent().setRight(to.getLeft());
+                        //se to está à direita só tem um filho na direita, não será necessário atualizar o máximo nos ancestrais
+                        //COMPLEXIDADE MANTIDA
+                        to.getParent().setRight(to.getRight());
                     }
                 }
             }
             /* Verifica se tem dois filhos */
             else if (to.getLeft() != null && to.getRight() != null){
-                Node minValue = lowerValue(to);
+                //se tiver dois filhos, troca o nó atual com o nó com maior chave do subárvore esquerda (maior dos menores)
+                Node subs = greaterValue(to.getLeft()); //subs(tituto) armazena o maior dos menores
+                //como subs era o maior dos menores, será necessário substituir o max de alguns ancestrais. Há duas situação possíveis:
+                //caso subs não possua filhos ou caso possua um filho na esquerda
+                if (subs.getLeft() != null) { //se tiver um filho na esquerda
+                    updateMax(subs, subs.getLeft()); //atualiza o valor máximo dos ancestrais para o filho à esquerda
+                    subs.getParent().setRight(subs.getLeft()); //atualiza o filho da direita do pai para neto (direita, esquerda)
+                }
+                else { //caso não tenha filhos
+                    updateMax(subs, subs.getParent()); //atualiza o valor máximo dos ancestrais para o do pai
+                    subs.getParent().setRight(null); //como subs não tem filhos, seu pai não terá mais filhos à direita
+                }
+                //passa as informações do nó que será removido para o que será substituído
+                subs.setParent(to.getParent()); //atualiza pai
+                subs.setLeft(to.getLeft()); //atualiza filho da esquerda
+                subs.setRight(to.getRight()); //atualiza filho da direita
+                subs.setMin(to.getMin()); //atualiza referência para mínimo da subárvore
+                subs.setMax(to.getMax()); //atualiza referência para máximo da subárvore
+                
+                if (to.isRoot()) { //se to for raiz, agora subs será a nova raiz
+                    root = subs;
+                }
+                
+                
+                /*Node minValue = lowerValue(to);
                 
                 if (minValue != null){
                     if (minValue.isLeft()){
@@ -180,7 +228,7 @@ public class Tree
                         else {
                         to.getParent().setRight(minValue);
                     }
-                } 
+                }*/
             }
         }
     } 
@@ -453,5 +501,37 @@ public class Tree
      */
     public Node getRoot(){
         return root;
+    }
+    
+    /**
+     * updateMin - Atualiza a referência da chave mínima de uma subárvore em nós ancestrais antes de remover um nó
+     * 
+     * @param rem Nó que deverá ser removido após a execução do método em chamada externa
+     * @param newMin Nó que armazena o novo candidato a menor da árvore
+     */
+    private void updateMin(Node rem, Node newMin) {
+        if (rem != null && newMin != null) {
+            Node anc = rem.getParent(); //armazena o nó ancestral do qual a referência para min será atualizada
+            while (anc != null && anc.getMin() == rem) {
+                anc.setMin(newMin); //atualiza o novo mínimo
+                anc = anc.getParent(); //incrementa passo para verificar no nó pai
+            }
+        }
+    }
+    
+    /**
+     * updateMax - Atualiza a referência da chave máxima de uma subárvore em nós ancestrais antes de remover um nó
+     * 
+     * @param rem Nó que deverá ser removido após a execução do método em chamada externa
+     * @param newMax Nó que armazena o novo candidato a maior da árvore
+     */
+    private void updateMax(Node rem, Node newMax) {
+        if (rem != null && newMax != null) {
+            Node anc = rem.getParent(); //armazena o nó ancestral do qual a referência para max será atualizada
+            while (anc != null && anc.getMax() == rem) {
+                anc.setMax(newMax); //atualiza o novo mínimo
+                anc = anc.getParent(); //incrementa passo para verificar no nó pai
+            }
+        }
     }
 }

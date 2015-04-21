@@ -23,7 +23,9 @@ public class TestTree {
         add(90);
         add(30);
         add(80);
-        
+        add(20);
+        add(100);
+        add(37);
     }
     
     /**
