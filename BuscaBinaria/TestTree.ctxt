@@ -1,17 +1,17 @@
 #BlueJ class context
 comment0.params=
 comment0.target=TestTree()
-comment0.text=\n\ Construtor\ que\ inicializa\ inst\u00E2ncias\ da\ classe\ Agenda\n
+comment0.text=\r\n\ Construtor\ que\ inicializa\ inst\u00E2ncias\ da\ classe\ TestTree\r\n
 comment1.params=key
 comment1.target=void\ add(int)
-comment1.text=\n\ armazenaPessoa\ -\ m\u00E9todo\ chamada\ para\ adicionar\ uma\ pessoa\ na\ agenda\n\ @params\ pessoa\ Pessoa\ a\ ser\ armazenada\n
+comment1.text=\r\n\ add\ -\ m\u00E9todo\ chamada\ para\ adicionar\ um\ n\u00F3\ com\ o\ key\r\n\ @params\ key\ Int\ a\ ser\ armazenado\r\n
 comment2.params=key
 comment2.target=void\ removeNode(int)
-comment2.text=\n\ removePessoa\ -\ m\u00E9todo\ chamada\ para\ remover\ uma\ pessoa\ da\ agenda\ usando\ como\ par\u00E2metro\ uma\ String\ nome\n\ \n\ @params\ nome\ String\ com\ o\ valor\ nome,\ que\ ser\u00E1\ usada\ para\ buscar\ o\ registro\ a\ ser\ removido\n
+comment2.text=\r\n\ removeNode\ -\ m\u00E9todo\ chamada\ para\ remover\ um\ n\u00F3\ da\ arvore\ usando\ como\ par\u00E2metro\ um\ Int\ key\r\n\ \r\n\ @params\ key\ Int\ com\ o\ valor\ que\ ser\u00E1\ usada\ para\ buscar\ o\ registro\ a\ ser\ removido\r\n
 comment3.params=key
 comment3.target=Node\ buscaNode(int)
-comment3.text=\n\ buscaPessoa\ -\ m\u00E9todo\ que\ retorna\ o\ n\u00F3\ com\ o\ valor\ desejado\ (passado\ por\ par\u00E2metro)\n\ \n\ @params\ nome\ String\ com\ valor\ a\ ser\ buscado\n\ @return\ Pessoa\ que\ est\u00E1\ sendo\ buscado\n
+comment3.text=\r\n\ buscaNode\ -\ m\u00E9todo\ que\ retorna\ o\ n\u00F3\ com\ o\ valor\ desejado\ (passado\ por\ par\u00E2metro)\r\n\ \r\n\ @params\ key\ Int\ com\ valor\ a\ ser\ buscado\r\n\ @return\ Node\ que\ est\u00E1\ sendo\ buscado\r\n
 comment4.params=
 comment4.target=void\ imprime()
-comment4.text=\n\ imprimeAgenda\ -\ m\u00E9todo\ chamado\ para\ imprimir\ os\ dados\ de\ todos\ os\ registros\ que\ est\u00E3o\ em\ Agenda\n
+comment4.text=\r\n\ imprime\ a\ arvore\ -\ m\u00E9todo\ chamado\ para\ imprimir\ os\ dados\ de\ todos\ os\ registros\ que\ est\u00E3o\ na\ arvore\r\n
 numComments=5

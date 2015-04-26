@@ -2,7 +2,7 @@
 /**
  * Classe Node será usada para representar o cada nó da árvore
  * 
- * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Gustavo Alves Bezerra 2014026460 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 public class Node {
@@ -10,6 +10,8 @@ public class Node {
     private Node left;    // nó a esquerda
     private Node right;   // nó a direita
     private Node parent;  // nó pai
+    private Node min;   //nó que aponta para o menor valor da sub-árvore (pode ser ele mesmo)
+    private Node max;   //nó que aponta para o menor valor da sub-árvore (pode ser ele mesmo)
     
     /**
      * Construtor para objetos da classe Node 
@@ -18,6 +20,8 @@ public class Node {
         this.left = null;
         this.right = null; 
         this.parent = null;
+        this.min = null;
+        this.max = null;
     }
     
     /**
@@ -29,7 +33,9 @@ public class Node {
         this.key = key;
         this.left = null;
         this.right = null;
-        this.parent = null;  
+        this.parent = null;
+        this.min = this;
+        this.max = this;
     }    
     
     /**
@@ -69,12 +75,33 @@ public class Node {
     }
     
     /**
+     * getMin - método que retorna o nó que contem a chave com menor valor da subárvore cujo this é raiz
+     * 
+     * @return return referência ao nó com menor chave da subárvore
+     */
+    public Node getMin() {
+        return min;
+    }
+    
+    /**
+     * getMax - método que retorna o nó que contem a chave com maior valor da subárvore cujo this é raiz
+     * 
+     * @return return referência ao nó com menor chave da subárvore
+     */    
+    public Node getMax() {
+        return max;
+    }
+    
+    /**
      * setkey - método que modifica o valor do campo key
      * 
      * @params pessoa valor que será setado no campo key do nó
      */ 
     public void setKey(int key) {
         this.key = key;
+        /*não altera os valores mínimo e máximo pois caso a key seja alterada, será necessário uma reorganização da árvore, estando
+         * fora do escopo do nó
+         */
     }
     
     /**
@@ -84,6 +111,9 @@ public class Node {
      */ 
     public void setLeft(Node left){
         this.left = left;
+        /*não altera o valor mínimo pois será necessário mudar o valor mínimo dos pais, o que está fora do escopo do nó,
+         * sendo a responsabilidade transferida para a árvore
+         */
     }
 
     /**
@@ -93,6 +123,9 @@ public class Node {
      */ 
     public void setRight(Node right){
         this.right = right;
+        /*não altera o valor máximo pois será necessário mudar o valor máximo dos pais, o que está fora do escopo do nó,
+         * sendo a responsabilidade transferida para a árvore
+         */
     }     
     
     /**
@@ -102,7 +135,25 @@ public class Node {
      */ 
     public void setParent(Node parent){
         this.parent = parent;
-    } 
+    }
+    
+    /**
+     * setMin - atualiza referência do nó que a chave é o menor valor da subárvore da qual this é a raiz
+     * 
+     * @param min novo nó que conterá o novo valor mínimo da subárvore da qual this é a raiz
+     */
+    public void setMin(Node min) {
+        this.min = min;
+    }
+
+    /**
+     * setMax - atualiza referência do nó que a chave é o maior valor da subárvore da qual this é a raiz
+     * 
+     * @param max novo nó que conterá o novo valor máximo da subárvore da qual this é a raiz
+     */
+    public void setMax(Node max) {
+        this.max = max;
+    }
         
     /**
      * isLeft - método que retorna true caso o nó seja o nó esquerdo do seu pai

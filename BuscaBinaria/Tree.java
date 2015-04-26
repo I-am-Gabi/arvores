@@ -4,7 +4,7 @@ import java.util.Iterator;
 /**
  * Classe Tree que representa a árvore em nosso programa
  * 
- * @author Gabriela Cavalcante da Silva 2013022760 , Roberto Dantas 2014027940.
+ * @author Gabriela Cavalcante da Silva 2013022760 , Gustavo Alves Bezerra 2014026460 , Roberto Dantas 2014027940.
  * @version 1.0
  */
 
@@ -22,51 +22,67 @@ public class Tree
     /**
      * add - método chamado para adicionar um nó na árvore
      * 
-     * @params pessoa O objeto pessoa que será adicionado em um nó da árvore
+     * @params key O valor da chave do nó que será adicionado em na árvore
+     * @return Retorna o nó que foi adicionado ou null caso a chave já exista na árvore
      */
     public Node add(int key) {
         if (root == null) {       // caso a raiz ainda esteja vazia
             root = new Node(key);    // inicializa o Node raiz root
             root.setLeft(null);   // seta o nó esquerdo como null
             root.setRight(null);  // seta o nó direito como null
+            root.setMin(root); //como a árvore só tem o nó raiz, o valor mínimo será ele mesmo
+            root.setMax(root); //como a árvore só tem o nó raiz, o valor máximo será ele mesmo
             return root;
         }
         else {
-            if (hasNode(key)) { // verifica se já existe um registro com esse CPF
+            if (hasNode(key)) { // verifica se já existe um registro com essa chave
                 System.out.print("Já existe um nó com o key informado");
             }
             else {
-                return add(root, key); // chama o método add passando a raiz e a pessoa
+                return add(root, key); // chama o método add passando a raiz e a chave
             }
         }
         return null;
     }
     
      /**
-     * add - método que adiciona efetivamente um valor em um determinado nó. Ele verifica pelo valor o nome se a 
-     * instância passada de Pessoa deve ficar a esquerda ou a direita do nó.
+     * add - método que adiciona efetivamente um valor em um determinado nó. Ele verifica pelo valor da chave (key, enviado por parâmetro) se a 
+     * instância o novo nó deve ser o filho da esquerda ou a direita do nó.
      * 
      * @params node nó que terá os filhos verificados para um deles ser preenchido
-     * @params pessoa instância que será atribuida ao campo Data do nó adicionado
+     * @params key valor da chave que será atribuida ao campo key do nó adicionado
+     * @return Retorna o nó que foi adicionado
      */
-    private Node add(Node node, int key) { 
-        if (node.getKey() > key) { // se o nome deve ficar a esquerda
+    private Node add(Node node, int key) { //complexidade não alterada após min e max em O(1)
+        if (node.getKey() > key) { // se a chave deve ficar a esquerda
             if (node.getLeft() != null) {
-                return add(node.getLeft(), key);
+                Node temp = add(node.getLeft(), key); //temp armazenará o nó recentemente adicionado
+                //verifica se a chave recentemente adionada é mínima da subárvore da qual node é raiz
+                if (node.getMin().getKey() > temp.getKey()) {
+                    node.setMin(temp);//atualiza mínimo
+                }
+                return temp;
             }
             else {
                 node.setLeft(new Node(key));
                 node.getLeft().setParent(node); 
+                node.setMin(node.getLeft()); //altera o mínimo
                 return node.getLeft();
             }
         }
-        else {
+        else { //a chave deve ficar á direita
             if (node.getRight() != null) {
-                return add(node.getRight(), key);
+                Node temp = add(node.getRight(), key);
+                //verifica se a chave recentemente adionada é máxima da subárvore da qual node é raiz
+                if (node.getMax().getKey() < temp.getKey()) {
+                    node.setMax(temp); //atualiza máximo
+                }
+                return temp;
             }
             else {
                 node.setRight(new Node(key));
-                node.getRight().setParent(node); 
+                node.getRight().setParent(node);
+                node.setMax(node.getRight()); //altera o máximo
                 return node.getRight();
             } 
         }
@@ -83,19 +99,31 @@ public class Tree
      * 3) Caso o nó possua duas sub-árvores
      *  - nessa situação, pegamos um valor menor, abaixo desse nó que quero remover (no caso, pegarmos um que seja uma folha. 
      *  removemos esse nó folha que estava no final e substituimos o nó que queríamos remover inicialmente, por ele.
-     */
+     */ 
     public void remove(Node to){
-        /* Verifica se não tem nenhum filho */
         if (to != null) { 
+            /* Verifica se não tem nenhum filho */
             if (to.getLeft() == null && to.getRight() == null){
                 if (to.getParent() == null){
                     root = null;
                 }
-                if (to.isLeft()){
-                    if(to.getParent() != null) to.getParent().setLeft(null);
+                if (to.isLeft()){ //se for folha à esquerda
+                    if(to.getParent() != null) {
+                        //atualiza os mínimos dos nós ancestrais antes de remover
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os mínimos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMin(to, to.getParent()); //se um nó folha foi removido da esquerda, o novo candidato a menor será o pai
+                        to.getParent().setLeft(null);
+                    }
                 }
-                else {  
-                    if(to.getParent() != null) to.getParent().setRight(null);
+                else { //se for folha à direita
+                    if(to.getParent() != null) {
+                        //atualiza os máximos dos nós ancestrais antes de remover
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os máximos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMax(to, to.getParent()); //se um nó folha foi removido da direita, o novo candidato a maior será o pai
+                        to.getParent().setRight(null);
+                    }
                 }
             }
             /* Verifica se só tem um filho esquerdo */
@@ -106,9 +134,15 @@ public class Tree
                 }
                 else {
                     if (to.isLeft()){
+                        //se to está à esquerda só tem um filho na esquerda, não será necessário atualizar o mínimo nos ancestrais
+                        //COMPLEXIDADE MANTIDA
                         to.getParent().setLeft(to.getLeft());
                     }
                     else {
+                        //se to está à direita e só possui um nó à esquerda, será necessário atualizar o máximo dos ancestrais
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os máximos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMax(to, to.getLeft()); //o novo candidato a max é o nó filho à esquerda
                         to.getParent().setRight(to.getLeft());
                     }
                 }
@@ -121,16 +155,52 @@ public class Tree
                 }
                 else {
                     if (to.isLeft()){
-                        to.getParent().setLeft(to.getLeft());
+                        //se to está à esquerda e só possui um nó à direita, será necessário atualizar o mínimo dos ancestrais
+                        //COMPLEXIDADE NÃO MANTIDA, há a necessidade de percorrer todos os ancestrais atualizando os mínimos
+                        //A complexidade é mantida se considerado que será necessário buscar o nó antes de remover
+                        updateMin(to, to.getRight()); //o novo candidato a min é o nó filho à direita
+                        to.getParent().setLeft(to.getRight());
                     }
                     else {
-                        to.getParent().setRight(to.getLeft());
+                        //se to está à direita só tem um filho na direita, não será necessário atualizar o máximo nos ancestrais
+                        //COMPLEXIDADE MANTIDA
+                        to.getParent().setRight(to.getRight());
                     }
                 }
             }
             /* Verifica se tem dois filhos */
             else if (to.getLeft() != null && to.getRight() != null){
-                Node minValue = lowerValue(to);
+                //se tiver dois filhos, troca o nó atual com o nó com maior chave do subárvore esquerda (maior dos menores)
+                Node subs = greaterValue(to.getLeft()); //subs(tituto) armazena o maior dos menores
+                //como subs era o maior dos menores, será necessário substituir o max de alguns ancestrais. Há duas situação possíveis:
+                //caso subs não possua filhos ou caso possua um filho na esquerda
+                if (subs.getLeft() != null) { //se tiver um filho na esquerda
+                    updateMax(subs, subs.getLeft()); //atualiza o valor máximo dos ancestrais para o filho à esquerda
+                    subs.getParent().setRight(subs.getLeft()); //atualiza o filho da direita do pai para neto (direita, esquerda)
+                }
+                else { //caso não tenha filhos
+                    updateMax(subs, subs.getParent()); //atualiza o valor máximo dos ancestrais para o do pai
+                    subs.getParent().setRight(null); //como subs não tem filhos, seu pai não terá mais filhos à direita
+                }
+                //passa as informações do nó que será removido para o que será substituído
+                subs.setParent(to.getParent()); //atualiza pai
+                subs.setLeft(to.getLeft()); //atualiza filho da esquerda
+                subs.setRight(to.getRight()); //atualiza filho da direita
+                subs.setMin(to.getMin()); //atualiza referência para mínimo da subárvore
+                subs.setMax(to.getMax()); //atualiza referência para máximo da subárvore
+                
+                if (to.isRoot()) { //se to for raiz, agora subs será a nova raiz
+                    root = subs;
+                }
+                
+                /*
+                 * CASO TENHA 2 FILHOS, A COMPLEXIDADE É MANTIDA, antes era necessário percorrer a árvore para encontrar o nó máximo da subárvore
+                 * à esquerda, agora essa busca não é mais necessária, entretanto, é preciso fazer o caminho contrário para atualizar o valor do
+                 * máximo dos ancestrais
+                 */
+                
+                
+                /*Node minValue = lowerValue(to);
                 
                 if (minValue != null){
                     if (minValue.isLeft()){
@@ -164,7 +234,7 @@ public class Tree
                         else {
                         to.getParent().setRight(minValue);
                     }
-                } 
+                }*/
             }
         }
     } 
@@ -172,12 +242,12 @@ public class Tree
     /**
      * searchBreadth - buscar um elemento utilizando a estratégia de busca em largura.
      * Inicialmente ele cria dois ArrayLists para armazenar a subárvore a esquerda 
-     * e a direita. E então pesquisa o valor 'name' em ambos os arrays.
+     * e a direita. E então pesquisa o valor 'key' em ambos os arrays.
      * A forma como esses arrays são criados e acessados, faz com que os valores
      * sejam visitados pela técnica da largura
      * 
-     * @params name String que possui o valor do name que será pesquisado 
-     * @return node nó com o valor que está sendo buscado
+     * @params key inteiro que armazena o valor da chave a ser pesquisado 
+     * @return node nó com o valor que está sendo buscado, caso não encontre retorna null
      */
     public Node searchBreadth(int key) { // Busca por largura
         ArrayList<Node> left = new ArrayList<Node>();
@@ -225,8 +295,8 @@ public class Tree
     /**
      * searchDepth - buscar um elemento utilizando a estratégia de busca em profundidade
      * 
-     * @params name nome da pessoa que está sendo pesquisada
-     * @return node nó com o valor que está sendo buscado
+     * @params key valor da chave do nó que está sendo pesquisada
+     * @return node nó com o valor que está sendo buscado. Retornará null caso valor não seja encontrado
      */
     public Node searchDepth(int key) {
         Node no = searchDepth(root, key);  
@@ -237,8 +307,8 @@ public class Tree
      * searchDepth - buscar um elemento utilizando a estratégia de busca em profundidade
      * 
      * @params node nó que marcará o ponto a partir do qual a busca acontecerá na árvore
-     * @params name nome da pessoa que está sendo pesquisada
-     * @return node nó com o valor que está sendo buscado
+     * @params key valor da chave que está sendo pesquisada
+     * @return node nó com o valor que está sendo buscado. Retornará null caso valor não seja encontrado
      */
     private Node searchDepth(Node node, int key){
         if (node != null){
@@ -256,9 +326,9 @@ public class Tree
     }
     
     /**
-     * hasNode - método chamado quando queremos verificar se há registro com o CPF passado por parâmetro
+     * hasNode - método chamado quando queremos verificar se há registro com a chave passada por parâmetro
      * 
-     * @params CPF valor do CPF que será usado para verificar a existência de um registro semelhante
+     * @params key valor da chave que será usado para verificar a existência de um registro semelhante
      * @return True caso tenha encontrado, ou False caso contrário
      */
     private boolean hasNode(int key) {
@@ -315,6 +385,12 @@ public class Tree
         return depth;
     }
    
+    /**
+     * Salva os valores de uma subárvore num Array em ordem prefixa
+     * 
+     * @param node nó raiz da subárvore
+     * @param array array no qual os valores da subárvore ficarão organizados em ordem prefixa.
+     */
     private void roamPrefix(Node node, ArrayList<Node> array){
         if (node != null){
             array.add(node); 
@@ -325,26 +401,23 @@ public class Tree
          
     /**
      * lowerValue - método chamado para retornar o menor valor da árvore.
-     * O menor valor será o do nó mais a esquerda.
+     * O menor valor será o do nó mais a esquerda
      * 
      * @return node nó com menor valor da árvore
      */
     public Node lowerValue(){   
-        Node node = root;
-        if (root != null) {
-            node = lowerValue(root);
-        }
-        return node; 
+        return lowerValue(root); 
     }
   
+    /**
+     * lowerValue - retorna o nó com menor valor da subárvore da qual node é a raiz (nó mais à esquerda)
+     * 
+     * @param node raiz da subárvore
+     * @return retorna referência ao nó com menor chave da subárvore
+     */
     private Node lowerValue(Node node) {
         if (node != null){
-            if (node.getLeft() == null){
-                return node;
-            }
-            else {           
-                return lowerValue(node.getLeft());
-            }            
+            return node.getMin();
         }
         return null;
     } 
@@ -356,27 +429,18 @@ public class Tree
      * @return node nós com maior valor da árvore
      */
     public Node greaterValue(){
-        Node node = root;
-        if (root != null){
-            node = greaterValue(root);
-        }
-        return node;
+        return greaterValue(root);
     }
     
     /**
-     *  greaterValue - método que retorna o nó com "maior" valor da árvore
-     *  No nosso caso, o maior valor será a informação que estiver no nó mais a direita.
-     *  
-     *  @params node nó que marcará o início da busca pelo maior valor na árvore
+     * greaterValue - retorna o nó com maior valor da subárvore da qual node é a raiz (nó mais à direita)
+     * 
+     * @param node raiz da subárvore
+     * @return retorna referência ao nó com maior chave da subárvore
      */
     private Node greaterValue(Node node) {
         if (node != null){
-            if (node.getRight() == null){
-                return node;
-            }
-            else {
-                return greaterValue(node.getRight());
-            }
+            return node.getMax();
         }
         return null;
     } 
@@ -400,7 +464,10 @@ public class Tree
      */
     private void printPrefix(Node node){
         if (node != null){
-            System.out.println("" + node.getKey());
+            //NORMAL
+            //System.out.println("" + node.getKey());
+            //PARA TESTES DE ADD
+            System.out.println("" + node.getKey() + " Min: " + node.getMin().getKey() + " Max: " + node.getMax().getKey());
             System.out.println("-----------------------------------------------");
             printPrefix(node.getLeft());
             printPrefix(node.getRight());
@@ -442,4 +509,35 @@ public class Tree
         return root;
     }
     
+    /**
+     * updateMin - Atualiza a referência da chave mínima de uma subárvore em nós ancestrais antes de remover um nó
+     * 
+     * @param rem Nó que deverá ser removido após a execução do método em chamada externa
+     * @param newMin Nó que armazena o novo candidato a menor da árvore
+     */
+    private void updateMin(Node rem, Node newMin) {
+        if (rem != null && newMin != null) {
+            Node anc = rem.getParent(); //armazena o nó ancestral do qual a referência para min será atualizada
+            while (anc != null && anc.getMin() == rem) {
+                anc.setMin(newMin); //atualiza o novo mínimo
+                anc = anc.getParent(); //incrementa passo para verificar no nó pai
+            }
+        }
+    }
+    
+    /**
+     * updateMax - Atualiza a referência da chave máxima de uma subárvore em nós ancestrais antes de remover um nó
+     * 
+     * @param rem Nó que deverá ser removido após a execução do método em chamada externa
+     * @param newMax Nó que armazena o novo candidato a maior da árvore
+     */
+    private void updateMax(Node rem, Node newMax) {
+        if (rem != null && newMax != null) {
+            Node anc = rem.getParent(); //armazena o nó ancestral do qual a referência para max será atualizada
+            while (anc != null && anc.getMax() == rem) {
+                anc.setMax(newMax); //atualiza o novo mínimo
+                anc = anc.getParent(); //incrementa passo para verificar no nó pai
+            }
+        }
+    }
 }
