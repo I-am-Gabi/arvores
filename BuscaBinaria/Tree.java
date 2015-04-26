@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
@@ -10,13 +9,13 @@ import java.util.Iterator;
 
 public class Tree
 {
-    private Node root;
+    private Node root; // nó raiz
     
     /**
      * Construtor que inicializar a raiz como nula
      */
     public Tree(){ 
-        root = null;
+        root = null; 
     } 
     
     /**
@@ -26,20 +25,20 @@ public class Tree
      * @return Retorna o nó que foi adicionado ou null caso a chave já exista na árvore
      */
     public Node add(int key) {
-        if (root == null) {       // caso a raiz ainda esteja vazia
-            root = new Node(key);    // inicializa o Node raiz root
-            root.setLeft(null);   // seta o nó esquerdo como null
-            root.setRight(null);  // seta o nó direito como null
-            root.setMin(root); //como a árvore só tem o nó raiz, o valor mínimo será ele mesmo
-            root.setMax(root); //como a árvore só tem o nó raiz, o valor máximo será ele mesmo
+        if (root == null) {         // Caso a raiz ainda esteja vazia
+            root = new Node(key);   // Inicializa o Node raiz root
+            root.setLeft(null);     // Atribui null ao nó esquerdo 
+            root.setRight(null);    // Stribui null ao nó direito 
+            root.setMin(root);      // Como a árvore só tem o nó raiz, o valor mínimo será ele mesmo
+            root.setMax(root);      // Como a árvore só tem o nó raiz, o valor máximo será ele mesmo
             return root;
         }
         else {
-            if (hasNode(key)) { // verifica se já existe um registro com essa chave
+            if (hasNode(key)) {         // Verifica se já existe um registro com essa chave
                 System.out.print("Já existe um nó com o key informado");
             }
             else {
-                return add(root, key); // chama o método add passando a raiz e a chave
+                return add(root, key); // Chama o método add passando a raiz e a chave
             }
         }
         return null;
@@ -53,13 +52,13 @@ public class Tree
      * @params key valor da chave que será atribuida ao campo key do nó adicionado
      * @return Retorna o nó que foi adicionado
      */
-    private Node add(Node node, int key) { //complexidade não alterada após min e max em O(1)
-        if (node.getKey() > key) { // se a chave deve ficar a esquerda
+    private Node add(Node node, int key) {  // Complexidade não alterada após min e max em O(1)
+        if (node.getKey() > key) {          // Verifica se a chave no node é maior que a key (então, a key ficará a esquerda)
             if (node.getLeft() != null) {
-                Node temp = add(node.getLeft(), key); //temp armazenará o nó recentemente adicionado
+                Node temp = add(node.getLeft(), key); // temp armazenará o nó recentemente adicionado
                 //verifica se a chave recentemente adionada é mínima da subárvore da qual node é raiz
                 if (node.getMin().getKey() > temp.getKey()) {
-                    node.setMin(temp);//atualiza mínimo
+                    node.setMin(temp); //atualiza mínimo
                 }
                 return temp;
             }
@@ -192,49 +191,6 @@ public class Tree
                 if (to.isRoot()) { //se to for raiz, agora subs será a nova raiz
                     root = subs;
                 }
-                
-                /*
-                 * CASO TENHA 2 FILHOS, A COMPLEXIDADE É MANTIDA, antes era necessário percorrer a árvore para encontrar o nó máximo da subárvore
-                 * à esquerda, agora essa busca não é mais necessária, entretanto, é preciso fazer o caminho contrário para atualizar o valor do
-                 * máximo dos ancestrais
-                 */
-                
-                
-                /*Node minValue = lowerValue(to);
-                
-                if (minValue != null){
-                    if (minValue.isLeft()){
-                        minValue.getParent().setLeft(null);
-                    }
-                    else {
-                        minValue.getParent().setRight(null);
-                    }
-                }
-    
-                if (to.isRoot()){
-                    minValue.setLeft(to.getLeft());
-                    minValue.setRight(to.getRight());
-                    if (minValue.getLeft() != null){
-                        minValue.getLeft().setParent(minValue);                    
-                    }
-                    if (minValue.getRight() != null){
-                        minValue.getRight().setParent(minValue);                    
-                    }
-                    minValue.setParent(null);
-                    root = minValue;
-                }
-                else {
-                    to.getLeft().setParent(minValue);
-                    to.getRight().setParent(minValue);
-                    minValue.setLeft(to.getLeft());
-                    minValue.setRight(to.getRight());
-                    if(to.isLeft()){
-                        to.getParent().setLeft(minValue);
-                    }
-                        else {
-                        to.getParent().setRight(minValue);
-                    }
-                }*/
             }
         }
     } 
@@ -451,8 +407,8 @@ public class Tree
      */
     public void printPrefix(){
         System.out.println();
-        System.out.println("---------------------PREFIX--------------------");
-        System.out.println("-----------------------------------------------");
+        System.out.println("--------------------- PREFIX --------------------");
+        System.out.println("-------------------------------------------------");
         printPrefix(root);
     }
         
@@ -464,10 +420,11 @@ public class Tree
      */
     private void printPrefix(Node node){
         if (node != null){
-            //NORMAL
-            //System.out.println("" + node.getKey());
-            //PARA TESTES DE ADD
-            System.out.println("" + node.getKey() + " Min: " + node.getMin().getKey() + " Max: " + node.getMax().getKey());
+            // NORMAL
+            // System.out.println("" + node.getKey());
+            // PARA TESTES DE ADD
+            // System.out.println("" + node.getKey() + " Min: " + node.getMin().getKey() + " Max: " + node.getMax().getKey());
+            System.out.println("" + node.getKey());
             System.out.println("-----------------------------------------------");
             printPrefix(node.getLeft());
             printPrefix(node.getRight());
