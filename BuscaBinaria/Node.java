@@ -119,7 +119,7 @@ public class Node {
         /**
          * não altera o valor mínimo pois será necessário mudar o valor mínimo 
          * dos pais, o que está fora do escopo do nó, sendo a responsabilidade 
-transferida para a árvore
+         * transferida para a árvore
          */
     }
 

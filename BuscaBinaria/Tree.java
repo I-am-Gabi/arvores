@@ -19,6 +19,15 @@ public class Tree
     } 
     
     /**
+     * Construtor que inicializar a raiz com um valor passado por parâmetro
+     * 
+     * @params node nó atribuido a raiz
+     */
+    public Tree(Node node){ 
+        root = node; 
+    } 
+    
+    /**
      * add - método chamado para adicionar um nó na árvore
      * 
      * @params key O valor da chave do nó que será adicionado em na árvore
